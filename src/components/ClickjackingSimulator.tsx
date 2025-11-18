@@ -120,10 +120,10 @@ if (top !== self) {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="demo">Interactive Demo</TabsTrigger>
-            <TabsTrigger value="techniques">Attack Variants</TabsTrigger>
-            <TabsTrigger value="defenses">Defense Methods</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Interactive Demo</TabsTrigger>
+            <TabsTrigger value="techniques" className="text-xs sm:text-sm">Attack Variants</TabsTrigger>
+            <TabsTrigger value="defenses" className="text-xs sm:text-sm">Defense Methods</TabsTrigger>
           </TabsList>
 
           {/* Interactive Demo Tab */}

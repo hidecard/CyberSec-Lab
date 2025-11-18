@@ -285,10 +285,10 @@ export default function BrowserFingerprintingLab() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="demo">Fingerprinting Demo</TabsTrigger>
-            <TabsTrigger value="attacks">Real-World Attacks</TabsTrigger>
-            <TabsTrigger value="defense">Defense Strategies</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Fingerprinting Demo</TabsTrigger>
+            <TabsTrigger value="attacks" className="text-xs sm:text-sm">Real-World Attacks</TabsTrigger>
+            <TabsTrigger value="defense" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
           </TabsList>
 
           {/* Fingerprinting Demo Tab */}

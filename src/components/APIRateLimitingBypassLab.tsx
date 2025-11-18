@@ -15,7 +15,7 @@ export default function APIRateLimitingBypassLab() {
   const [attackVector, setAttackVector] = useState('')
   const [requestCount, setRequestCount] = useState(0)
   const [bypassSuccess, setBypassSuccess] = useState(false)
-  const [attackResults, setAttackResults] = useState<Array<{time: string, method: string, status: string, ip: string}>>([])
+  const [attackResults, setAttackResults] = useState<Array<{time: string, method: string, status: string, ip: string, details: string}>>([])
   const [copied, setCopied] = useState(false)
 
   const rateLimitingBypasses = [
@@ -452,7 +452,7 @@ const geoRateLimiter = {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -474,11 +474,11 @@ const geoRateLimiter = {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="demo">Bypass Simulation</TabsTrigger>
-            <TabsTrigger value="techniques">Bypass Techniques</TabsTrigger>
-            <TabsTrigger value="attacks">Real-World Cases</TabsTrigger>
-            <TabsTrigger value="defense">Defense Strategies</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Bypass Simulation</TabsTrigger>
+            <TabsTrigger value="techniques" className="text-xs sm:text-sm">Bypass Techniques</TabsTrigger>
+            <TabsTrigger value="attacks" className="text-xs sm:text-sm">Real-World Cases</TabsTrigger>
+            <TabsTrigger value="defense" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
           </TabsList>
 
           {/* Bypass Simulation Tab */}

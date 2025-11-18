@@ -292,11 +292,11 @@ export default function WebSecurityScannerLab() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="scanner">Security Scanner</TabsTrigger>
-            <TabsTrigger value="tools">Real Tools</TabsTrigger>
-            <TabsTrigger value="techniques">Scanning Techniques</TabsTrigger>
-            <TabsTrigger value="vulnerabilities">Vulnerability Database</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto">
+            <TabsTrigger value="scanner" className="text-xs sm:text-sm">Security Scanner</TabsTrigger>
+            <TabsTrigger value="tools" className="text-xs sm:text-sm">Real Tools</TabsTrigger>
+            <TabsTrigger value="techniques" className="text-xs sm:text-sm">Scanning Techniques</TabsTrigger>
+            <TabsTrigger value="vulnerabilities" className="text-xs sm:text-sm">Vulnerability Database</TabsTrigger>
           </TabsList>
 
           {/* Security Scanner Tab */}

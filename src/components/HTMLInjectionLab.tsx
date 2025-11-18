@@ -130,10 +130,10 @@ export default function HTMLInjectionLab() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="demo">Interactive Demo</TabsTrigger>
-            <TabsTrigger value="scenarios">Attack Scenarios</TabsTrigger>
-            <TabsTrigger value="defenses">Defense Techniques</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Interactive Demo</TabsTrigger>
+            <TabsTrigger value="scenarios" className="text-xs sm:text-sm">Attack Scenarios</TabsTrigger>
+            <TabsTrigger value="defenses" className="text-xs sm:text-sm">Defense Techniques</TabsTrigger>
           </TabsList>
 
           {/* Interactive Demo Tab */}

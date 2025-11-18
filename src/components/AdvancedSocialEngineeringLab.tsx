@@ -185,14 +185,14 @@ function accessCustomerData(customerId) {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-3 mb-4">
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 mb-4">
             <div className="p-3 bg-purple-500 rounded-lg">
-              <Users className="w-6 h-6 text-white" />
+              <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Advanced Social Engineering Lab</h1>
-              <p className="text-slate-600">Real-world attack scenarios from major security breaches</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Advanced Social Engineering Lab</h1>
+              <p className="text-sm sm:text-base text-slate-600">Real-world attack scenarios from major security breaches</p>
             </div>
           </div>
           <Alert className="mb-6">
@@ -204,10 +204,10 @@ function accessCustomerData(customerId) {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="scenarios">Real-World Scenarios</TabsTrigger>
-            <TabsTrigger value="techniques">Attack Techniques</TabsTrigger>
-            <TabsTrigger value="defense">Defense Strategies</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="scenarios" className="text-xs sm:text-sm">Real-World Scenarios</TabsTrigger>
+            <TabsTrigger value="techniques" className="text-xs sm:text-sm">Attack Techniques</TabsTrigger>
+            <TabsTrigger value="defense" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
           </TabsList>
 
           {/* Real-World Scenarios Tab */}
