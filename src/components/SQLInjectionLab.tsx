@@ -209,7 +209,7 @@ export default function SQLInjectionLab() {
               <Database className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">SQL Injection Lab</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">SQL Injection Lab</h1>
               <p className="text-slate-600">Learn how attackers exploit database vulnerabilities and how to prevent them</p>
             </div>
           </div>

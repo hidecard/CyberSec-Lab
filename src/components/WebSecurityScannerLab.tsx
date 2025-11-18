@@ -279,7 +279,7 @@ export default function WebSecurityScannerLab() {
               <Search className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Web Security Scanner Lab</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Web Security Scanner Lab</h1>
               <p className="text-slate-600">Learn to identify and analyze web application vulnerabilities using automated scanning tools</p>
             </div>
           </div>

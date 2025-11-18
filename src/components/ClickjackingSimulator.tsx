@@ -107,7 +107,7 @@ if (top !== self) {
               <Target className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Clickjacking Simulator</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Clickjacking Simulator</h1>
               <p className="text-slate-600">Learn how invisible UI elements can hijack user clicks and steal actions</p>
             </div>
           </div>

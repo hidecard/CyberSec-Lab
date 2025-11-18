@@ -74,7 +74,7 @@ export default function DOMAttackPlayground() {
               <Bug className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">DOM-Based Attack Playground</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">DOM-Based Attack Playground</h1>
               <p className="text-slate-600">Learn how attackers manipulate the DOM to compromise your frontend</p>
             </div>
           </div>

@@ -461,7 +461,7 @@ const geoRateLimiter = {
               <BarChart className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">API Rate Limiting Bypass Lab</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">API Rate Limiting Bypass Lab</h1>
               <p className="text-slate-600">Learn how attackers bypass API rate limits and how to defend against them</p>
             </div>
           </div>

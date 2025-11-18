@@ -273,7 +273,7 @@ const cacheConfig = {
               <Database className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Web Cache Poisoning Lab</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Web Cache Poisoning Lab</h1>
               <p className="text-slate-600">Learn how attackers manipulate cached content to distribute malware and steal data</p>
             </div>
           </div>
@@ -286,10 +286,10 @@ const cacheConfig = {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="demo">Attack Simulation</TabsTrigger>
-            <TabsTrigger value="incidents">Real-World Incidents</TabsTrigger>
-            <TabsTrigger value="defense">Defense Strategies</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Attack Simulation</TabsTrigger>
+            <TabsTrigger value="incidents" className="text-xs sm:text-sm">Real-World Incidents</TabsTrigger>
+            <TabsTrigger value="defense" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
           </TabsList>
 
           {/* Attack Simulation Tab */}

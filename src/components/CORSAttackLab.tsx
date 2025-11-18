@@ -208,10 +208,10 @@ Access-Control-Allow-Credentials: false`,
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="demo">Interactive Demo</TabsTrigger>
-            <TabsTrigger value="attacks">Attack Scenarios</TabsTrigger>
-            <TabsTrigger value="defenses">Defense Guide</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Interactive Demo</TabsTrigger>
+            <TabsTrigger value="attacks" className="text-xs sm:text-sm">Attack Scenarios</TabsTrigger>
+            <TabsTrigger value="defenses" className="text-xs sm:text-sm">Defense Guide</TabsTrigger>
           </TabsList>
 
           {/* Interactive Demo Tab */}

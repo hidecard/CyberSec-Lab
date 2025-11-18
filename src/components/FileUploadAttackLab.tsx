@@ -147,7 +147,7 @@ export default function FileUploadAttackLab() {
               <Package className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">File Upload Attack Lab</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">File Upload Attack Lab</h1>
               <p className="text-slate-600">Learn how attackers bypass file upload restrictions and upload malicious executables</p>
             </div>
           </div>
@@ -160,10 +160,10 @@ export default function FileUploadAttackLab() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="demo">Upload Simulator</TabsTrigger>
-            <TabsTrigger value="bypass">Bypass Techniques</TabsTrigger>
-            <TabsTrigger value="defenses">Defense Strategies</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Upload Simulator</TabsTrigger>
+            <TabsTrigger value="bypass" className="text-xs sm:text-sm">Bypass Techniques</TabsTrigger>
+            <TabsTrigger value="defenses" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
           </TabsList>
 
           {/* Upload Simulator Tab */}

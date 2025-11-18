@@ -117,7 +117,7 @@ export default function HTMLInjectionLab() {
               <FileText className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">HTML/URL Injection Lab</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">HTML/URL Injection Lab</h1>
               <p className="text-slate-600">Learn how HTML and URL injection attacks break layouts and compromise security</p>
             </div>
           </div>
