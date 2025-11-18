@@ -14,24 +14,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
+  title: "CyberSec Lab",
+  description: "Interactive cybersecurity labs covering XSS, SQL injection, CSRF, and more. Learn by doing in a safe, controlled environment.",
+  keywords: ["Cybersecurity", "Security Labs", "XSS", "SQL Injection", "CSRF", "Penetration Testing", "Web Security"],
+  authors: [{ name: "CyberSec Lab Team" }],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: "CyberSec Lab",
+    description: "Interactive cybersecurity labs covering XSS, SQL injection, CSRF, and more",
+    url: "/",
+    siteName: "CyberSec Lab",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    title: "CyberSec Lab",
+    description: "Interactive cybersecurity labs covering XSS, SQL injection, CSRF, and more",
   },
 };
 

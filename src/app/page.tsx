@@ -208,48 +208,21 @@ const attackModules: AttackModule[] = [
   }
 ]
 
-const difficultyColors = {
-  Beginner: 'bg-green-100 text-green-800 border-green-200',
-  Intermediate: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-  Advanced: 'bg-red-100 text-red-800 border-red-200'
-}
-
-const categoryColors = {
-  'Injection': 'bg-purple-50 text-purple-700 border-purple-200',
-  'Social Engineering': 'bg-blue-50 text-blue-700 border-blue-200',
-  'Browser Security': 'bg-orange-50 text-orange-700 border-orange-200',
-  'Network Security': 'bg-cyan-50 text-cyan-700 border-cyan-200',
-  'Session Security': 'bg-pink-50 text-pink-700 border-pink-200',
-  'File Security': 'bg-amber-50 text-amber-700 border-amber-200',
-  'Authentication': 'bg-indigo-50 text-indigo-700 border-indigo-200',
-  'Advanced Attacks': 'bg-red-50 text-red-700 border-red-200',
-  'Infrastructure': 'bg-gray-50 text-gray-700 border-gray-200',
-  'Privacy & Tracking': 'bg-teal-50 text-teal-700 border-teal-200',
-  'Infrastructure Attacks': 'bg-red-50 text-red-700 border-red-200',
-  'Assessment': 'bg-green-50 text-green-700 border-green-200',
-  'Practice': 'bg-gradient-to-r from-purple-50 to-pink-50 text-purple-700 border-purple-200'
-}
-
 export default function Home() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all')
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all')
+  const [selectedCategory, setSelectedCategory] = useState<string>('All')
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>('All')
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState<'home' | 'modules' | 'learning'>('home')
   const [currentModule, setCurrentModule] = useState<string | null>(null)
 
-  useEffect(() => {
-    const hash = window.location.hash.slice(1)
-    if (hash && attackModules.find(m => m.id === hash)) {
-      setCurrentModule(hash)
+  const scrollToSection = (section: 'home' | 'modules' | 'learning') => {
+    setActiveSection(section)
+    const element = document.getElementById(section)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [])
-
-  const categories = ['all', ...Array.from(new Set(attackModules.map(m => m.category)))]
-  const difficulties = ['all', 'Beginner', 'Intermediate', 'Advanced']
-
-  const filteredModules = attackModules.filter(module => {
-    const categoryMatch = selectedCategory === 'all' || module.category === selectedCategory
-    const difficultyMatch = selectedDifficulty === 'all' || module.difficulty === selectedDifficulty
-    return categoryMatch && difficultyMatch
-  })
+  }
 
   const handleModuleClick = (moduleId: string) => {
     if (attackModules.find(m => m.id === moduleId)?.status === 'available') {
@@ -263,6 +236,42 @@ export default function Home() {
     window.location.hash = ''
   }
 
+  const filteredModules = attackModules.filter(module => {
+    const matchesCategory = selectedCategory === 'All' || module.category === selectedCategory
+    const matchesDifficulty = selectedDifficulty === 'All' || module.difficulty === selectedDifficulty
+    const matchesSearch = module.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         module.description.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesCategory && matchesDifficulty && matchesSearch
+  })
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1)
+    if (hash && attackModules.find(m => m.id === hash)) {
+      setCurrentModule(hash)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'modules', 'learning']
+      const scrollPosition = window.scrollY + 100
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const { offsetTop, offsetHeight } = element
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section as 'home' | 'modules' | 'learning')
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   // Render specific module if selected
   if (currentModule) {
     const selectedModule = attackModules.find(m => m.id === currentModule)
@@ -274,7 +283,7 @@ export default function Home() {
           <header className="bg-white/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <Button 
+                <Button
                   onClick={handleBackToHome}
                   variant="outline"
                   className="mb-2 sm:mb-0 hover:bg-slate-50 transition-colors"
@@ -310,192 +319,188 @@ export default function Home() {
           {/* Top Bar */}
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl shadow-lg shadow-red-500/20">
-                <AlertTriangle className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-red-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
-                  CyberSec Lab
-                </h1>
-              </div>
+              <Shield className="w-8 h-8 text-blue-600" />
+              <h1 className="text-xl sm:text-2xl font-bold text-slate-900">CyberSec Lab</h1>
             </div>
-            <nav className="hidden md:flex items-center space-x-6">
-              <Button variant="ghost" className="text-slate-700 hover:text-slate-900 hover:bg-slate-100">
-                Home
+            <div className="flex items-center space-x-4">
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center space-x-6">
+                <button
+                  onClick={() => scrollToSection('home')}
+                  className={`text-sm font-medium transition-colors duration-200 ${
+                    activeSection === 'home' ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'
+                  }`}
+                >
+                  Home
+                </button>
+                <button
+                  onClick={() => scrollToSection('modules')}
+                  className={`text-sm font-medium transition-colors duration-200 ${
+                    activeSection === 'modules' ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'
+                  }`}
+                >
+                  Modules
+                </button>
+                <button
+                  onClick={() => scrollToSection('learning')}
+                  className={`text-sm font-medium transition-colors duration-200 ${
+                    activeSection === 'learning' ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'
+                  }`}
+                >
+                  Learning Path
+                </button>
+              </nav>
+              {/* Mobile Menu Button */}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="md:hidden"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <Menu className="w-5 h-5" />
               </Button>
-              <Button variant="ghost" className="text-slate-700 hover:text-slate-900 hover:bg-slate-100">
-                Modules
-              </Button>
-              <Button variant="ghost" className="text-slate-700 hover:text-slate-900 hover:bg-slate-100">
-                Learning Path
-              </Button>
-              <Badge variant="outline" className="border-slate-300 bg-white/50">
-                <Shield className="w-3 h-3 mr-1" />
-                Learn by Attacking
-              </Badge>
-            </nav>
-            {/* Mobile Menu Button */}
-            <Button variant="ghost" size="sm" className="md:hidden" onClick={() => {/* TODO: Implement mobile menu toggle */}}>
-              <Menu className="w-5 h-5" />
-            </Button>
-          </div>
-
-          {/* Hero Section */}
-          <div className="py-6 sm:py-8">
-            <div className="text-center">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent mb-4">
-                Interactive Cybersecurity Training Platform
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-                Master real-world security vulnerabilities through hands-on attack simulations.
-                Learn ethical hacking techniques and defense strategies in a safe, controlled environment.
-              </p>
             </div>
           </div>
+          {/* Mobile Navigation */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden border-t border-slate-200/50 py-3">
+              <nav className="flex flex-col space-y-2">
+                <button
+                  onClick={() => {
+                    scrollToSection('home')
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className={`text-sm font-medium text-left transition-colors duration-200 ${
+                    activeSection === 'home' ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'
+                  }`}
+                >
+                  Home
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection('modules')
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className={`text-sm font-medium text-left transition-colors duration-200 ${
+                    activeSection === 'modules' ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'
+                  }`}
+                >
+                  Modules
+                </button>
+                <button
+                  onClick={() => {
+                    scrollToSection('learning')
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className={`text-sm font-medium text-left transition-colors duration-200 ${
+                    activeSection === 'learning' ? 'text-blue-600' : 'text-slate-600 hover:text-blue-600'
+                  }`}
+                >
+                  Learning Path
+                </button>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        {/* Warning Banner */}
-        <div className="mb-6 sm:mb-8 p-4 sm:p-6 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/50 rounded-xl shadow-sm">
-          <div className="flex items-start space-x-3 sm:space-x-4">
-            <div className="p-2 bg-amber-100 rounded-lg">
-              <AlertTriangle className="w-5 h-5 text-amber-600" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold text-amber-900 text-lg sm:text-xl">⚠️ Ethical Learning Environment</h3>
-              <p className="text-amber-800 text-sm sm:text-base mt-2 leading-relaxed">
-                This is a controlled learning environment for educational purposes only. 
-                These techniques are demonstrated to help you understand and defend against real attacks. 
-                Never use these methods against unauthorized systems.
-              </p>
-            </div>
-          </div>
-        </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        {/* Hero Section */}
+        <section id="home" className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6">
+            Master Cybersecurity Through
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Hands-On Labs</span>
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Explore interactive security labs covering XSS, SQL injection, CSRF, and more. Learn by doing in a safe, controlled environment designed for cybersecurity professionals and enthusiasts.
+          </p>
+        </section>
 
         {/* Filters */}
-        <div className="mb-6 sm:mb-8 space-y-4">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div className="flex-1">
-              <label className="block text-sm font-semibold text-slate-700 mb-3">Category</label>
-              <div className="flex flex-wrap gap-2">
-                {categories.map(category => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(category)}
-                    className={`text-xs transition-all duration-200 ${
-                      selectedCategory === category 
-                        ? 'shadow-md scale-105' 
-                        : 'hover:scale-105 hover:shadow-sm'
-                    }`}
-                  >
-                    {category === 'all' ? 'All Categories' : category}
-                  </Button>
-                ))}
-              </div>
+        <div className="mb-8 sm:mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              >
+                <option value="All">All Categories</option>
+                <option value="Injection">Injection</option>
+                <option value="Social Engineering">Social Engineering</option>
+                <option value="Authentication">Authentication</option>
+                <option value="Network">Network</option>
+                <option value="Browser">Browser</option>
+                <option value="Practice">Practice</option>
+              </select>
+              <select
+                value={selectedDifficulty}
+                onChange={(e) => setSelectedDifficulty(e.target.value)}
+                className="px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              >
+                <option value="All">All Difficulties</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+              </select>
             </div>
-            <div className="flex-1">
-              <label className="block text-sm font-semibold text-slate-700 mb-3">Difficulty</label>
-              <div className="flex flex-wrap gap-2">
-                {difficulties.map(difficulty => (
-                  <Button
-                    key={difficulty}
-                    variant={selectedDifficulty === difficulty ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedDifficulty(difficulty)}
-                    className={`text-xs transition-all duration-200 ${
-                      selectedDifficulty === difficulty 
-                        ? 'shadow-md scale-105' 
-                        : 'hover:scale-105 hover:shadow-sm'
-                    }`}
-                  >
-                    {difficulty === 'all' ? 'All Levels' : difficulty}
-                  </Button>
-                ))}
-              </div>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+              <input
+                type="text"
+                placeholder="Search modules..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white w-full sm:w-64"
+              />
             </div>
           </div>
         </div>
 
-        {/* Module Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {filteredModules.map(module => (
-            <Card 
-              key={module.id} 
-              className={`group relative overflow-hidden transition-all duration-300 cursor-pointer rounded-xl border border-slate-200/50 ${
-                module.status === 'coming-soon' 
-                  ? 'opacity-75 cursor-not-allowed' 
-                  : 'hover:shadow-xl hover:scale-105 hover:-translate-y-1 hover:border-slate-300 hover:bg-white/80'
-              }`}
-              onClick={() => module.status === 'available' && handleModuleClick(module.id)}
-            >
-              {/* Gradient overlay for available modules */}
-              {module.status === 'available' && (
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              )}
-              
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className={`p-3 rounded-xl transition-all duration-300 ${
-                      module.status === 'available' 
-                        ? 'bg-gradient-to-br from-slate-100 to-slate-200 group-hover:from-slate-200 group-hover:to-slate-300' 
-                        : 'bg-slate-100'
-                    }`}>
-                      <div className={`${module.status === 'available' ? 'text-slate-700' : 'text-slate-500'}`}>
-                        {module.icon}
-                      </div>
+        {/* Attack Modules Grid */}
+        <section id="modules" className="mb-12 sm:mb-16">
+          <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 sm:mb-8">Security Labs & Modules</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {filteredModules.map((module) => (
+              <Card key={module.id} className="group hover:shadow-xl transition-all duration-300 border-slate-200/50 hover:border-blue-200/50 bg-white/50 backdrop-blur-sm">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
+                      {module.icon}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <CardTitle className="text-base sm:text-lg font-semibold leading-tight truncate">
-                        {module.title}
-                      </CardTitle>
-                      <div className="flex flex-wrap items-center gap-1.5 mt-2">
-                        <Badge 
-                          variant="outline" 
-                          className={`text-xs font-medium ${difficultyColors[module.difficulty]}`}
-                        >
-                          {module.difficulty}
-                        </Badge>
-                        <Badge 
-                          variant="outline" 
-                          className={`text-xs font-medium ${categoryColors[module.category as keyof typeof categoryColors]}`}
-                        >
-                          {module.category}
-                        </Badge>
-                      </div>
-                    </div>
-                  </div>
-                  {module.status === 'coming-soon' && (
-                    <Badge variant="secondary" className="text-xs bg-slate-100 text-slate-600 border-slate-200">
-                      Coming Soon
+                    <Badge variant="outline" className="text-xs">
+                      {module.difficulty}
                     </Badge>
+                  </div>
+                  <CardTitle className="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+                    {module.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm leading-relaxed text-slate-600 line-clamp-3">
+                    {module.description}
+                  </CardDescription>
+                  {module.status === 'available' && (
+                    <Button
+                      onClick={() => handleModuleClick(module.id)}
+                      className="w-full mt-4 group-hover:shadow-md transition-all duration-300 group-hover:from-blue-500 group-hover:to-blue-600"
+                      size="sm"
+                    >
+                      <span className="flex items-center justify-center">
+                        Start Attack Simulation
+                        <ArrowLeft className="w-3 h-3 ml-2 rotate-180 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
+                    </Button>
                   )}
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <CardDescription className="text-sm leading-relaxed text-slate-600 line-clamp-3">
-                  {module.description}
-                </CardDescription>
-                {module.status === 'available' && (
-                  <Button className="w-full mt-4 group-hover:shadow-md transition-all duration-300 group-hover:from-blue-500 group-hover:to-blue-600" size="sm">
-                    <span className="flex items-center justify-center">
-                      Start Attack Simulation
-                      <ArrowLeft className="w-3 h-3 ml-2 rotate-180 group-hover:translate-x-1 transition-transform duration-300" />
-                    </span>
-                  </Button>
-                )}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
 
         {/* Learning Path */}
-        <div className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl border border-blue-200/50 shadow-lg">
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 sm:mb-8 text-center">🎯 Recommended Learning Path</h2>
+        <section id="learning" className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl border border-blue-200/50 shadow-lg">
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 sm:mb-8 text-center">🎯 Recommended Learning Path</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
             {[
               { step: 1, color: 'bg-blue-500', title: 'Injection', desc: 'XSS, HTML injection' },
@@ -515,8 +520,10 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </section>
       </main>
     </div>
   )
 }
+
+
