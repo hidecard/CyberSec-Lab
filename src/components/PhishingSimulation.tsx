@@ -93,22 +93,22 @@ if (top !== self) {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="p-3 bg-blue-500 rounded-lg">
-              <Eye className="w-6 h-6 text-white" />
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 mb-4">
+            <div className="p-2 sm:p-3 bg-blue-500 rounded-lg self-start">
+              <Eye className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Phishing Simulation Lab</h1>
-              <p className="text-slate-600">Learn how attackers create convincing fake interfaces and how to defend against them</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Phishing Simulation Lab</h1>
+              <p className="text-sm sm:text-base text-slate-600">Learn how attackers create convincing fake interfaces and how to defend against them</p>
             </div>
           </div>
           <Alert className="mb-6">
             <AlertTriangle className="h-4 w-4" />
-            <AlertDescription>
+            <AlertDescription className="text-sm">
               This is an educational simulation. Never enter real credentials in untrusted forms, even if they look legitimate.
             </AlertDescription>
           </Alert>

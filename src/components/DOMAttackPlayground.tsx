@@ -65,7 +65,7 @@ export default function DOMAttackPlayground() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -80,17 +80,17 @@ export default function DOMAttackPlayground() {
           </div>
           <Alert className="mb-6">
             <AlertTriangle className="h-4 w-4" />
-            <AlertDescription>
+            <AlertDescription className="text-sm">
               This is a safe, sandboxed environment for learning. All attacks are contained within this page.
             </AlertDescription>
           </Alert>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="xss">DOM-Based XSS</TabsTrigger>
-            <TabsTrigger value="clobbering">DOM Clobbering</TabsTrigger>
-            <TabsTrigger value="defenses">Defense Techniques</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="xss" className="text-xs sm:text-sm">DOM-Based XSS</TabsTrigger>
+            <TabsTrigger value="clobbering" className="text-xs sm:text-sm">DOM Clobbering</TabsTrigger>
+            <TabsTrigger value="defenses" className="text-xs sm:text-sm">Defense Techniques</TabsTrigger>
           </TabsList>
 
           {/* DOM-Based XSS Tab */}
@@ -299,7 +299,7 @@ if (loginForm && loginForm.tagName === 'FORM' &&
 
           {/* Defense Techniques Tab */}
           <TabsContent value="defenses" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">

@@ -134,7 +134,7 @@ export default function CSRFAttackLab() {
   const currentDefense = csrfDefenses.find(d => d.type === csrfProtection)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -156,10 +156,10 @@ export default function CSRFAttackLab() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="demo">Interactive Demo</TabsTrigger>
-            <TabsTrigger value="attacks">Attack Techniques</TabsTrigger>
-            <TabsTrigger value="defenses">Defense Strategies</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Interactive Demo</TabsTrigger>
+            <TabsTrigger value="attacks" className="text-xs sm:text-sm">Attack Techniques</TabsTrigger>
+            <TabsTrigger value="defenses" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
           </TabsList>
 
           {/* Interactive Demo Tab */}

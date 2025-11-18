@@ -222,11 +222,11 @@ export default function SQLInjectionLab() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="demo">Injection Demo</TabsTrigger>
-            <TabsTrigger value="attacks">Real-World Attacks</TabsTrigger>
-            <TabsTrigger value="defense">Defense Strategies</TabsTrigger>
-            <TabsTrigger value="schema">Database Schema</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">Injection Demo</TabsTrigger>
+            <TabsTrigger value="attacks" className="text-xs sm:text-sm">Real-World Attacks</TabsTrigger>
+            <TabsTrigger value="defense" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
+            <TabsTrigger value="schema" className="text-xs sm:text-sm">Database Schema</TabsTrigger>
           </TabsList>
 
           {/* Injection Demo Tab */}
@@ -432,7 +432,7 @@ export default function SQLInjectionLab() {
 
           {/* Defense Strategies Tab */}
           <TabsContent value="defense" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {defenseStrategies.map((strategy, index) => (
                 <Card key={index}>
                   <CardHeader>

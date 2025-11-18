@@ -282,11 +282,11 @@ export default function Home() {
           {/* Back Button */}
           <header className="bg-white/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex items-center justify-between">
                 <Button
                   onClick={handleBackToHome}
                   variant="outline"
-                  className="mb-2 sm:mb-0 hover:bg-slate-50 transition-colors"
+                  className="hover:bg-slate-50 transition-colors"
                 >
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Modules
@@ -296,10 +296,7 @@ export default function Home() {
                     <AlertTriangle className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                      {selectedModule.title}
-                    </h1>
-                    <p className="text-slate-600 text-sm">{selectedModule.description}</p>
+                    <p className="text-slate-600 text-sm font-medium">Module Active</p>
                   </div>
                 </div>
               </div>
@@ -314,13 +311,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100">
       {/* Navigation Header */}
-      <header className="bg-white/90 backdrop-blur-md border-b border-slate-200/50">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Top Bar */}
           <div className="flex items-center justify-between py-3">
-            <div className="flex items-center space-x-3">
-              <Shield className="w-8 h-8 text-blue-600" />
-              <h1 className="text-xl sm:text-2xl font-bold text-slate-900">CyberSec Lab</h1>
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900">CyberSec Lab</h1>
             </div>
             <div className="flex items-center space-x-4">
               {/* Desktop Navigation */}
@@ -407,11 +404,11 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Hero Section */}
         <section id="home" className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight">
             Master Cybersecurity Through
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Hands-On Labs</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 block sm:inline"> Hands-On Labs</span>
           </h2>
-          <p className="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             Explore interactive security labs covering XSS, SQL injection, CSRF, and more. Learn by doing in a safe, controlled environment designed for cybersecurity professionals and enthusiasts.
           </p>
         </section>
@@ -458,9 +455,9 @@ export default function Home() {
         </div>
 
         {/* Attack Modules Grid */}
-        <section id="modules" className="mb-12 sm:mb-16">
-          <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6 sm:mb-8">Security Labs & Modules</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <section id="modules" className="mb-12 sm:mb-16 px-4 sm:px-0">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-6 sm:mb-8 text-center sm:text-left">Security Labs & Modules</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {filteredModules.map((module) => (
               <Card key={module.id} className="group hover:shadow-xl transition-all duration-300 border-slate-200/50 hover:border-blue-200/50 bg-white/50 backdrop-blur-sm">
                 <CardHeader className="pb-3">
@@ -501,7 +498,7 @@ export default function Home() {
         {/* Learning Path */}
         <section id="learning" className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl border border-blue-200/50 shadow-lg">
           <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 sm:mb-8 text-center">🎯 Recommended Learning Path</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
             {[
               { step: 1, color: 'bg-blue-500', title: 'Injection', desc: 'XSS, HTML injection' },
               { step: 2, color: 'bg-green-500', title: 'Browser Attacks', desc: 'Clickjacking, Keylogging' },
@@ -510,13 +507,13 @@ export default function Home() {
               { step: 5, color: 'bg-red-500', title: 'Advanced', desc: 'Chaining, Supply chain' }
             ].map((item, index) => (
               <div key={index} className="group text-center">
-                <div className={`w-14 h-14 sm:w-16 sm:h-16 ${item.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 font-bold text-lg sm:text-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 ${item.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 font-bold text-base sm:text-lg md:text-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   {item.step}
                 </div>
-                <h3 className="font-semibold text-sm sm:text-base text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="font-semibold text-xs sm:text-sm md:text-base text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
                   {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1">{item.desc}</p>
+                <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-tight">{item.desc}</p>
               </div>
             ))}
           </div>

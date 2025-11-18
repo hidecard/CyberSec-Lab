@@ -207,38 +207,38 @@ export default function XSSLab() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center space-x-3 mb-4">
-            <div className="p-3 bg-orange-500 rounded-lg">
-              <Code2 className="w-6 h-6 text-white" />
+        <div className="mb-6 sm:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 mb-4">
+            <div className="p-2 sm:p-3 bg-orange-500 rounded-lg self-start">
+              <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Cross-Site Scripting (XSS) Lab</h1>
-              <p className="text-slate-600">Learn how attackers inject malicious scripts into web pages and how to prevent XSS attacks</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">Cross-Site Scripting (XSS) Lab</h1>
+              <p className="text-sm sm:text-base text-slate-600">Learn how attackers inject malicious scripts into web pages and how to prevent XSS attacks</p>
             </div>
           </div>
           <Alert className="mb-6">
             <AlertTriangle className="h-4 w-4" />
-            <AlertDescription>
+            <AlertDescription className="text-sm">
               XSS attacks allow malicious scripts to be executed in victims' browsers. This lab demonstrates reflected, stored, and DOM-based XSS attacks with comprehensive defense strategies.
             </AlertDescription>
           </Alert>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="demo">XSS Demo</TabsTrigger>
-            <TabsTrigger value="attacks">Real-World Attacks</TabsTrigger>
-            <TabsTrigger value="defense">Defense Strategies</TabsTrigger>
-            <TabsTrigger value="playground">XSS Playground</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm">XSS Demo</TabsTrigger>
+            <TabsTrigger value="attacks" className="text-xs sm:text-sm">Real-World Attacks</TabsTrigger>
+            <TabsTrigger value="defense" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
+            <TabsTrigger value="playground" className="text-xs sm:text-sm">XSS Playground</TabsTrigger>
           </TabsList>
 
           {/* XSS Demo Tab */}
           <TabsContent value="demo" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {/* XSS Control Panel */}
               <Card>
                 <CardHeader>
@@ -371,27 +371,27 @@ export default function XSSLab() {
 
           {/* Real-World Attacks Tab */}
           <TabsContent value="attacks" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {realWorldAttacks.map((attack, index) => (
                 <Card key={index}>
-                  <CardHeader>
-                    <CardTitle className="text-lg">{attack.name}</CardTitle>
-                    <Badge variant="destructive">Critical</Badge>
-                  </CardHeader>
+                <CardHeader>
+                  <CardTitle className="text-base sm:text-lg">{attack.name}</CardTitle>
+                  <Badge variant="destructive" className="text-xs">Critical</Badge>
+                </CardHeader>
                   <CardContent className="space-y-4">
                     <p className="text-sm text-slate-600">{attack.description}</p>
                     
                     <div className="space-y-2">
                       <div>
                         <span className="font-semibold text-sm">Technique:</span>
-                        <p className="text-xs text-slate-600">{attack.technique}</p>
+                        <p className="text-xs sm:text-sm text-slate-600">{attack.technique}</p>
                       </div>
-                      
+
                       <div>
                         <span className="font-semibold text-sm">Impact:</span>
-                        <p className="text-xs text-slate-600">{attack.impact}</p>
+                        <p className="text-xs sm:text-sm text-slate-600">{attack.impact}</p>
                       </div>
-                      
+
                       <div>
                         <span className="font-semibold text-sm">Example:</span>
                         <Code className="block text-xs mt-1">{attack.example}</Code>
@@ -405,7 +405,7 @@ export default function XSSLab() {
 
           {/* Defense Strategies Tab */}
           <TabsContent value="defense" className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {defenseStrategies.map((strategy, index) => (
                 <Card key={index}>
                   <CardHeader>
@@ -413,7 +413,7 @@ export default function XSSLab() {
                       <Shield className="w-5 h-5" />
                       <span>{strategy.name}</span>
                     </CardTitle>
-                    <CardDescription>{strategy.description}</CardDescription>
+                  <CardDescription className="text-sm">{strategy.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
@@ -422,7 +422,7 @@ export default function XSSLab() {
                         {strategy.techniques.map((technique, techIndex) => (
                           <li key={techIndex} className="flex items-start space-x-2">
                             <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-sm">{technique}</span>
+                            <span className="text-xs sm:text-sm">{technique}</span>
                           </li>
                         ))}
                       </ul>
@@ -435,7 +435,7 @@ export default function XSSLab() {
 
           {/* XSS Playground Tab */}
           <TabsContent value="playground" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
               {/* Comment Section (Stored XSS Demo) */}
               <Card>
                 <CardHeader>
