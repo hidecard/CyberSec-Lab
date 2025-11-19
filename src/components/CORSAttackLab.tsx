@@ -186,7 +186,7 @@ Access-Control-Allow-Credentials: false`,
   const currentConfig = corsConfigs.find(c => c.mode === corsMode)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -208,15 +208,15 @@ Access-Control-Allow-Credentials: false`,
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 h-auto">
-            <TabsTrigger value="demo" className="text-xs sm:text-sm">Interactive Demo</TabsTrigger>
-            <TabsTrigger value="attacks" className="text-xs sm:text-sm">Attack Scenarios</TabsTrigger>
-            <TabsTrigger value="defenses" className="text-xs sm:text-sm">Defense Guide</TabsTrigger>
+          <TabsList className="flex w-full gap-2 overflow-x-auto py-1">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm whitespace-nowrap">Interactive Demo</TabsTrigger>
+            <TabsTrigger value="attacks" className="text-xs sm:text-sm whitespace-nowrap">Attack Scenarios</TabsTrigger>
+            <TabsTrigger value="defenses" className="text-xs sm:text-sm whitespace-nowrap">Defense Guide</TabsTrigger>
           </TabsList>
 
           {/* Interactive Demo Tab */}
           <TabsContent value="demo" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Configuration Panel */}
               <Card>
                 <CardHeader>
@@ -232,14 +232,14 @@ Access-Control-Allow-Credentials: false`,
                   {/* Mode Selection */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium">CORS Mode:</label>
-                    <div className="space-y-2">
+                    <div className="flex flex-wrap gap-2">
                       {corsConfigs.map(config => (
                         <Button
                           key={config.mode}
                           variant={corsMode === config.mode ? "default" : "outline"}
                           size="sm"
                           onClick={() => setCorsMode(config.mode as any)}
-                          className="w-full justify-start"
+                          className="min-w-[140px] flex-1 sm:flex-none justify-start"
                         >
                           {corsMode === config.mode && getIcon(config.mode)}
                           {config.name}
@@ -285,26 +285,14 @@ Access-Control-Allow-Credentials: false`,
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    <Button
-                      onClick={() => simulateAttack('simple-fetch')}
-                      className="w-full"
-                      variant="outline"
-                    >
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <Button onClick={() => simulateAttack('simple-fetch')} variant="outline" className="w-full">
                       🎯 Simple Data Theft
                     </Button>
-                    <Button
-                      onClick={() => simulateAttack('credential-fetch')}
-                      className="w-full"
-                      variant="outline"
-                    >
+                    <Button onClick={() => simulateAttack('credential-fetch')} variant="outline" className="w-full">
                       🍪 Steal with Credentials
                     </Button>
-                    <Button
-                      onClick={() => simulateAttack('preflight-bypass')}
-                      className="w-full"
-                      variant="outline"
-                    >
+                    <Button onClick={() => simulateAttack('preflight-bypass')} variant="outline" className="w-full">
                       🚀 Preflight Bypass
                     </Button>
                   </div>
@@ -347,10 +335,10 @@ Access-Control-Allow-Credentials: false`,
             {/* Visual Explanation */}
             <Card>
               <CardHeader>
-                <CardTitle>🌐 How CORS Attacks Work</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">🌐 How CORS Attacks Work</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   <div className="text-center space-y-2">
                     <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
                       <Globe className="w-8 h-8 text-blue-600" />
@@ -413,16 +401,11 @@ Access-Control-Allow-Credentials: false`,
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-semibold text-sm mb-1">Attack Code:</h4>
-                        <Code className="block p-2 bg-slate-50 rounded text-xs max-h-32 overflow-y-auto">
+                        <Code className="block p-2 bg-slate-50 rounded text-xs max-h-32 overflow-auto whitespace-pre">
                           {scenario.code}
                         </Code>
                       </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => copyToClipboard(scenario.code)}
-                        className="w-full"
-                      >
+                      <Button variant="outline" size="sm" onClick={() => copyToClipboard(scenario.code)} className="w-full">
                         {copied ? <Check className="w-4 h-4 mr-1" /> : <Copy className="w-4 h-4 mr-1" />}
                         Copy Code
                       </Button>
@@ -485,7 +468,7 @@ Access-Control-Allow-Credentials: false`,
                   
                   <div>
                     <h4 className="font-semibold mb-2">🔒 Example Config:</h4>
-                    <Code className="block p-3 bg-green-50 border border-green-200 rounded text-xs">
+                    <Code className="block p-3 bg-green-50 border border-green-200 rounded text-xs whitespace-pre overflow-auto">
 {`// Express.js
 app.use(cors({
   origin: ['https://trusted-site.com'],
@@ -520,7 +503,7 @@ app.use(cors({
                   
                   <div>
                     <h4 className="font-semibold mb-2">🚫 Dangerous Config:</h4>
-                    <Code className="block p-3 bg-red-50 border border-red-200 rounded text-xs">
+                    <Code className="block p-3 bg-red-50 border border-red-200 rounded text-xs whitespace-pre overflow-auto">
 {`// VULNERABLE - DO NOT USE
 app.use(cors({
   origin: '*',           // Dangerous!
@@ -574,33 +557,33 @@ app.use(cors({
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-3">
                     <h4 className="font-semibold">Node.js/Express</h4>
-                    <Code className="block p-2 bg-slate-50 rounded text-xs">
-{`const cors = require('cors');
-app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(','),
-  credentials: true
-}));`}
-                    </Code>
+                    <Code className="block p-2 bg-slate-50 rounded text-xs whitespace-pre overflow-auto">
+ {`const cors = require('cors');
+ app.use(cors({
+   origin: process.env.ALLOWED_ORIGINS?.split(','),
+   credentials: true
+ }));`}
+                     </Code>
                   </div>
 
                   <div className="space-y-3">
                     <h4 className="font-semibold">Nginx</h4>
-                    <Code className="block p-2 bg-slate-50 rounded text-xs">
-{`add_header 'Access-Control-Allow-Origin' 
-  'https://trusted-site.com';
-add_header 'Access-Control-Allow-Methods' 
-  'GET, POST';`}
-                    </Code>
+                    <Code className="block p-2 bg-slate-50 rounded text-xs whitespace-pre overflow-auto">
+ {`add_header 'Access-Control-Allow-Origin' 
+   'https://trusted-site.com';
+ add_header 'Access-Control-Allow-Methods' 
+   'GET, POST';`}
+                     </Code>
                   </div>
 
                   <div className="space-y-3">
                     <h4 className="font-semibold">Apache</h4>
-                    <Code className="block p-2 bg-slate-50 rounded text-xs">
-{`Header set Access-Control-Allow-Origin 
-  "https://trusted-site.com"
-Header set Access-Control-Allow-Methods 
-  "GET, POST"`}
-                    </Code>
+                    <Code className="block p-2 bg-slate-50 rounded text-xs whitespace-pre overflow-auto">
+ {`Header set Access-Control-Allow-Origin 
+   "https://trusted-site.com"
+ Header set Access-Control-Allow-Methods 
+   "GET, POST"`}
+                     </Code>
                   </div>
                 </div>
               </CardContent>

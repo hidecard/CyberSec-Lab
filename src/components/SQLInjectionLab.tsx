@@ -200,8 +200,8 @@ export default function SQLInjectionLab() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-3 sm:p-6 lg:p-8">
+      <div className="max-w-[95%] sm:max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center space-x-3 mb-4">
@@ -222,16 +222,16 @@ export default function SQLInjectionLab() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 h-auto">
-            <TabsTrigger value="demo" className="text-xs sm:text-sm">Injection Demo</TabsTrigger>
-            <TabsTrigger value="attacks" className="text-xs sm:text-sm">Real-World Attacks</TabsTrigger>
-            <TabsTrigger value="defense" className="text-xs sm:text-sm">Defense Strategies</TabsTrigger>
-            <TabsTrigger value="schema" className="text-xs sm:text-sm">Database Schema</TabsTrigger>
+          <TabsList className="flex w-full gap-2 overflow-x-auto py-1 no-scrollbar">
+            <TabsTrigger value="demo" className="text-xs sm:text-sm whitespace-nowrap">Injection Demo</TabsTrigger>
+            <TabsTrigger value="attacks" className="text-xs sm:text-sm whitespace-nowrap">Real-World Attacks</TabsTrigger>
+            <TabsTrigger value="defense" className="text-xs sm:text-sm whitespace-nowrap">Defense Strategies</TabsTrigger>
+            <TabsTrigger value="schema" className="text-xs sm:text-sm whitespace-nowrap">Database Schema</TabsTrigger>
           </TabsList>
 
           {/* Injection Demo Tab */}
           <TabsContent value="demo" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Attack Control Panel */}
               <Card>
                 <CardHeader>
@@ -247,14 +247,14 @@ export default function SQLInjectionLab() {
                   <div className="space-y-3">
                     <div>
                       <label className="text-sm font-medium mb-2 block">Attack Type</label>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                         {Object.keys(attackPayloads).map((type) => (
                           <Button
                             key={type}
                             onClick={() => setAttackType(type)}
                             variant={attackType === type ? 'default' : 'outline'}
                             size="sm"
-                            className="capitalize"
+                            className="capitalize w-full"
                           >
                             {type}
                           </Button>
@@ -264,7 +264,7 @@ export default function SQLInjectionLab() {
 
                     <div>
                       <label className="text-sm font-medium mb-2 block">Vulnerable Query</label>
-                      <Code className="block p-3 bg-slate-50 rounded text-sm">
+                      <Code className="block p-3 bg-slate-50 rounded text-sm overflow-auto whitespace-pre">
                         {vulnerableQueries[attackType as keyof typeof vulnerableQueries]}
                       </Code>
                     </div>
@@ -275,7 +275,10 @@ export default function SQLInjectionLab() {
                         {attackPayloads[attackType as keyof typeof attackPayloads].map((payload, index) => (
                           <div
                             key={index}
-                            className="p-2 border rounded cursor-pointer hover:bg-slate-50"
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setSearchQuery(payload.payload) }}
+                            className="p-2 border rounded cursor-pointer hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-300"
                             onClick={() => setSearchQuery(payload.payload)}
                           >
                             <div className="font-medium text-sm">{payload.name}</div>
@@ -342,7 +345,7 @@ export default function SQLInjectionLab() {
                           <h4 className="font-semibold text-sm">Extracted Data:</h4>
                           {Array.isArray(queryResult.data) ? (
                             <div className="overflow-x-auto">
-                              <table className="w-full text-xs border">
+                              <table className="w-full min-w-[480px] text-xs border">
                                 <thead>
                                   <tr className="bg-slate-50">
                                     <th className="border p-2">ID</th>
@@ -421,7 +424,7 @@ export default function SQLInjectionLab() {
                       
                       <div>
                         <span className="font-semibold text-sm">Example:</span>
-                        <Code className="block text-xs mt-1">{attack.example}</Code>
+                        <Code className="block text-xs mt-1 overflow-auto whitespace-pre">{attack.example}</Code>
                       </div>
                     </div>
                   </CardContent>
@@ -472,7 +475,7 @@ export default function SQLInjectionLab() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-sm border">
+                    <table className="w-full min-w-[480px] text-sm border">
                       <thead>
                         <tr className="bg-slate-50">
                           <th className="border p-2">ID</th>
@@ -505,7 +508,7 @@ export default function SQLInjectionLab() {
                 </CardHeader>
                 <CardContent>
                   <div className="overflow-x-auto">
-                    <table className="w-full text-sm border">
+                    <table className="w-full min-w-[480px] text-sm border">
                       <thead>
                         <tr className="bg-slate-50">
                           <th className="border p-2">ID</th>

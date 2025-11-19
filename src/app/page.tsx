@@ -457,7 +457,7 @@ export default function Home() {
         {/* Attack Modules Grid */}
         <section id="modules" className="mb-12 sm:mb-16 px-4 sm:px-0">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-6 sm:mb-8 text-center sm:text-left">Security Labs & Modules</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {filteredModules.map((module) => (
               <Card key={module.id} className="group hover:shadow-xl transition-all duration-300 border-slate-200/50 hover:border-blue-200/50 bg-white/50 backdrop-blur-sm">
                 <CardHeader className="pb-3">

@@ -207,7 +207,7 @@ export default function XSSLab() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-6 sm:mb-8">
@@ -254,14 +254,14 @@ export default function XSSLab() {
                   <div className="space-y-3">
                     <div>
                       <label className="text-sm font-medium mb-2 block">Attack Type</label>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-1">
                         {Object.keys(xssPayloads).map((type) => (
                           <Button
                             key={type}
                             onClick={() => setAttackType(type)}
                             variant={attackType === type ? 'default' : 'outline'}
                             size="sm"
-                            className="capitalize"
+                            className="capitalize h-8 text-xs"
                           >
                             {type}
                           </Button>
@@ -298,7 +298,7 @@ export default function XSSLab() {
                     <Button
                       onClick={() => executeXSS(xssInput)}
                       disabled={!xssInput.trim() || isExecuting}
-                      className="w-full"
+                      className="w-full h-10"
                     >
                       <Play className="w-4 h-4 mr-2" />
                       {isExecuting ? 'Analyzing...' : 'Test XSS Payload'}
@@ -508,7 +508,7 @@ export default function XSSLab() {
                     <Button
                       onClick={() => executeXSS(xssInput)}
                       disabled={!xssInput.trim()}
-                      className="w-full"
+                      className="w-full h-10"
                     >
                       Search
                     </Button>

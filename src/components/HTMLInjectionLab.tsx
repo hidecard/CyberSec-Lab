@@ -108,7 +108,7 @@ export default function HTMLInjectionLab() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -152,24 +152,28 @@ export default function HTMLInjectionLab() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {/* Mode Selection */}
-                  <div className="flex items-center space-x-4">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium">Security Mode:</label>
-                    <div className="flex space-x-2">
+                    <div className="grid grid-cols-1 gap-1">
                       <Button
                         variant={inputMode === 'vulnerable' ? 'destructive' : 'outline'}
                         size="sm"
                         onClick={() => setInputMode('vulnerable')}
+                        className="w-full h-8 text-xs px-2 justify-start"
+                        title="Vulnerable"
                       >
-                        <Eye className="w-4 h-4 mr-1" />
-                        Vulnerable
+                        <Eye className="w-3 h-3 mr-1 flex-shrink-0" />
+                        <span className="truncate text-left">Vulnerable</span>
                       </Button>
                       <Button
                         variant={inputMode === 'safe' ? 'default' : 'outline'}
                         size="sm"
                         onClick={() => setInputMode('safe')}
+                        className="w-full h-8 text-xs px-2 justify-start"
+                        title="Safe"
                       >
-                        <Shield className="w-4 h-4 mr-1" />
-                        Safe
+                        <Shield className="w-3 h-3 mr-1 flex-shrink-0" />
+                        <span className="truncate text-left">Safe</span>
                       </Button>
                     </div>
                   </div>
@@ -189,14 +193,15 @@ export default function HTMLInjectionLab() {
                   {/* Quick Payloads */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Quick Payloads:</label>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
                       {htmlPayloads.map((payload, index) => (
                         <Button
                           key={index}
                           variant="outline"
                           size="sm"
                           onClick={() => setUserInput(payload)}
-                          className="text-xs font-mono h-6"
+                          className="text-xs font-mono h-8 px-2 truncate"
+                          title={payload}
                         >
                           {payload.length > 15 ? payload.substring(0, 15) + '...' : payload}
                         </Button>
@@ -204,7 +209,7 @@ export default function HTMLInjectionLab() {
                     </div>
                   </div>
 
-                  <Button onClick={handleHTMLInjection} className="w-full">
+                  <Button onClick={handleHTMLInjection} className="w-full h-10">
                     {inputMode === 'vulnerable' ? '🚨 Inject HTML' : '🛡️ Render Safely'}
                   </Button>
 
@@ -261,22 +266,23 @@ export default function HTMLInjectionLab() {
                   {/* Quick Payloads */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Malicious URLs:</label>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
                       {urlPayloads.map((payload, index) => (
                         <Button
                           key={index}
                           variant="outline"
                           size="sm"
                           onClick={() => setUrlInput(payload)}
-                          className="text-xs font-mono h-6"
+                          className="text-xs font-mono h-8 px-2 truncate"
+                          title={payload}
                         >
-                          {payload.length > 20 ? payload.substring(0, 20) + '...' : payload}
+                          {payload.length > 15 ? payload.substring(0, 15) + '...' : payload}
                         </Button>
                       ))}
                     </div>
                   </div>
 
-                  <Button onClick={handleURLInjection} className="w-full">
+                  <Button onClick={handleURLInjection} className="w-full h-10">
                     {inputMode === 'vulnerable' ? '🚨 Navigate to URL' : '🛡️ Validate URL'}
                   </Button>
 

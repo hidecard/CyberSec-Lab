@@ -2,13 +2,13 @@ import { forwardRef } from "react"
 import { cn } from "@/lib/utils"
 
 const Code = forwardRef<
-  HTMLPreElement,
-  React.HTMLAttributes<HTMLPreElement>
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <pre
+  <div
     ref={ref}
     className={cn(
-      "relative rounded bg-muted px-[0.75rem] py-[0.75rem] font-mono text-sm",
+      "relative rounded bg-muted px-[0.75rem] py-[0.75rem] font-mono text-sm whitespace-pre-wrap overflow-x-auto max-h-48 overflow-y-auto",
       className
     )}
     {...props}

@@ -65,7 +65,7 @@ export default function DOMAttackPlayground() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -107,24 +107,28 @@ export default function DOMAttackPlayground() {
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Mode Selection */}
-                <div className="flex items-center space-x-4">
+                <div className="space-y-2">
                   <label className="text-sm font-medium">Security Mode:</label>
-                  <div className="flex space-x-2">
+                  <div className="grid grid-cols-1 gap-1">
                     <Button
                       variant={xssMode === 'vulnerable' ? 'destructive' : 'outline'}
                       size="sm"
                       onClick={() => setXssMode('vulnerable')}
+                      className="w-full h-8 text-xs px-2 justify-start"
+                      title="Vulnerable (innerHTML)"
                     >
-                      <EyeOff className="w-4 h-4 mr-1" />
-                      Vulnerable (innerHTML)
+                      <EyeOff className="w-3 h-3 mr-1 flex-shrink-0" />
+                      <span className="truncate text-left">Vulnerable</span>
                     </Button>
                     <Button
                       variant={xssMode === 'safe' ? 'default' : 'outline'}
                       size="sm"
                       onClick={() => setXssMode('safe')}
+                      className="w-full h-8 text-xs px-2 justify-start"
+                      title="Safe (textContent)"
                     >
-                      <Shield className="w-4 h-4 mr-1" />
-                      Safe (textContent)
+                      <Shield className="w-3 h-3 mr-1 flex-shrink-0" />
+                      <span className="truncate text-left">Safe</span>
                     </Button>
                   </div>
                 </div>
@@ -144,23 +148,24 @@ export default function DOMAttackPlayground() {
                 {/* Quick Payloads */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Quick Payloads:</label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1">
                     {xssPayloads.map((payload, index) => (
                       <Button
                         key={index}
                         variant="outline"
                         size="sm"
                         onClick={() => setXssInput(payload)}
-                        className="text-xs font-mono"
+                        className="text-xs font-mono h-8 px-2 truncate"
+                        title={payload}
                       >
-                        {payload.length > 20 ? payload.substring(0, 20) + '...' : payload}
+                        {payload.length > 15 ? payload.substring(0, 15) + '...' : payload}
                       </Button>
                     ))}
                   </div>
                 </div>
 
                 {/* Attack Button */}
-                <Button onClick={handleXSSAttack} className="w-full">
+                <Button onClick={handleXSSAttack} className="w-full h-10">
                   {xssMode === 'vulnerable' ? '🚨 Execute Attack' : '🛡️ Test Safe Rendering'}
                 </Button>
 
@@ -257,7 +262,7 @@ element.innerHTML = DOMPurify.sanitize(userInput);`}
                 </div>
 
                 {/* Test Button */}
-                <Button onClick={handleClobbering} className="w-full">
+                <Button onClick={handleClobbering} className="w-full h-10">
                   🧪 Test Clobbering
                 </Button>
 
