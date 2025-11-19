@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { AlertTriangle, Shield, Bug, Lock, Eye, Target, Zap, Globe, FileText, Key, Link, Users, Package, ArrowLeft, Fingerprint, Monitor, BarChart, Database, TerminalSquare, Code2, Search, Menu } from 'lucide-react'
+import { AlertTriangle, Shield, Bug, Lock, Eye, Target, Zap, Globe, FileText, Key, Link, Users, Package, ArrowLeft, Fingerprint, Monitor, BarChart, Database, TerminalSquare, Code2, Search, Menu, BookOpen } from 'lucide-react'
 
 // Import attack modules
 import DOMAttackPlayground from '@/components/DOMAttackPlayground'
@@ -23,13 +23,14 @@ import SQLInjectionLab from '@/components/SQLInjectionLab'
 import CommandInjectionLab from '@/components/CommandInjectionLab'
 import XSSLab from '@/components/XSSLab'
 import WebSecurityScannerLab from '@/components/WebSecurityScannerLab'
+import CybersecurityRoadmap from '@/components/CybersecurityRoadmap'
 
 
 interface AttackModule {
   id: string
   title: string
   description: string
-  difficulty: 'Beginner' | 'Intermediate' | 'Advanced'
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels'
   category: string
   icon: React.ReactNode
   status: 'available' | 'coming-soon'
@@ -37,6 +38,16 @@ interface AttackModule {
 }
 
 const attackModules: AttackModule[] = [
+  {
+    id: 'cybersecurity-roadmap',
+    title: 'Cybersecurity Learning Roadmap',
+    description: 'Follow a comprehensive learning path to master cybersecurity concepts, from basics to advanced techniques.',
+    difficulty: 'All Levels' as const,
+    category: 'Learning',
+    icon: <BookOpen className="w-5 h-5" />,
+    status: 'available',
+    component: CybersecurityRoadmap
+  },
   {
     id: 'dom-attacks',
     title: 'DOM-Based Attack Playground',
@@ -497,25 +508,16 @@ export default function Home() {
 
         {/* Learning Path */}
         <section id="learning" className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl border border-blue-200/50 shadow-lg">
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 sm:mb-8 text-center">🎯 Recommended Learning Path</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
-            {[
-              { step: 1, color: 'bg-blue-500', title: 'Injection', desc: 'XSS, HTML injection' },
-              { step: 2, color: 'bg-green-500', title: 'Browser Attacks', desc: 'Clickjacking, Keylogging' },
-              { step: 3, color: 'bg-yellow-500', title: 'Session & Auth', desc: 'CSRF, Token theft' },
-              { step: 4, color: 'bg-orange-500', title: 'Network Attacks', desc: 'CORS, MITM' },
-              { step: 5, color: 'bg-red-500', title: 'Advanced', desc: 'Chaining, Supply chain' }
-            ].map((item, index) => (
-              <div key={index} className="group text-center">
-                <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 ${item.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4 font-bold text-base sm:text-lg md:text-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  {item.step}
-                </div>
-                <h3 className="font-semibold text-xs sm:text-sm md:text-base text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-tight">{item.desc}</p>
-              </div>
-            ))}
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6 sm:mb-8 text-center">🎯 Cybersecurity Learning Roadmap</h3>
+          <p className="text-center text-slate-600 mb-6">Start your cybersecurity journey with our comprehensive learning path</p>
+          <div className="text-center">
+            <Button
+              onClick={() => handleModuleClick('cybersecurity-roadmap')}
+              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <BookOpen className="w-5 h-5 mr-2" />
+              View Full Roadmap
+            </Button>
           </div>
         </section>
       </main>
