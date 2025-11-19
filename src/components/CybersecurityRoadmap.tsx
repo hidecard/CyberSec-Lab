@@ -216,212 +216,212 @@ export default function CybersecurityRoadmap() {
   }
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-6">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-slate-900 mb-4">🎯 Cybersecurity Learning Roadmap</h2>
-        <p className="text-lg text-slate-600 mb-6">
-          Master cybersecurity step by step with our comprehensive learning path
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-white p-4 sm:p-6 lg:p-8">
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-slate-900 mb-2">🎯 Cybersecurity Learning Roadmap</h2>
+          <p className="text-base text-slate-600">Master cybersecurity step by step with our comprehensive learning path</p>
+        </div>
 
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 gap-2">
-          <TabsTrigger value="roadmap" className="text-sm">Roadmap</TabsTrigger>
-          <TabsTrigger value="detailed" className="text-sm">Detailed Path</TabsTrigger>
-          <TabsTrigger value="resources" className="text-sm">Resources</TabsTrigger>
-        </TabsList>
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="flex w-full gap-2 overflow-x-auto py-2 no-scrollbar">
+            <TabsTrigger value="roadmap" className="text-sm whitespace-nowrap">Roadmap</TabsTrigger>
+            <TabsTrigger value="detailed" className="text-sm whitespace-nowrap">Detailed Path</TabsTrigger>
+            <TabsTrigger value="resources" className="text-sm whitespace-nowrap">Resources</TabsTrigger>
+          </TabsList>
 
-        <TabsContent value="roadmap" className="space-y-8">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold mb-6 text-center">🎯 Cyber Security Roadmap</h1>
-            <p className="text-center text-slate-600 mb-8">A comprehensive guide to becoming a cybersecurity professional</p>
+          <TabsContent value="roadmap" className="space-y-8">
+            <div className="max-w-4xl mx-auto">
+              <h1 className="text-3xl font-bold mb-6 text-center">🎯 Cyber Security Roadmap</h1>
+              <p className="text-center text-slate-600 mb-8">A comprehensive guide to becoming a cybersecurity professional</p>
 
-            {roadmapSteps.map((step, index) => (
-              <section key={step.id} className="mb-8 p-6 rounded-lg border border-blue-200 bg-blue-50">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold bg-blue-500 text-white">
-                      {index + 1}
-                    </div>
-                    <h2 className="text-xl font-semibold flex items-center space-x-2">
-                      {step.icon}
-                      <span>{step.title}</span>
-                      <Badge className={`${getDifficultyColor(step.difficulty)} text-white text-xs`}>
-                        {step.difficulty}
-                      </Badge>
-                    </h2>
-                  </div>
-                </div>
-
-                <p className="text-slate-700 mb-4">{step.description}</p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h3 className="font-semibold mb-3 text-slate-800">Skills You'll Learn</h3>
-                    <ul className="list-disc pl-6 space-y-1">
-                      {step.skills.map((skill, idx) => (
-                        <li key={idx} className="text-slate-600">{skill}</li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold mb-3 text-slate-800">Resources ({step.resources.length})</h3>
-                    <div className="space-y-2">
-                      {step.resources.slice(0, 4).map((resource, idx) => (
-                        <div key={idx} className="flex items-center space-x-2">
-                          <span className="text-sm">{getResourceIcon(resource.type)}</span>
-                          <a
-                            href={resource.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline text-sm"
-                          >
-                            {resource.name}
-                          </a>
-                        </div>
-                      ))}
-                      {step.resources.length > 4 && (
-                        <p className="text-sm text-slate-500">+{step.resources.length - 4} more resources</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {step.prerequisites.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-slate-200">
-                    <h3 className="font-semibold mb-2 text-slate-800">Prerequisites:</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {step.prerequisites.map(prereq => {
-                        const prereqStep = roadmapSteps.find(s => s.id === prereq)
-                        return (
-                          <Badge key={prereq} variant="outline" className="flex items-center space-x-1">
-                            <span>{prereqStep?.title}</span>
-                          </Badge>
-                        )
-                      })}
-                    </div>
-                  </div>
-                )}
-              </section>
-            ))}
-          </div>
-        </TabsContent>
-
-        <TabsContent value="detailed" className="space-y-6">
-          {roadmapSteps.map((step, index) => (
-            <Card key={step.id}>
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-500 text-white">
-                      <span className="text-sm font-bold">{index + 1}</span>
-                    </div>
-                    <div>
-                      <CardTitle className="flex items-center space-x-2">
+              {roadmapSteps.map((step, index) => (
+                <section key={step.id} className="mb-8 p-6 rounded-lg border border-slate-200 bg-white hover:shadow-md transition-shadow cursor-default">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold bg-blue-500 text-white">
+                        {index + 1}
+                      </div>
+                      <h2 className="text-xl font-semibold flex items-center space-x-2">
                         {step.icon}
                         <span>{step.title}</span>
-                      </CardTitle>
-                      <div className="flex items-center space-x-2 mt-1">
-                        <Badge className={getDifficultyColor(step.difficulty)}>{step.difficulty}</Badge>
-                        <span className="text-sm text-slate-500">{step.category}</span>
-                        <span className="text-sm text-slate-500">• {step.estimatedTime}</span>
+                        <Badge className={`${getDifficultyColor(step.difficulty)} text-white text-xs`}>
+                          {step.difficulty}
+                        </Badge>
+                      </h2>
+                    </div>
+                  </div>
+
+                  <p className="text-slate-700 mb-4">{step.description}</p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="font-semibold mb-3 text-slate-800">Skills You'll Learn</h3>
+                      <ul className="list-disc pl-6 space-y-1">
+                        {step.skills.map((skill, idx) => (
+                          <li key={idx} className="text-slate-600">{skill}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="font-semibold mb-3 text-slate-800">Resources ({step.resources.length})</h3>
+                      <div className="space-y-2">
+                        {step.resources.slice(0, 4).map((resource, idx) => (
+                          <div key={idx} className="flex items-center space-x-2">
+                            <span className="text-sm">{getResourceIcon(resource.type)}</span>
+                            <a
+                              href={resource.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline text-sm inline-flex items-center gap-2"
+                            >
+                              <span>{resource.name}</span>
+                            </a>
+                          </div>
+                        ))}
+                        {step.resources.length > 4 && (
+                          <p className="text-sm text-slate-500">+{step.resources.length - 4} more resources</p>
+                        )}
                       </div>
                     </div>
                   </div>
-                </div>
-              </CardHeader>
 
-              <CardContent className="space-y-4">
-                <p className="text-slate-700">{step.description}</p>
-
-                {step.prerequisites.length > 0 && (
-                  <div>
-                    <h4 className="font-semibold mb-2">Prerequisites:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {step.prerequisites.map(prereq => {
-                        const prereqStep = roadmapSteps.find(s => s.id === prereq)
-                        return (
-                          <Badge key={prereq} variant="outline" className="flex items-center space-x-1">
-                            <span>{prereqStep?.title}</span>
-                          </Badge>
-                        )
-                      })}
+                  {step.prerequisites.length > 0 && (
+                    <div className="mt-4 pt-4 border-t border-slate-200">
+                      <h3 className="font-semibold mb-2 text-slate-800">Prerequisites:</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {step.prerequisites.map(prereq => {
+                          const prereqStep = roadmapSteps.find(s => s.id === prereq)
+                          return (
+                            <Badge key={prereq} variant="outline" className="flex items-center space-x-1">
+                              <span>{prereqStep?.title}</span>
+                            </Badge>
+                          )
+                        })}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </section>
+              ))}
+            </div>
+          </TabsContent>
 
-                <div>
-                  <h4 className="font-semibold mb-2">Skills You'll Learn:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {step.skills.map((skill, idx) => (
-                      <Badge key={idx} variant="secondary">{skill}</Badge>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-2">Recommended Resources:</h4>
-                  <div className="space-y-2">
-                    {step.resources.map((resource, idx) => (
-                      <div key={idx} className="flex items-center space-x-2 p-2 bg-slate-50 rounded">
-                        <span className="text-lg">{getResourceIcon(resource.type)}</span>
-                        <div className="flex-1">
-                          <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium">
-                            {resource.name}
-                          </a>
-                          <Badge variant="outline" className="ml-2 text-xs">{resource.type}</Badge>
+          <TabsContent value="detailed" className="space-y-6">
+            {roadmapSteps.map((step, index) => (
+              <Card key={step.id} className="rounded-lg hover:shadow-md transition-shadow">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-500 text-white">
+                        <span className="text-sm font-bold">{index + 1}</span>
+                      </div>
+                      <div>
+                        <CardTitle className="flex items-center space-x-2">
+                          {step.icon}
+                          <span>{step.title}</span>
+                        </CardTitle>
+                        <div className="flex items-center space-x-2 mt-1">
+                          <Badge className={getDifficultyColor(step.difficulty)}>{step.difficulty}</Badge>
+                          <span className="text-sm text-slate-500">{step.category}</span>
+                          <span className="text-sm text-slate-500">• {step.estimatedTime}</span>
                         </div>
                       </div>
-                    ))}
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </TabsContent>
+                </CardHeader>
 
-        <TabsContent value="resources" className="space-y-6">
-          <Alert>
-            <BookOpen className="h-4 w-4" />
-            <AlertDescription>
-              Here are all the recommended resources organized by category. Click on any resource to access it.
-            </AlertDescription>
-          </Alert>
+                <CardContent className="space-y-4">
+                  <p className="text-slate-700">{step.description}</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {['article', 'lab', 'video'].map(type => {
-               const resourcesOfType = roadmapSteps.flatMap(step => step.resources.filter(r => r.type === type))
-               if (resourcesOfType.length === 0) return null
+                  {step.prerequisites.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold mb-2">Prerequisites:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {step.prerequisites.map(prereq => {
+                          const prereqStep = roadmapSteps.find(s => s.id === prereq)
+                          return (
+                            <Badge key={prereq} variant="outline" className="flex items-center space-x-1">
+                              <span>{prereqStep?.title}</span>
+                            </Badge>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
 
-               return (
-                 <Card key={type}>
-                   <CardHeader>
-                     <CardTitle className="flex items-center space-x-2 capitalize">
-                       <span className="text-lg">{getResourceIcon(type)}</span>
-                       <span>{type}s</span>
-                     </CardTitle>
-                   </CardHeader>
-                   <CardContent>
-                     <div className="space-y-3">
-                       {resourcesOfType.map((resource, idx) => (
-                         <div key={idx} className="border-l-2 border-blue-200 pl-3">
-                           <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium block">
-                             {resource.name}
-                           </a>
-                           <p className="text-sm text-slate-600 mt-1">
-                             From: {roadmapSteps.find(s => s.resources.includes(resource))?.title}
-                           </p>
-                         </div>
-                       ))}
-                     </div>
-                   </CardContent>
-                 </Card>
-               )
-             })}
-           </div>
-         </TabsContent>
-       </Tabs>
-     </div>
-   )
- }
+                  <div>
+                    <h4 className="font-semibold mb-2">Skills You'll Learn:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {step.skills.map((skill, idx) => (
+                        <Badge key={idx} variant="secondary">{skill}</Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold mb-2">Recommended Resources:</h4>
+                    <div className="space-y-2">
+                      {step.resources.map((resource, idx) => (
+                        <div key={idx} className="flex items-center space-x-2 p-2 bg-slate-50 rounded">
+                          <span className="text-lg">{getResourceIcon(resource.type)}</span>
+                          <div className="flex-1">
+                            <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium inline-flex items-center gap-2">
+                              <span>{resource.name}</span>
+                            </a>
+                            <Badge variant="outline" className="ml-2 text-xs">{resource.type}</Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </TabsContent>
+
+          <TabsContent value="resources" className="space-y-6">
+            <Alert>
+              <BookOpen className="h-4 w-4" />
+              <AlertDescription>
+                Here are all the recommended resources organized by category. Click on any resource to access it.
+              </AlertDescription>
+            </Alert>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {['article', 'lab', 'video'].map(type => {
+                 const resourcesOfType = roadmapSteps.flatMap(step => step.resources.filter(r => r.type === type))
+                 if (resourcesOfType.length === 0) return null
+
+                 return (
+                   <Card key={type}>
+                     <CardHeader>
+                       <CardTitle className="flex items-center space-x-2 capitalize">
+                         <span className="text-lg">{getResourceIcon(type)}</span>
+                         <span>{type}s</span>
+                       </CardTitle>
+                     </CardHeader>
+                     <CardContent>
+                       <div className="space-y-3">
+                         {resourcesOfType.map((resource, idx) => (
+                           <div key={idx} className="border-l-2 border-blue-200 pl-3">
+                             <a href={resource.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-medium block">
+                               {resource.name}
+                             </a>
+                             <p className="text-sm text-slate-600 mt-1">
+                               From: {roadmapSteps.find(s => s.resources.includes(resource))?.title}
+                             </p>
+                           </div>
+                         ))}
+                       </div>
+                     </CardContent>
+                   </Card>
+                 )
+               })}
+            </div>
+          </TabsContent>
+        </Tabs>
+      </div>
+    </div>
+  )
+}
