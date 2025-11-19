@@ -58,7 +58,12 @@ const roadmapSteps: RoadmapStep[] = [
       { name: 'PayloadsAllTheThings (GitHub)', url: 'https://github.com/swisskyrepo/PayloadsAllTheThings', type: 'article' },
       { name: 'PortSwigger YouTube Channel', url: 'https://www.youtube.com/c/PortSwigger', type: 'video' },
       { name: 'Burp Suite Community', url: 'https://portswigger.net/burp/communitydownload', type: 'lab' },
-      { name: 'MDN — HTTP Security', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP', type: 'article' }
+      { name: 'OWASP Juice Shop (vulnerable app)', url: 'https://owasp.org/www-project-juice-shop/', type: 'lab' },
+      { name: 'PentesterLab', url: 'https://pentesterlab.com/', type: 'lab' },
+      { name: 'MDN — HTTP Security', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP', type: 'article' },
+      { name: 'Damn Vulnerable Web App (DVWA)', url: 'http://www.dvwa.co.uk/', type: 'lab' },
+      { name: 'OWASP WebGoat', url: 'https://owasp.org/www-project-webgoat/', type: 'lab' },
+      { name: 'SQLi Labs (Web Injection practice)', url: 'https://github.com/Hack-with-Github/SQLi-Labs', type: 'lab' }
     ],
     estimatedTime: '8-10 hours',
     completed: false,
@@ -77,7 +82,11 @@ const roadmapSteps: RoadmapStep[] = [
       { name: 'Network Security Course', url: 'https://www.udemy.com/course/network-security/', type: 'course' },
       { name: 'Wireshark Tutorials', url: 'https://www.wireshark.org/docs/', type: 'article' },
       { name: 'Cisco — Networking Basics', url: 'https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/networking-basics.html', type: 'article' },
-      { name: 'TCP/IP Guide', url: 'https://www.tcpipguide.com/', type: 'article' }
+      { name: 'OverTheWire — Bandit', url: 'https://overthewire.org/wargames/bandit/', type: 'lab' },
+      { name: 'VulnHub (vulnerable VMs)', url: 'https://www.vulnhub.com/', type: 'lab' },
+      { name: 'TCP/IP Guide', url: 'https://www.tcpipguide.com/', type: 'article' },
+      { name: 'Practical Network Pentesting (labs)', url: 'https://www.vulnhub.com/', type: 'lab' },
+      { name: 'NetWars & Hands-on Labs', url: 'https://www.sans.org/netwars', type: 'lab' }
     ],
     estimatedTime: '6-8 hours',
     completed: false,
@@ -131,7 +140,11 @@ const roadmapSteps: RoadmapStep[] = [
       { name: 'Metasploit Framework', url: 'https://docs.metasploit.com/', type: 'article' },
       { name: 'PWK Course', url: 'https://www.offsec.com/courses/penetration-testing/', type: 'course' },
       { name: 'TryHackMe', url: 'https://tryhackme.com/', type: 'lab' },
-      { name: 'Hack The Box', url: 'https://www.hackthebox.com/', type: 'lab' }
+      { name: 'Hack The Box', url: 'https://www.hackthebox.com/', type: 'lab' },
+      { name: 'Metasploitable (vulnerable VM)', url: 'https://sourceforge.net/projects/metasploitable/files/', type: 'lab' },
+      { name: 'PentesterLab (practical labs)', url: 'https://pentesterlab.com/', type: 'lab' },
+      { name: 'PentesterLab: Web & Exploit Labs', url: 'https://pentesterlab.com/', type: 'lab' },
+      { name: 'Root Me (CTF / labs)', url: 'https://www.root-me.org/en/Challenges', type: 'lab' }
     ],
     estimatedTime: '20-30 hours',
     completed: false,
@@ -149,7 +162,11 @@ const roadmapSteps: RoadmapStep[] = [
     resources: [
       { name: 'NIST Incident Response', url: 'https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final', type: 'article' },
       { name: 'Digital Forensics Course', url: 'https://www.sans.org/cyber-security-skills/training/digital-forensics/', type: 'course' },
-      { name: 'Volatility Framework', url: 'https://www.volatilityfoundation.org/', type: 'article' }
+      { name: 'Volatility Framework', url: 'https://www.volatilityfoundation.org/', type: 'article' },
+      { name: 'Malware Traffic Analysis (pcap labs)', url: 'https://www.malware-traffic-analysis.net/', type: 'lab' },
+      { name: 'FLARE VM (malware analysis kit)', url: 'https://github.com/mandiant/flare-vm', type: 'lab' },
+      { name: 'The Hive Project (practice incidents)', url: 'https://thehive-project.org/', type: 'lab' },
+      { name: 'CyberDefenders Labs / Malware Analysis', url: 'https://www.cyberdefenders.org/', type: 'lab' }
     ],
     estimatedTime: '15-20 hours',
     completed: false,
@@ -168,7 +185,10 @@ const roadmapSteps: RoadmapStep[] = [
       { name: 'AWS Security Best Practices', url: 'https://aws.amazon.com/architecture/security-identity-compliance/', type: 'article' },
       { name: 'Cloud Security Course', url: 'https://www.coursera.org/specializations/cloud-security', type: 'course' },
       { name: 'CIS Benchmarks', url: 'https://www.cisecurity.org/cis-benchmarks/', type: 'article' },
-      { name: 'OWASP Cloud Security Project', url: 'https://owasp.org/www-project-cloud-security/', type: 'article' }
+      { name: 'OWASP Cloud Security Project', url: 'https://owasp.org/www-project-cloud-security/', type: 'article' },
+      { name: 'CloudGoat (AWS lab scenarios)', url: 'https://github.com/RhinoSecurityLabs/cloudgoat', type: 'lab' },
+      { name: 'Pacu (AWS offensive framework — lab tool)', url: 'https://github.com/RhinoSecurityLabs/pacu', type: 'lab' },
+      { name: 'KubeHunter (security tests for k8s)', url: 'https://github.com/aquasecurity/kube-hunter', type: 'lab' }
     ],
     estimatedTime: '8-10 hours',
     completed: false,
@@ -221,7 +241,10 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Secure design', 'Static analysis', 'Threat modeling', 'Code review practices'],
     resources: [
       { name: 'OWASP Secure Coding Practices', url: 'https://owasp.org/www-project-secure-coding-practices/', type: 'article' },
-      { name: 'Snyk — Secure Coding', url: 'https://snyk.io/learn/secure-coding/', type: 'article' }
+      { name: 'Snyk — Secure Coding', url: 'https://snyk.io/learn/secure-coding/', type: 'article' },
+      { name: 'GitHub Security Lab (CodeQL)', url: 'https://securitylab.github.com/', type: 'lab' },
+      { name: 'Semgrep Labs & Rules', url: 'https://semgrep.dev/docs/', type: 'lab' },
+      { name: 'CodeQL Hands-on', url: 'https://securitylab.github.com/tools/codeql/', type: 'lab' }
     ],
     estimatedTime: '6-8 hours',
     completed: false,
@@ -255,7 +278,10 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Mobile threat modeling', 'Secure storage', 'Mobile app testing', 'Reverse engineering basics'],
     resources: [
       { name: 'OWASP Mobile Top 10', url: 'https://owasp.org/www-project-mobile-top-10/', type: 'article' },
-      { name: 'MobSF (Mobile Security Framework)', url: 'https://mobsf.github.io/docs/', type: 'lab' }
+      { name: 'MobSF (Mobile Security Framework)', url: 'https://mobsf.github.io/docs/', type: 'lab' },
+      { name: 'OWASP Mobile Security Testing Guide (MSTG)', url: 'https://owasp.org/www-project-mobile-security-testing-guide/', type: 'lab' },
+      { name: 'Damn Vulnerable iOS App (DVIA)', url: 'https://github.com/prateekpareek/dvwa-ios', type: 'lab' },
+      { name: 'InsecureBankv2 (Android vulnerable app)', url: 'https://github.com/iamrajivkumar/InsecureBankV2', type: 'lab' }
     ],
     estimatedTime: '6-10 hours',
     completed: false,
@@ -289,7 +315,9 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Firmware analysis', 'Embedded exploit mitigation', 'IoT network security'],
     resources: [
       { name: 'OWASP IoT Project', url: 'https://owasp.org/www-project-internet-of-things/', type: 'article' },
-      { name: 'IoT Security Foundation', url: 'https://www.iotsecurityfoundation.org/', type: 'article' }
+      { name: 'IoT Security Foundation', url: 'https://www.iotsecurityfoundation.org/', type: 'article' },
+      { name: 'OWASP IoTGoat (IoT vulnerable app)', url: 'https://github.com/OWASP/IoTGoat', type: 'lab' },
+      { name: 'Firmware Analysis Hands-on (Firmware-tools)', url: 'https://firmware.re/', type: 'lab' }
     ],
     estimatedTime: '8-12 hours',
     completed: false,
@@ -408,7 +436,10 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['SIEM', 'Log analysis', 'Detection rules', 'Containment strategies'],
     resources: [
       { name: 'ELK Stack Tutorial', url: 'https://www.elastic.co/what-is/elk-stack', type: 'article' },
-      { name: 'Splunk Essentials', url: 'https://www.splunk.com/en_us/training.html', type: 'course' }
+      { name: 'Splunk Essentials', url: 'https://www.splunk.com/en_us/training.html', type: 'course' },
+      { name: 'Security Onion (detection lab)', url: 'https://securityonion.net/', type: 'lab' },
+      { name: 'Sigma rules & SIEM labs', url: 'https://sigmahq.org/', type: 'lab' },
+      { name: 'ELK/Suricata labs', url: 'https://securityonion.net/docs/', type: 'lab' }
     ],
     estimatedTime: '20-30 hours',
     completed: false,
@@ -507,7 +538,7 @@ export default function CybersecurityRoadmap() {
                     <div>
                       <h3 className="font-semibold mb-3 text-slate-800">Resources ({step.resources.length})</h3>
                       <div className="space-y-2">
-                        {step.resources.slice(0, 4).map((resource, idx) => (
+                        {step.resources.map((resource, idx) => (
                           <div key={idx} className="flex items-center space-x-2">
                             <span className="text-sm">{getResourceIcon(resource.type)}</span>
                             <a
@@ -520,11 +551,8 @@ export default function CybersecurityRoadmap() {
                             </a>
                           </div>
                         ))}
-                        {step.resources.length > 4 && (
-                          <p className="text-sm text-slate-500">+{step.resources.length - 4} more resources</p>
-                        )}
-                      </div>
-                    </div>
+                       </div>
+                     </div>
                   </div>
 
                   {step.prerequisites.length > 0 && (
@@ -629,7 +657,7 @@ export default function CybersecurityRoadmap() {
             </Alert>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {['article', 'lab', 'video'].map(type => {
+              {['article', 'lab', 'video', 'course'].map(type => {
                  const resourcesOfType = roadmapSteps.flatMap(step => step.resources.filter(r => r.type === type))
                  if (resourcesOfType.length === 0) return null
 
