@@ -34,7 +34,12 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Security terminology', 'CIA triad', 'Risk assessment basics'],
     resources: [
       { name: 'OWASP Top 10 Overview', url: 'https://owasp.org/www-project-top-ten/', type: 'article' },
-      { name: 'Cybersecurity Fundamentals Course', url: 'https://www.coursera.org/learn/cybersecurity-basics', type: 'course' }
+      { name: 'Cybersecurity Fundamentals Course', url: 'https://www.coursera.org/learn/cybersecurity-basics', type: 'course' },
+      { name: 'MDN Web Security', url: 'https://developer.mozilla.org/en-US/docs/Web/Security', type: 'article' },
+      { name: 'freeCodeCamp — What is Cybersecurity?', url: 'https://www.freecodecamp.org/news/what-is-cybersecurity/', type: 'article' },
+      { name: 'Introduction to Programming (Python)', url: 'https://www.learnpython.org/', type: 'video' },
+      { name: 'Intro to Linux (The Linux Foundation)', url: 'https://training.linuxfoundation.org/resources/', type: 'article' },
+      { name: 'Computer Networking Primer', url: 'https://www.freecodecamp.org/news/computer-networking-basics/', type: 'article' }
     ],
     estimatedTime: '2-3 hours'
   },
@@ -49,7 +54,11 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['XSS prevention', 'SQL injection defense', 'Input validation', 'Secure headers'],
     resources: [
       { name: 'Web Security Academy', url: 'https://portswigger.net/web-security', type: 'lab' },
-      { name: 'OWASP Cheat Sheet', url: 'https://cheatsheetseries.owasp.org/', type: 'article' }
+      { name: 'OWASP Cheat Sheet', url: 'https://cheatsheetseries.owasp.org/', type: 'article' },
+      { name: 'PayloadsAllTheThings (GitHub)', url: 'https://github.com/swisskyrepo/PayloadsAllTheThings', type: 'article' },
+      { name: 'PortSwigger YouTube Channel', url: 'https://www.youtube.com/c/PortSwigger', type: 'video' },
+      { name: 'Burp Suite Community', url: 'https://portswigger.net/burp/communitydownload', type: 'lab' },
+      { name: 'MDN — HTTP Security', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP', type: 'article' }
     ],
     estimatedTime: '8-10 hours',
     completed: false,
@@ -66,7 +75,9 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['TCP/IP fundamentals', 'Firewall configuration', 'VPN setup', 'Network scanning'],
     resources: [
       { name: 'Network Security Course', url: 'https://www.udemy.com/course/network-security/', type: 'course' },
-      { name: 'Wireshark Tutorials', url: 'https://www.wireshark.org/docs/', type: 'article' }
+      { name: 'Wireshark Tutorials', url: 'https://www.wireshark.org/docs/', type: 'article' },
+      { name: 'Cisco — Networking Basics', url: 'https://www.cisco.com/c/en/us/solutions/small-business/resource-center/networking/networking-basics.html', type: 'article' },
+      { name: 'TCP/IP Guide', url: 'https://www.tcpipguide.com/', type: 'article' }
     ],
     estimatedTime: '6-8 hours',
     completed: false,
@@ -83,7 +94,8 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Symmetric/Asymmetric encryption', 'Hash functions', 'Digital certificates', 'Key management'],
     resources: [
       { name: 'Cryptography I', url: 'https://www.coursera.org/learn/crypto', type: 'course' },
-      { name: 'Practical Cryptography', url: 'https://cryptobook.nakov.com/', type: 'article' }
+      { name: 'Practical Cryptography', url: 'https://cryptobook.nakov.com/', type: 'article' },
+      { name: 'Crypto 101', url: 'https://crypto101.io/', type: 'article' }
     ],
     estimatedTime: '10-12 hours',
     completed: false,
@@ -117,7 +129,9 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Reconnaissance', 'Vulnerability scanning', 'Exploitation', 'Reporting'],
     resources: [
       { name: 'Metasploit Framework', url: 'https://docs.metasploit.com/', type: 'article' },
-      { name: 'PWK Course', url: 'https://www.offsec.com/courses/penetration-testing/', type: 'course' }
+      { name: 'PWK Course', url: 'https://www.offsec.com/courses/penetration-testing/', type: 'course' },
+      { name: 'TryHackMe', url: 'https://tryhackme.com/', type: 'lab' },
+      { name: 'Hack The Box', url: 'https://www.hackthebox.com/', type: 'lab' }
     ],
     estimatedTime: '20-30 hours',
     completed: false,
@@ -134,7 +148,8 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Incident triage', 'Evidence collection', 'Malware analysis', 'Recovery planning'],
     resources: [
       { name: 'NIST Incident Response', url: 'https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final', type: 'article' },
-      { name: 'Digital Forensics Course', url: 'https://www.sans.org/cyber-security-skills/training/digital-forensics/', type: 'course' }
+      { name: 'Digital Forensics Course', url: 'https://www.sans.org/cyber-security-skills/training/digital-forensics/', type: 'course' },
+      { name: 'Volatility Framework', url: 'https://www.volatilityfoundation.org/', type: 'article' }
     ],
     estimatedTime: '15-20 hours',
     completed: false,
@@ -151,7 +166,9 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Cloud architecture security', 'IAM best practices', 'Container security', 'Cloud compliance'],
     resources: [
       { name: 'AWS Security Best Practices', url: 'https://aws.amazon.com/architecture/security-identity-compliance/', type: 'article' },
-      { name: 'Cloud Security Course', url: 'https://www.coursera.org/specializations/cloud-security', type: 'course' }
+      { name: 'Cloud Security Course', url: 'https://www.coursera.org/specializations/cloud-security', type: 'course' },
+      { name: 'CIS Benchmarks', url: 'https://www.cisecurity.org/cis-benchmarks/', type: 'article' },
+      { name: 'OWASP Cloud Security Project', url: 'https://owasp.org/www-project-cloud-security/', type: 'article' }
     ],
     estimatedTime: '8-10 hours',
     completed: false,
@@ -168,7 +185,8 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['GDPR compliance', 'ISO 27001', 'Risk management', 'Audit preparation'],
     resources: [
       { name: 'Compliance Frameworks', url: 'https://www.iso.org/isoiec-27001-information-security.html', type: 'article' },
-      { name: 'Security Governance Course', url: 'https://www.isaca.org/credentialing/cisa', type: 'course' }
+      { name: 'Security Governance Course', url: 'https://www.isaca.org/credentialing/cisa', type: 'course' },
+      { name: 'GDPR Reference', url: 'https://gdpr-info.eu/', type: 'article' }
     ],
     estimatedTime: '6-8 hours',
     completed: false,
@@ -185,11 +203,233 @@ const roadmapSteps: RoadmapStep[] = [
     skills: ['Threat hunting', 'APT analysis', 'Threat intelligence', 'Advanced malware'],
     resources: [
       { name: 'MITRE ATT&CK', url: 'https://attack.mitre.org/', type: 'article' },
-      { name: 'Advanced Threat Hunting', url: 'https://www.sans.org/cyber-security-skills/training/threat-hunting/', type: 'course' }
+      { name: 'Advanced Threat Hunting', url: 'https://www.sans.org/cyber-security-skills/training/threat-hunting/', type: 'course' },
+      { name: 'VirusTotal', url: 'https://www.virustotal.com/', type: 'article' }
     ],
     estimatedTime: '25-30 hours',
     completed: false,
     locked: true
+  },
+  {
+    id: 'secure-coding',
+    title: 'Secure Coding Practices',
+    description: 'Adopt secure-by-design principles, threat modeling, static analysis, and secure code reviews.',
+    difficulty: 'Intermediate',
+    category: 'Development',
+    icon: <Code className="w-5 h-5" />,
+    prerequisites: ['web-security'],
+    skills: ['Secure design', 'Static analysis', 'Threat modeling', 'Code review practices'],
+    resources: [
+      { name: 'OWASP Secure Coding Practices', url: 'https://owasp.org/www-project-secure-coding-practices/', type: 'article' },
+      { name: 'Snyk — Secure Coding', url: 'https://snyk.io/learn/secure-coding/', type: 'article' }
+    ],
+    estimatedTime: '6-8 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'devsecops',
+    title: 'DevSecOps & CI/CD Security',
+    description: 'Integrate security into CI/CD pipelines, scan IaC, and automate security testing across the SDLC.',
+    difficulty: 'Intermediate',
+    category: 'DevOps',
+    icon: <Terminal className="w-5 h-5" />,
+    prerequisites: ['cryptography', 'cloud-security'],
+    skills: ['Pipeline security', 'IaC scanning', 'Automated SAST/DAST', 'Secret management'],
+    resources: [
+      { name: 'OWASP DevSecOps Guidance', url: 'https://owasp.org/www-project-devsecops-guides/', type: 'article' },
+      { name: 'Snyk — DevSecOps', url: 'https://snyk.io/learn/devsecops/', type: 'article' }
+    ],
+    estimatedTime: '8-12 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'mobile-security',
+    title: 'Mobile App Security',
+    description: 'Secure mobile application development, common mobile threats and testing tools.',
+    difficulty: 'Intermediate',
+    category: 'Application Security',
+    icon: <Code className="w-5 h-5" />,
+    prerequisites: ['web-security'],
+    skills: ['Mobile threat modeling', 'Secure storage', 'Mobile app testing', 'Reverse engineering basics'],
+    resources: [
+      { name: 'OWASP Mobile Top 10', url: 'https://owasp.org/www-project-mobile-top-10/', type: 'article' },
+      { name: 'MobSF (Mobile Security Framework)', url: 'https://mobsf.github.io/docs/', type: 'lab' }
+    ],
+    estimatedTime: '6-10 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'malware-analysis',
+    title: 'Malware Analysis',
+    description: 'Dynamic and static malware analysis, sandboxing and threat intelligence workflows.',
+    difficulty: 'Advanced',
+    category: 'Forensics',
+    icon: <AlertTriangle className="w-5 h-5" />,
+    prerequisites: ['incident-response'],
+    skills: ['Static analysis', 'Dynamic analysis', 'Sandboxing', 'Indicator extraction'],
+    resources: [
+      { name: 'Practical Malware Analysis', url: 'http://practicalmalwareanalysis.com/', type: 'article' },
+      { name: 'REMnux', url: 'https://remnux.org/', type: 'lab' }
+    ],
+    estimatedTime: '20-30 hours',
+    completed: false,
+    locked: true
+  },
+  {
+    id: 'iot-security',
+    title: 'IoT & Embedded Security',
+    description: 'Secure development and assessment of IoT devices, firmware analysis and network protections.',
+    difficulty: 'Intermediate',
+    category: 'Embedded',
+    icon: <Globe className="w-5 h-5" />,
+    prerequisites: ['network-security'],
+    skills: ['Firmware analysis', 'Embedded exploit mitigation', 'IoT network security'],
+    resources: [
+      { name: 'OWASP IoT Project', url: 'https://owasp.org/www-project-internet-of-things/', type: 'article' },
+      { name: 'IoT Security Foundation', url: 'https://www.iotsecurityfoundation.org/', type: 'article' }
+    ],
+    estimatedTime: '8-12 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'privacy-engineering',
+    title: 'Privacy Engineering',
+    description: 'Design privacy-preserving systems, data minimization, and privacy compliance best practices.',
+    difficulty: 'Intermediate',
+    category: 'Governance',
+    icon: <ExternalLink className="w-5 h-5" />,
+    prerequisites: ['compliance'],
+    skills: ['Data minimization', 'Privacy-by-design', 'Consent management', 'Privacy impact assessments'],
+    resources: [
+      { name: 'NIST Privacy Framework', url: 'https://www.nist.gov/privacy-framework', type: 'article' },
+      { name: 'GDPR Reference', url: 'https://gdpr-info.eu/', type: 'article' }
+    ],
+    estimatedTime: '6-10 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'programming-basics',
+    title: 'Programming Basics',
+    description: 'Learn a programming language (Python recommended) to automate tasks and understand exploit proof-of-concepts.',
+    difficulty: 'Beginner',
+    category: 'Foundations',
+    icon: <Code className="w-5 h-5" />,
+    prerequisites: [],
+    skills: ['Scripting with Python', 'Parsing data', 'Regular expressions', 'Basic algorithms'],
+    resources: [
+      { name: 'Automate the Boring Stuff', url: 'https://automatetheboringstuff.com/', type: 'article' },
+      { name: 'Python Official Tutorial', url: 'https://docs.python.org/3/tutorial/', type: 'article' }
+    ],
+    estimatedTime: '8-12 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'linux-basics',
+    title: 'Linux Fundamentals',
+    description: 'Essential Linux skills for security: shell, package management, permissions, and scripting.',
+    difficulty: 'Beginner',
+    category: 'Systems',
+    icon: <Terminal className="w-5 h-5" />,
+    prerequisites: [],
+    skills: ['Shell commands', 'Permissions', 'System logs', 'Bash scripting'],
+    resources: [
+      { name: 'Linux Journey', url: 'https://linuxjourney.com/', type: 'article' },
+      { name: 'The Linux Command Line (book)', url: 'http://linuxcommand.org/tlcl.php', type: 'article' }
+    ],
+    estimatedTime: '6-10 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'http-fundamentals',
+    title: 'HTTP & Web Fundamentals',
+    description: 'Understand how web requests, responses, headers, cookies and sessions work.',
+    difficulty: 'Beginner',
+    category: 'Web Security',
+    icon: <Globe className="w-5 h-5" />,
+    prerequisites: ['web-security'],
+    skills: ['HTTP methods', 'Status codes', 'Headers & cookies', 'Session management'],
+    resources: [
+      { name: 'MDN — HTTP Overview', url: 'https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview', type: 'article' },
+      { name: 'HTTP: The Definitive Guide (summary)', url: 'https://www.oreilly.com/library/view/http-the-definitive/1565925092/', type: 'article' }
+    ],
+    estimatedTime: '4-6 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'git-version-control',
+    title: 'Git & Version Control',
+    description: 'Use Git effectively for collaboration, code review, and secure code practices.',
+    difficulty: 'Beginner',
+    category: 'Development',
+    icon: <Code className="w-5 h-5" />,
+    prerequisites: ['programming-basics'],
+    skills: ['Git basics', 'Branching', 'Code review', 'Using CI hooks'],
+    resources: [
+      { name: 'Pro Git Book', url: 'https://git-scm.com/book/en/v2', type: 'article' },
+      { name: 'GitHub Learning Lab', url: 'https://lab.github.com/', type: 'lab' }
+    ],
+    estimatedTime: '3-5 hours',
+    completed: false,
+    locked: false
+  },
+  {
+    id: 'red-team',
+    title: 'Red Teaming & Offensive Techniques',
+    description: 'Advanced adversary simulation, attack emulation and persistence techniques.',
+    difficulty: 'Advanced',
+    category: 'Offensive Security',
+    icon: <AlertTriangle className="w-5 h-5" />,
+    prerequisites: ['penetration-testing'],
+    skills: ['Adversary emulation', 'Post-exploitation', 'Persistence techniques', 'OpSec'],
+    resources: [
+      { name: 'MITRE ATT&CK Techniques', url: 'https://attack.mitre.org/techniques/', type: 'article' },
+      { name: 'Red Team Field Manual (RTFM)', url: 'https://github.com/maaaaz/RTFM', type: 'article' }
+    ],
+    estimatedTime: '30-40 hours',
+    completed: false,
+    locked: true
+  },
+  {
+    id: 'blue-team',
+    title: 'Blue Team & Detection',
+    description: 'Defensive monitoring, detection engineering, SIEM and incident containment.',
+    difficulty: 'Advanced',
+    category: 'Defensive Security',
+    icon: <Shield className="w-5 h-5" />,
+    prerequisites: ['incident-response'],
+    skills: ['SIEM', 'Log analysis', 'Detection rules', 'Containment strategies'],
+    resources: [
+      { name: 'ELK Stack Tutorial', url: 'https://www.elastic.co/what-is/elk-stack', type: 'article' },
+      { name: 'Splunk Essentials', url: 'https://www.splunk.com/en_us/training.html', type: 'course' }
+    ],
+    estimatedTime: '20-30 hours',
+    completed: false,
+    locked: true
+  },
+  {
+    id: 'kubernetes-security',
+    title: 'Kubernetes Security',
+    description: 'Secure container orchestration, RBAC, pod security and network policies.',
+    difficulty: 'Intermediate',
+    category: 'Cloud Security',
+    icon: <Database className="w-5 h-5" />,
+    prerequisites: ['cloud-security'],
+    skills: ['K8s RBAC', 'NetworkPolicy', 'Pod security', 'Image scanning'],
+    resources: [
+      { name: 'Kubernetes Hardening Guide', url: 'https://kubernetes.io/docs/concepts/security/', type: 'article' },
+      { name: 'CNCF – Kubernetes Security', url: 'https://www.cncf.io/projects/kubernetes/', type: 'article' }
+    ],
+    estimatedTime: '10-15 hours',
+    completed: false,
+    locked: false
   }
 ]
 
