@@ -24,6 +24,10 @@ import CommandInjectionLab from '@/components/CommandInjectionLab'
 import XSSLab from '@/components/XSSLab'
 import WebSecurityScannerLab from '@/components/WebSecurityScannerLab'
 import CybersecurityRoadmap from '@/components/CybersecurityRoadmap'
+import ProgrammingBasicsLab from '@/components/ProgrammingBasicsLab'
+import LinuxBasicsLab from '@/components/LinuxBasicsLab'
+import NetworkingBasicsLab from '@/components/NetworkingBasicsLab'
+import CryptographyLab from '@/components/CryptographyLab'
 
 
 interface AttackModule {
@@ -197,6 +201,46 @@ const attackModules: AttackModule[] = [
     icon: <Search className="w-5 h-5" />,
     status: 'available',
     component: WebSecurityScannerLab
+  },
+  {
+    id: 'programming-basics',
+    title: 'Programming Basics Lab',
+    description: 'Learn Python programming through cybersecurity-focused challenges. Master automation and scripting fundamentals.',
+    difficulty: 'Beginner',
+    category: 'Programming',
+    icon: <Code2 className="w-5 h-5" />,
+    status: 'available',
+    component: ProgrammingBasicsLab
+  },
+  {
+    id: 'linux-basics',
+    title: 'Linux Basics Lab',
+    description: 'Master essential Linux commands for cybersecurity investigations. Learn system administration and security monitoring.',
+    difficulty: 'Beginner',
+    category: 'System Administration',
+    icon: <TerminalSquare className="w-5 h-5" />,
+    status: 'available',
+    component: LinuxBasicsLab
+  },
+  {
+    id: 'networking-basics',
+    title: 'Networking Basics Lab',
+    description: 'Analyze network protocols and detect security threats through packet inspection. Learn network forensics fundamentals.',
+    difficulty: 'Beginner',
+    category: 'Network',
+    icon: <Globe className="w-5 h-5" />,
+    status: 'available',
+    component: NetworkingBasicsLab
+  },
+  {
+    id: 'cryptography-basics',
+    title: 'Cryptography Lab',
+    description: 'Explore encryption, decryption, and cryptographic concepts. Learn about ciphers, hashing, and digital signatures.',
+    difficulty: 'Beginner',
+    category: 'Cryptography',
+    icon: <Lock className="w-5 h-5" />,
+    status: 'available',
+    component: CryptographyLab
   },
 
   {
@@ -439,6 +483,9 @@ export default function Home() {
                 <option value="Authentication">Authentication</option>
                 <option value="Network">Network</option>
                 <option value="Browser">Browser</option>
+                <option value="Programming">Programming</option>
+                <option value="System Administration">System Administration</option>
+                <option value="Cryptography">Cryptography</option>
                 <option value="Practice">Practice</option>
               </select>
               <select
