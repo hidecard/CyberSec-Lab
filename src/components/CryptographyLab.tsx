@@ -186,6 +186,226 @@ const cryptoChallenges: CryptoChallenge[] = [
     ],
     explanation: 'Man-in-the-middle attacks intercept encrypted communications by presenting fake certificates, allowing attackers to read and modify sensitive data.',
     interactive: false
+  },
+  {
+    id: 'rail-fence-cipher',
+    title: 'Rail Fence Cipher',
+    description: 'Learn transposition cipher techniques',
+    difficulty: 'Beginner',
+    category: 'Classical',
+    task: 'Decrypt the Rail Fence cipher with 3 rails.',
+    plaintext: 'WE ARE DISCOVEREDFLEE AT ONCE',
+    encrypted: 'WECRLTEERDSOEEFEAOCAIVDEN',
+    algorithm: 'Rail Fence',
+    key: '3',
+    hints: [
+      'Write the ciphertext in a zigzag pattern',
+      'Read off the rails in order',
+      '3 rails means 3 rows in the zigzag',
+      'Ignores spaces and punctuation'
+    ],
+    explanation: 'The Rail Fence cipher is a transposition cipher that arranges plaintext in a zigzag pattern across multiple "rails" or rows.',
+    interactive: true
+  },
+  {
+    id: 'playfair-cipher',
+    title: 'Playfair Cipher',
+    description: 'Master digraph substitution ciphers',
+    difficulty: 'Intermediate',
+    category: 'Classical',
+    task: 'Decrypt using the keyword "PLAYFAIR" and 5x5 matrix.',
+    plaintext: 'HIDE THE GOLD IN THE TREE STUMP',
+    encrypted: 'BM OD ZB XD NA BE KU DM UI XM MO UV IF',
+    algorithm: 'Playfair',
+    key: 'PLAYFAIREXAMPLE',
+    hints: [
+      'Create 5x5 matrix with keyword (no duplicates)',
+      'Fill with remaining alphabet (I=J)',
+      'Encrypt pairs of letters using matrix rules',
+      'Same row: shift right, same column: shift down'
+    ],
+    explanation: 'The Playfair cipher uses a 5x5 matrix and encrypts pairs of letters, making it more secure than simple substitution.',
+    interactive: true
+  },
+  {
+    id: 'diffie-hellman',
+    title: 'Diffie-Hellman Key Exchange',
+    description: 'Learn key exchange protocols',
+    difficulty: 'Intermediate',
+    category: 'Key Exchange',
+    task: 'Calculate the shared secret using Diffie-Hellman parameters.',
+    plaintext: 'Key exchange protocol',
+    encrypted: 'Shared secret: 8',
+    algorithm: 'Diffie-Hellman',
+    key: 'p=23, g=5, Alice_private=6, Bob_private=15',
+    hints: [
+      'Alice computes A = g^a mod p',
+      'Bob computes B = g^b mod p',
+      'Shared secret = B^a mod p = A^b mod p',
+      'Private keys never transmitted'
+    ],
+    explanation: 'Diffie-Hellman allows two parties to establish a shared secret over an insecure channel without prior secrets.',
+    interactive: false
+  },
+  {
+    id: 'des-encryption',
+    title: 'DES Encryption',
+    description: 'Explore the Data Encryption Standard',
+    difficulty: 'Intermediate',
+    category: 'Symmetric',
+    task: 'Understand DES structure and why it\'s deprecated.',
+    plaintext: 'DES is outdated',
+    encrypted: 'Not applicable - conceptual',
+    algorithm: 'DES',
+    key: '56-bit key (insecure)',
+    hints: [
+      'Uses 56-bit keys (brute forceable)',
+      '16 rounds of Feistel network',
+      'Replaced by AES in most applications',
+      'Still used in legacy systems'
+    ],
+    explanation: 'DES was the first widely adopted symmetric encryption standard, but its small key size makes it vulnerable to brute force attacks.',
+    interactive: false
+  },
+  {
+    id: 'md5-hash',
+    title: 'MD5 Hash Function',
+    description: 'Analyze the MD5 hashing algorithm',
+    difficulty: 'Intermediate',
+    category: 'Hashing',
+    task: 'Compare MD5 with more secure alternatives.',
+    plaintext: 'The quick brown fox jumps over the lazy dog',
+    encrypted: 'MD5: 9e107d9d372bb6826bd81d3542a419d6',
+    algorithm: 'MD5',
+    key: '',
+    hints: [
+      '128-bit hash output',
+      'Vulnerable to collision attacks',
+      'Deprecated for security applications',
+      'Still used for checksums in some cases'
+    ],
+    explanation: 'MD5 was widely used but is now cryptographically broken due to collision vulnerabilities.',
+    interactive: false
+  },
+  {
+    id: 'certificate-authority',
+    title: 'Certificate Authority Concepts',
+    description: 'Understand digital certificate infrastructure',
+    difficulty: 'Intermediate',
+    category: 'PKI',
+    task: 'Learn how certificate authorities establish trust.',
+    plaintext: 'Certificate validation',
+    encrypted: 'Chain of trust verification',
+    algorithm: 'X.509',
+    key: 'Root CA → Intermediate CA → End Entity',
+    hints: [
+      'Root CAs are self-signed',
+      'Intermediate CAs issue end-entity certificates',
+      'Certificate chains build trust',
+      'CRL/OCSP check revocation status'
+    ],
+    explanation: 'Certificate Authorities issue digital certificates that verify the identity of websites and individuals in encrypted communications.',
+    interactive: false
+  },
+  {
+    id: 'block-vs-stream',
+    title: 'Block vs Stream Ciphers',
+    description: 'Compare cipher operating modes',
+    difficulty: 'Intermediate',
+    category: 'Modes',
+    task: 'Understand the differences between block and stream ciphers.',
+    plaintext: 'Block ciphers encrypt fixed-size blocks, stream ciphers encrypt bit-by-bit',
+    encrypted: 'Conceptual comparison',
+    algorithm: 'AES (Block) vs RC4 (Stream)',
+    key: 'Block: ECB, CBC, CTR modes',
+    hints: [
+      'Block ciphers: AES, DES (fixed block sizes)',
+      'Stream ciphers: RC4, ChaCha20 (bit/byte at a time)',
+      'Block ciphers need modes of operation',
+      'Stream ciphers self-synchronizing'
+    ],
+    explanation: 'Block ciphers process fixed-size blocks of data, while stream ciphers can encrypt data of any size continuously.',
+    interactive: false
+  },
+  {
+    id: 'padding-oracle',
+    title: 'Padding Oracle Attack',
+    description: 'Learn about cryptographic side-channel attacks',
+    difficulty: 'Advanced',
+    category: 'Attacks',
+    task: 'Understand how padding errors can leak information.',
+    plaintext: 'Secret message with padding',
+    encrypted: 'CBC encrypted with PKCS#7 padding',
+    algorithm: 'Padding Oracle',
+    key: 'Attacker exploits padding validation errors',
+    hints: [
+      'Common in CBC mode encryption',
+      'Attacker sends modified ciphertext',
+      'Server reveals if padding is valid/invalid',
+      'Can decrypt without knowing the key'
+    ],
+    explanation: 'Padding oracle attacks exploit error messages from decryption functions to gradually decrypt ciphertext without the key.',
+    interactive: false
+  },
+  {
+    id: 'quantum-cryptography',
+    title: 'Quantum Cryptography',
+    description: 'Explore post-quantum cryptographic concepts',
+    difficulty: 'Advanced',
+    category: 'Quantum',
+    task: 'Understand quantum threats to classical cryptography.',
+    plaintext: 'Quantum computers threaten RSA and ECC',
+    encrypted: 'Post-quantum algorithms needed',
+    algorithm: 'Shor\'s Algorithm',
+    key: 'Quantum threat to factorization',
+    hints: [
+      'Shor\'s algorithm breaks RSA in polynomial time',
+      'Grover\'s algorithm halves symmetric key strength',
+      'Post-quantum crypto: lattice-based, hash-based',
+      'Quantum key distribution (BB84) is information-theoretically secure'
+    ],
+    explanation: 'Quantum computers pose significant threats to current cryptographic systems, necessitating the development of quantum-resistant algorithms.',
+    interactive: false
+  },
+  {
+    id: 'homomorphic-encryption',
+    title: 'Homomorphic Encryption',
+    description: 'Learn about computing on encrypted data',
+    difficulty: 'Advanced',
+    category: 'Advanced',
+    task: 'Understand fully homomorphic encryption concepts.',
+    plaintext: 'Compute on encrypted data without decryption',
+    encrypted: 'FHE allows arbitrary computations',
+    algorithm: 'FHE Schemes',
+    key: 'BGV, BFV, CKKS schemes',
+    hints: [
+      'Fully Homomorphic Encryption (FHE)',
+      'Allows computation on ciphertext',
+      'Result decrypts to correct plaintext computation',
+      'Extremely slow but powerful for privacy'
+    ],
+    explanation: 'Homomorphic encryption enables computations to be performed on encrypted data without decrypting it first.',
+    interactive: false
+  },
+  {
+    id: 'zero-knowledge-proofs',
+    title: 'Zero-Knowledge Proofs',
+    description: 'Master cryptographic proof systems',
+    difficulty: 'Advanced',
+    category: 'Proofs',
+    task: 'Understand how to prove knowledge without revealing information.',
+    plaintext: 'I know the password without revealing it',
+    encrypted: 'Zero-knowledge proof of knowledge',
+    algorithm: 'ZKP Protocols',
+    key: 'Schnorr, Fiat-Shamir signatures',
+    hints: [
+      'Prover convinces verifier of statement truth',
+      'No information about the statement revealed',
+      'Used in authentication and blockchain',
+      'Properties: completeness, soundness, zero-knowledge'
+    ],
+    explanation: 'Zero-knowledge proofs allow one party to prove they know a secret to another party without revealing the secret itself.',
+    interactive: false
   }
 ]
 
@@ -233,6 +453,18 @@ export default function CryptographyLab() {
           result = `Correct! Decoded: "${selectedChallenge.plaintext}"`
         } else {
           result = 'Incorrect. Try decoding the Base64 string.'
+        }
+      } else if (selectedChallenge.id === 'rail-fence-cipher') {
+        if (userInput.toUpperCase().replace(/\s/g, '') === selectedChallenge.plaintext.replace(/\s/g, '')) {
+          result = `Correct! Decrypted: "${selectedChallenge.plaintext}"`
+        } else {
+          result = 'Incorrect. Try arranging the ciphertext in a 3-rail zigzag pattern.'
+        }
+      } else if (selectedChallenge.id === 'playfair-cipher') {
+        if (userInput.toUpperCase().replace(/\s/g, '') === selectedChallenge.plaintext.replace(/\s/g, '')) {
+          result = `Correct! Decrypted: "${selectedChallenge.plaintext}"`
+        } else {
+          result = 'Incorrect. Check your Playfair matrix construction and digraph rules.'
         }
       } else {
         result = 'This is a conceptual challenge. Review the explanation and key concepts.'
@@ -504,6 +736,26 @@ export default function CryptographyLab() {
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-500" />
                       <span className="text-sm">Key Management</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span className="text-sm">Transposition Ciphers</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span className="text-sm">Key Exchange Protocols</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span className="text-sm">Public Key Infrastructure</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span className="text-sm">Cryptographic Attacks</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span className="text-sm">Quantum Cryptography</span>
                     </div>
                   </div>
                 </CardContent>
