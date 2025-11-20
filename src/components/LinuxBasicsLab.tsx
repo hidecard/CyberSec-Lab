@@ -164,6 +164,217 @@ const commandChallenges: CommandChallenge[] = [
     ],
     explanation: 'File integrity monitoring detects unauthorized changes to critical system files.',
     scenario: 'Ensuring configuration files haven\'t been tampered with by malware.'
+  },
+  {
+    id: 'package-management',
+    title: 'Package Management',
+    description: 'Install, update, and remove software packages securely',
+    difficulty: 'Intermediate',
+    category: 'System Administration',
+    task: 'Update package lists and install security updates for the system.',
+    expectedCommand: 'sudo apt update && sudo apt list --upgradable | head -5 && sudo apt install --only-upgrade openssl',
+    expectedOutput: 'Get:1 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 openssl amd64 1.1.1f-1ubuntu2.8 [620 kB]\nFetched 620 kB in 2s (310 kB/s)\nPreparing to unpack .../openssl_1.1.1f-1ubuntu2.8_amd64.deb ...\nUnpacking openssl (1.1.1f-1ubuntu2.8) over (1.1.1f-1ubuntu2.7) ...\nSetting up openssl (1.1.1f-1ubuntu2.8) ...',
+    hints: [
+      'apt update refreshes package lists',
+      'apt list --upgradable shows available updates',
+      'apt install --only-upgrade updates specific packages'
+    ],
+    explanation: 'Regular package updates are crucial for security. Outdated software contains known vulnerabilities.',
+    scenario: 'Applying critical security patches to protect against known exploits.'
+  },
+  {
+    id: 'service-management',
+    title: 'Service Management',
+    description: 'Control system services and daemons',
+    difficulty: 'Intermediate',
+    category: 'System Administration',
+    task: 'Check the status of SSH service and restart it if necessary.',
+    expectedCommand: 'sudo systemctl status ssh && sudo systemctl restart ssh && sudo systemctl status ssh',
+    expectedOutput: '● ssh.service - OpenBSD Secure Shell server\n     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)\n     Active: active (running) since Mon 2023-01-15 10:30:00 UTC; 1h 25min ago\n    Process: 1234 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)\n    Process: 1235 ExecStart=/usr/sbin/sshd -D $SSHD_OPTS (code=exited, status=0/SUCCESS)',
+    hints: [
+      'systemctl status shows service state',
+      'systemctl restart restarts services',
+      'systemctl enable/disable controls startup'
+    ],
+    explanation: 'Service management ensures critical services remain running and can be controlled during investigations.',
+    scenario: 'Restarting SSH service after configuration changes during a security audit.'
+  },
+  {
+    id: 'disk-analysis',
+    title: 'Disk Usage Analysis',
+    description: 'Analyze disk space usage and identify large files',
+    difficulty: 'Beginner',
+    category: 'Forensics',
+    task: 'Check disk usage and find the largest files in the /var directory.',
+    expectedCommand: 'df -h && du -sh /var/* | sort -hr | head -5',
+    expectedOutput: 'Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda1        20G   15G  4.5G  77% /\n4.2G\t/var/log\n2.1G\t/var/cache\n1.8G\t/var/lib\n890M\t/var/spool',
+    hints: [
+      'df -h shows disk space in human readable format',
+      'du -sh shows directory sizes',
+      'sort -hr sorts by size descending'
+    ],
+    explanation: 'Disk analysis helps identify space issues and potential data exfiltration attempts.',
+    scenario: 'Investigating unusual disk usage that might indicate data theft or log manipulation.'
+  },
+  {
+    id: 'file-search',
+    title: 'Advanced File Search',
+    description: 'Locate files using find and locate commands',
+    difficulty: 'Intermediate',
+    category: 'Forensics',
+    task: 'Find all .log files modified in the last 24 hours and larger than 1MB.',
+    expectedCommand: 'find /var/log -name "*.log" -mtime -1 -size +1M -ls',
+    expectedOutput: '1234567 1024 -rw-r----- 1 syslog adm 1048576 Jan 15 14:30 /var/log/auth.log\n1234568 2048 -rw-r----- 1 syslog adm 2097152 Jan 15 15:45 /var/log/syslog',
+    hints: [
+      'find searches for files with criteria',
+      '-name specifies filename patterns',
+      '-mtime -1 finds files modified within 1 day',
+      '-size +1M finds files larger than 1MB'
+    ],
+    explanation: 'Advanced file searching is essential for digital forensics and log analysis.',
+    scenario: 'Searching for recently modified log files during an incident investigation.'
+  },
+  {
+    id: 'text-processing',
+    title: 'Text Processing with sed and awk',
+    description: 'Process and manipulate text files using sed and awk',
+    difficulty: 'Advanced',
+    category: 'Automation',
+    task: 'Extract IP addresses from a log file and count occurrences.',
+    expectedCommand: 'grep -oE "\\b([0-9]{1,3}\\.){3}[0-9]{1,3}\\b" /var/log/auth.log | sort | uniq -c | sort -nr | head -5',
+    expectedOutput: '  25 192.168.1.100\n  12 10.0.0.50\n   8 172.16.1.25\n   5 203.0.113.1\n   3 198.51.100.10',
+    hints: [
+      'grep -oE extracts patterns with regex',
+      'sort | uniq -c counts occurrences',
+      'sort -nr sorts by count descending'
+    ],
+    explanation: 'Text processing tools are powerful for log analysis and data extraction in security investigations.',
+    scenario: 'Analyzing authentication logs to identify IP addresses with suspicious login attempts.'
+  },
+  {
+    id: 'cron-jobs',
+    title: 'Scheduled Tasks (Cron)',
+    description: 'Manage cron jobs for automated security tasks',
+    difficulty: 'Intermediate',
+    category: 'Automation',
+    task: 'Create a cron job to run a security scan every day at 2 AM.',
+    expectedCommand: 'crontab -l && echo "0 2 * * * /usr/local/bin/security-scan.sh" | crontab - && crontab -l',
+    expectedOutput: '# Existing cron jobs...\n0 2 * * * /usr/local/bin/security-scan.sh',
+    hints: [
+      'crontab -l lists current cron jobs',
+      'echo with pipe adds new cron job',
+      'Cron format: minute hour day month weekday command'
+    ],
+    explanation: 'Automated tasks ensure regular security checks and maintenance.',
+    scenario: 'Setting up automated vulnerability scans to maintain system security posture.'
+  },
+  {
+    id: 'ssh-keys',
+    title: 'SSH Key Management',
+    description: 'Manage SSH keys for secure authentication',
+    difficulty: 'Intermediate',
+    category: 'Authentication',
+    task: 'Generate SSH key pair and add public key to authorized_keys.',
+    expectedCommand: 'ssh-keygen -t rsa -b 4096 -f ~/.ssh/security_key -N "" && cat ~/.ssh/security_key.pub >> ~/.ssh/authorized_keys && ls -la ~/.ssh/',
+    expectedOutput: 'Generating public/private rsa key pair.\nYour identification has been saved in /home/user/.ssh/security_key\nYour public key has been saved in /home/user/.ssh/security_key.pub\ndrw------- 2 user user 4096 Jan 15 16:00 .\n-rw------- 1 user user 3326 Jan 15 16:00 security_key\n-rw-r--r-- 1 user user  742 Jan 15 16:00 security_key.pub\n-rw-r--r-- 1 user user  742 Jan 15 16:00 authorized_keys',
+    hints: [
+      'ssh-keygen creates key pairs',
+      '-t rsa specifies algorithm',
+      '-b 4096 sets key size',
+      '-N "" sets empty passphrase'
+    ],
+    explanation: 'SSH key authentication is more secure than passwords and enables automated access.',
+    scenario: 'Setting up secure SSH access for automated security monitoring tools.'
+  },
+  {
+    id: 'backup-compression',
+    title: 'Backup and Compression',
+    description: 'Create compressed backups of important files',
+    difficulty: 'Beginner',
+    category: 'Backup',
+    task: 'Create a compressed backup of the /etc directory.',
+    expectedCommand: 'sudo tar -czf /tmp/etc-backup-$(date +%Y%m%d).tar.gz /etc && ls -lh /tmp/etc-backup-*.tar.gz',
+    expectedOutput: '-rw-r--r-- 1 root root 2.5M Jan 15 16:30 /tmp/etc-backup-20230115.tar.gz',
+    hints: [
+      'tar -c creates archives',
+      '-z compresses with gzip',
+      '-f specifies filename',
+      'date +%Y%m%d adds timestamp'
+    ],
+    explanation: 'Regular backups are essential for disaster recovery and forensic analysis.',
+    scenario: 'Creating backups before making system changes during a security hardening process.'
+  },
+  {
+    id: 'system-info',
+    title: 'System Information Gathering',
+    description: 'Gather comprehensive system information for security assessment',
+    difficulty: 'Beginner',
+    category: 'Reconnaissance',
+    task: 'Display system information including kernel version, distribution, and hardware details.',
+    expectedCommand: 'uname -a && lsb_release -a && free -h && df -h',
+    expectedOutput: 'Linux server01 5.4.0-74-generic #83-Ubuntu SMP Sat May 8 02:35:39 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux\nDistributor ID: Ubuntu\nDescription: Ubuntu 20.04.3 LTS\nRelease: 20.04\nCodename: focal\n              total        used        free      shared  buff/cache   available\nMem:           3.8G        1.2G        1.9G        100M        700M        2.3G\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/sda1        20G   15G  4.5G  77% /',
+    hints: [
+      'uname -a shows kernel information',
+      'lsb_release -a shows distribution info',
+      'free -h shows memory usage',
+      'df -h shows disk usage'
+    ],
+    explanation: 'System information gathering is the first step in security assessments and incident response.',
+    scenario: 'Collecting system details during initial reconnaissance of a potentially compromised server.'
+  },
+  {
+    id: 'memory-monitoring',
+    title: 'Memory and Process Monitoring',
+    description: 'Monitor system memory and CPU usage',
+    difficulty: 'Intermediate',
+    category: 'Monitoring',
+    task: 'Check memory usage and identify processes consuming the most CPU.',
+    expectedCommand: 'free -h && ps aux --sort=-%cpu | head -10',
+    expectedOutput: '              total        used        free      shared  buff/cache   available\nMem:           3.8G        1.2G        1.9G        100M        700M        2.3G\nUSER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\nwww-data  1234  15.2  8.5 256789 345678 ?     S    10:00   2:30 apache2\nmysql     1235  12.8 15.2 456789 567890 ?     S    10:00   1:45 mysqld\nroot      1236   8.9  2.1  45678  23456 pts/0 S+   16:45   0:00 htop',
+    hints: [
+      'free -h shows memory statistics',
+      'ps aux shows all processes',
+      '--sort=-%cpu sorts by CPU usage descending',
+      'head -10 shows top 10 processes'
+    ],
+    explanation: 'Memory and CPU monitoring helps detect performance issues and potential security threats.',
+    scenario: 'Investigating high resource usage that might indicate malware or a denial of service attack.'
+  },
+  {
+    id: 'malware-scanning',
+    title: 'Malware Detection and Scanning',
+    description: 'Use antivirus tools to scan for malware and suspicious files',
+    difficulty: 'Intermediate',
+    category: 'Security Tools',
+    task: 'Install and run ClamAV antivirus to scan the system for malware.',
+    expectedCommand: 'sudo apt install clamav -y && sudo freshclam && sudo clamscan -r /home --bell -i',
+    expectedOutput: 'Reading viruses.db...\nLibClamAV Warning: You are using an outdated version of the virus database\n----------- SCAN SUMMARY -----------\nKnown viruses: 8512345\nEngine version: 0.103.2\nScanned directories: 1\nScanned files: 45\nInfected files: 0\nData scanned: 12.34 MB\nData read: 12.34 MB (ratio 1.00:1)\nTime: 15.678 sec (0 m 15 s)\nStart Date: 2023:01:15 17:00:00\nEnd Date:   2023:01:15 17:00:15',
+    hints: [
+      'apt install clamav installs the antivirus',
+      'freshclam updates virus definitions',
+      'clamscan -r scans recursively',
+      '-i shows only infected files'
+    ],
+    explanation: 'Antivirus scanning is crucial for detecting known malware signatures and suspicious files.',
+    scenario: 'Performing a comprehensive malware scan after detecting unusual system behavior.'
+  },
+  {
+    id: 'network-scanning',
+    title: 'Network Port Scanning',
+    description: 'Use nmap to discover open ports and services on a target system',
+    difficulty: 'Advanced',
+    category: 'Reconnaissance',
+    task: 'Perform a comprehensive port scan on localhost to identify running services.',
+    expectedCommand: 'sudo apt install nmap -y && sudo nmap -sV -O localhost',
+    expectedOutput: 'Starting Nmap 7.80 ( https://nmap.org ) at 2023-01-15 17:05 UTC\nNmap scan report for localhost (127.0.0.1)\nHost is up (0.00010s latency).\nNot shown: 997 closed ports\nPORT     STATE SERVICE     VERSION\n22/tcp   open  ssh         OpenSSH 8.2p1 Ubuntu 4ubuntu0.4 (Ubuntu Linux; protocol 2.0)\n80/tcp   open  http        Apache httpd 2.4.41 ((Ubuntu))\n3306/tcp open  mysql       MySQL 8.0.28-0ubuntu0.20.04.3\nNo exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).\nTCP/IP fingerprint:\nOS:SCAN(V=7.80%E=4%D=1/15%OT=22%CT=1%CU=40329%PV=Y%DS=1%DC=D%G=Y%M=000000%TM=63C3E\nNetwork Distance: 0 hops\nOS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/',
+    hints: [
+      'nmap is the premier network scanning tool',
+      '-sV detects service versions',
+      '-O attempts OS detection',
+      'localhost scans the local machine'
+    ],
+    explanation: 'Port scanning helps identify running services and potential attack vectors during reconnaissance.',
+    scenario: 'Conducting reconnaissance on a potentially compromised system to identify exposed services.'
   }
 ]
 
@@ -225,6 +436,54 @@ export default function LinuxBasicsLab() {
         }
       } else if (selectedChallenge.id === 'file-integrity') {
         if (userCommand.includes('sha256sum') && userCommand.includes('-c')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'package-management') {
+        if (userCommand.includes('apt update') && userCommand.includes('apt install')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'service-management') {
+        if (userCommand.includes('systemctl status') && userCommand.includes('systemctl restart')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'disk-analysis') {
+        if (userCommand.includes('df -h') && userCommand.includes('du -sh')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'file-search') {
+        if (userCommand.includes('find') && userCommand.includes('-name') && userCommand.includes('-mtime')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'text-processing') {
+        if (userCommand.includes('grep -oE') && userCommand.includes('uniq -c')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'cron-jobs') {
+        if (userCommand.includes('crontab -l') && userCommand.includes('crontab -')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'ssh-keys') {
+        if (userCommand.includes('ssh-keygen') && userCommand.includes('cat') && userCommand.includes('authorized_keys')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'backup-compression') {
+        if (userCommand.includes('tar -czf') && userCommand.includes('date')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'system-info') {
+        if (userCommand.includes('uname -a') && userCommand.includes('lsb_release -a') && userCommand.includes('free -h') && userCommand.includes('df -h')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'memory-monitoring') {
+        if (userCommand.includes('free -h') && userCommand.includes('ps aux --sort=-%cpu')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'malware-scanning') {
+        if (userCommand.includes('apt install clamav') && userCommand.includes('clamscan')) {
+          simulatedOutput = selectedChallenge.expectedOutput
+        }
+      } else if (selectedChallenge.id === 'network-scanning') {
+        if (userCommand.includes('apt install nmap') && userCommand.includes('nmap -sV')) {
           simulatedOutput = selectedChallenge.expectedOutput
         }
       }
@@ -488,11 +747,13 @@ export default function LinuxBasicsLab() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2 text-sm">
-                    <p><code className="bg-slate-100 px-1 rounded">ls, cd, pwd</code> - Navigation</p>
-                    <p><code className="bg-slate-100 px-1 rounded">chmod, chown</code> - Permissions</p>
-                    <p><code className="bg-slate-100 px-1 rounded">ps, kill, top</code> - Processes</p>
-                    <p><code className="bg-slate-100 px-1 rounded">grep, tail, cat</code> - Text processing</p>
-                    <p><code className="bg-slate-100 px-1 rounded">netstat, ss, iptables</code> - Networking</p>
+                    <p><code className="bg-slate-100 px-1 rounded">ls, cd, pwd, find</code> - Navigation & Search</p>
+                    <p><code className="bg-slate-100 px-1 rounded">chmod, chown, ssh-keygen</code> - Permissions & Auth</p>
+                    <p><code className="bg-slate-100 px-1 rounded">ps, kill, systemctl, cron</code> - Processes & Services</p>
+                    <p><code className="bg-slate-100 px-1 rounded">grep, sed, awk, tail</code> - Text Processing</p>
+                    <p><code className="bg-slate-100 px-1 rounded">netstat, ss, iptables, df</code> - Networking & Storage</p>
+                    <p><code className="bg-slate-100 px-1 rounded">tar, sha256sum, apt, uname</code> - System Tools</p>
+                    <p><code className="bg-slate-100 px-1 rounded">clamav, nmap, freshclam</code> - Security Scanning</p>
                   </div>
                 </CardContent>
               </Card>

@@ -145,6 +145,338 @@ const challenges: Challenge[] = [
       'Common ports: 80 (HTTP), 443 (HTTPS), 22 (SSH), etc.'
     ],
     explanation: 'Port scanning is a reconnaissance technique used to discover open services on a network. This demonstrates basic network enumeration concepts.'
+  },
+  {
+    id: 'email-validator',
+    title: 'Email Address Validator',
+    description: 'Create a basic email validation function for security purposes',
+    difficulty: 'Beginner',
+    category: 'Security',
+    task: 'Write a function that checks if an email address has a basic valid format (contains @ and a domain).',
+    starterCode: 'def validate_email(email):\n    # Check if email has basic valid format\n    # Should contain @ and have a domain part\n    pass\n\n# Test the function\nprint(validate_email("user@example.com"))  # Should be True\nprint(validate_email("invalid-email"))     # Should be False\nprint(validate_email("user@"))             # Should be False',
+    solution: 'def validate_email(email):\n    # Basic email validation\n    if "@" not in email:\n        return False\n    \n    parts = email.split("@")\n    if len(parts) != 2:\n        return False\n    \n    local, domain = parts\n    \n    # Check for empty parts and basic domain format\n    if not local or not domain:\n        return False\n    \n    if "." not in domain:\n        return False\n    \n    return True\n\nprint(validate_email("user@example.com"))\nprint(validate_email("invalid-email"))\nprint(validate_email("user@"))',
+    testCases: [
+      { input: 'user@example.com', expected: 'True' },
+      { input: 'invalid-email', expected: 'False' },
+      { input: 'user@', expected: 'False' },
+      { input: '@example.com', expected: 'False' }
+    ],
+    hints: [
+      'Use the split() method with "@" as separator',
+      'Check that there are exactly 2 parts after splitting',
+      'Ensure both local and domain parts are not empty',
+      'Domain should contain a dot for basic validation'
+    ],
+    explanation: 'Email validation is important for user registration and preventing spam. This demonstrates basic string manipulation and conditional logic for security validation.'
+  },
+  {
+    id: 'simple-hash',
+    title: 'Simple Hash Calculator',
+    description: 'Implement a basic hash function for data integrity checking',
+    difficulty: 'Intermediate',
+    category: 'Cryptography',
+    task: 'Create a simple hash function that converts a string to a numeric hash value.',
+    starterCode: 'def simple_hash(text):\n    # Create a simple hash from the text\n    # Sum ASCII values and take modulo\n    pass\n\n# Test the function\nprint(simple_hash("hello"))     # Should output a number\nprint(simple_hash("security"))  # Different number\nprint(simple_hash("hello"))     # Same as first output',
+    solution: 'def simple_hash(text):\n    # Simple hash: sum of ASCII values modulo 1000\n    hash_value = 0\n    for char in text:\n        hash_value += ord(char)\n    return hash_value % 1000\n\nprint(simple_hash("hello"))\nprint(simple_hash("security"))\nprint(simple_hash("hello"))',
+    testCases: [
+      { input: 'hello', expected: '532' },
+      { input: 'security', expected: '849' }
+    ],
+    hints: [
+      'Use ord() to get ASCII value of each character',
+      'Sum the ASCII values',
+      'Use modulo operator to keep hash within a range',
+      'Same input should always produce same output'
+    ],
+    explanation: 'Hash functions are fundamental to cryptography and data integrity. This simple example demonstrates the concept of deterministic hashing.'
+  },
+  {
+    id: 'config-parser',
+    title: 'Configuration File Parser',
+    description: 'Parse a simple configuration file for security settings',
+    difficulty: 'Intermediate',
+    category: 'Automation',
+    task: 'Write a script that reads and parses a simple key-value configuration file.',
+    starterCode: '# Sample config data (normally this would come from a file)\nconfig_text = """\n# Security Configuration\nmax_login_attempts=3\nsession_timeout=3600\nenable_logging=true\nadmin_email=admin@example.com\n"""\n\n# Parse the configuration\ndef parse_config(config_str):\n    config = {}\n    # Parse each line and extract key-value pairs\n    # Skip comments (lines starting with #)\n    pass\n\n# Test the parser\nsettings = parse_config(config_text)\nprint("Configuration loaded:")\nfor key, value in settings.items():\n    print(f"{key}: {value}")',
+    solution: '# Sample config data (normally this would come from a file)\nconfig_text = """\n# Security Configuration\nmax_login_attempts=3\nsession_timeout=3600\nenable_logging=true\nadmin_email=admin@example.com\n"""\n\n# Parse the configuration\ndef parse_config(config_str):\n    config = {}\n    lines = config_str.strip().split("\\n")\n    \n    for line in lines:\n        line = line.strip()\n        # Skip empty lines and comments\n        if not line or line.startswith("#"):\n            continue\n        \n        # Parse key=value\n        if "=" in line:\n            key, value = line.split("=", 1)\n            config[key.strip()] = value.strip()\n    \n    return config\n\n# Test the parser\nsettings = parse_config(config_text)\nprint("Configuration loaded:")\nfor key, value in settings.items():\n    print(f"{key}: {value}")',
+    testCases: [
+      { input: '', expected: 'Configuration loaded:\nmax_login_attempts: 3\nsession_timeout: 3600\nenable_logging: true\nadmin_email: admin@example.com' }
+    ],
+    hints: [
+      'Split the text into lines using split("\\n")',
+      'Skip lines that start with # or are empty',
+      'Use split("=", 1) to separate key and value',
+      'Strip whitespace from keys and values'
+    ],
+    explanation: 'Configuration files are common in security tools. Parsing them teaches file handling and string manipulation skills essential for automation scripts.'
+  },
+  {
+    id: 'access-control',
+    title: 'Simple Access Control',
+    description: 'Implement basic role-based access control logic',
+    difficulty: 'Intermediate',
+    category: 'Security',
+    task: 'Create a function that checks if a user has permission to access a resource based on their role.',
+    starterCode: '# Define user roles and permissions\nroles = {\n    "admin": ["read", "write", "delete", "admin"],\n    "user": ["read", "write"],\n    "guest": ["read"]\n}\n\n# Sample users\nusers = {\n    "alice": "admin",\n    "bob": "user",\n    "charlie": "guest"\n}\n\ndef check_permission(username, action):\n    # Check if user has permission for the action\n    pass\n\n# Test the function\nprint(check_permission("alice", "delete"))    # Should be True\nprint(check_permission("bob", "delete"))      # Should be False\nprint(check_permission("charlie", "write"))   # Should be False',
+    solution: '# Define user roles and permissions\nroles = {\n    "admin": ["read", "write", "delete", "admin"],\n    "user": ["read", "write"],\n    "guest": ["read"]\n}\n\n# Sample users\nusers = {\n    "alice": "admin",\n    "bob": "user",\n    "charlie": "guest"\n}\n\ndef check_permission(username, action):\n    # Check if user exists\n    if username not in users:\n        return False\n    \n    # Get user role\n    user_role = users[username]\n    \n    # Check if role has the required permission\n    if user_role in roles and action in roles[user_role]:\n        return True\n    \n    return False\n\nprint(check_permission("alice", "delete"))\nprint(check_permission("bob", "delete"))\nprint(check_permission("charlie", "write"))',
+    testCases: [
+      { input: 'alice,delete', expected: 'True' },
+      { input: 'bob,delete', expected: 'False' },
+      { input: 'charlie,write', expected: 'False' },
+      { input: 'alice,read', expected: 'True' }
+    ],
+    hints: [
+      'Use dictionaries to store roles and permissions',
+      'Check if user exists in users dictionary',
+      'Get user role, then check if action is in role permissions',
+      'Return False for unknown users or insufficient permissions'
+    ],
+    explanation: 'Access control is fundamental to security systems. This demonstrates role-based access control (RBAC) using dictionaries and conditional logic.'
+  },
+  {
+    id: 'url-parser',
+    title: 'URL Parser for Security Analysis',
+    description: 'Parse URLs to extract components for security analysis',
+    difficulty: 'Intermediate',
+    category: 'Web Security',
+    task: 'Write a function that parses a URL and extracts the protocol, domain, and path components.',
+    starterCode: 'def parse_url(url):\n    # Parse URL into components\n    # Extract protocol, domain, and path\n    pass\n\n# Test the function\nurls = [\n    "https://example.com/path/to/resource",\n    "http://test.com/page",\n    "ftp://files.example.org/download.zip"\n]\n\nfor url in urls:\n    components = parse_url(url)\n    print(f"URL: {url}")\n    print(f"Protocol: {components.get(\'protocol\', \'unknown\')}")\n    print(f"Domain: {components.get(\'domain\', \'unknown\')}")\n    print(f"Path: {components.get(\'path\', \'/\')}")\n    print("---")',
+    solution: 'def parse_url(url):\n    # Simple URL parser\n    components = {}\n    \n    # Find protocol\n    if "://" in url:\n        protocol, rest = url.split("://", 1)\n        components["protocol"] = protocol\n    else:\n        rest = url\n        components["protocol"] = "http"  # default\n    \n    # Find domain and path\n    if "/" in rest:\n        domain, path = rest.split("/", 1)\n        components["domain"] = domain\n        components["path"] = "/" + path\n    else:\n        components["domain"] = rest\n        components["path"] = "/"\n    \n    return components\n\n# Test the function\nurls = [\n    "https://example.com/path/to/resource",\n    "http://test.com/page",\n    "ftp://files.example.org/download.zip"\n]\n\nfor url in urls:\n    components = parse_url(url)\n    print(f"URL: {url}")\n    print(f"Protocol: {components.get(\'protocol\', \'unknown\')}")\n    print(f"Domain: {components.get(\'domain\', \'unknown\')}")\n    print(f"Path: {components.get(\'path\', \'/\')}")\n    print("---")',
+    testCases: [
+      { input: 'https://example.com/path', expected: 'Protocol: https\nDomain: example.com\nPath: /path' },
+      { input: 'http://test.com', expected: 'Protocol: http\nDomain: test.com\nPath: /' }
+    ],
+    hints: [
+      'Split on "://" to separate protocol from rest',
+      'Split on "/" to separate domain from path',
+      'Handle URLs without explicit protocol',
+      'Use dictionary to store components'
+    ],
+    explanation: 'URL parsing is essential for web security analysis. Understanding URL components helps identify potential security issues like malicious redirects or parameter injection.'
+  },
+  {
+    id: 'brute-force-sim',
+    title: 'Brute Force Attack Simulator (Safe)',
+    description: 'Simulate a basic brute force attack on a simple password system',
+    difficulty: 'Advanced',
+    category: 'Security',
+    task: 'Create a safe simulation of brute force password cracking using a wordlist.',
+    starterCode: '# Safe brute force simulation\n# In reality, this is illegal without permission!\n\ndef authenticate(password):\n    # Simulate checking against a stored hash\n    # Real password hash would be "secret123"\n    return password == "secret123"\n\n# Simple wordlist\nwordlist = ["password", "123456", "admin", "secret", "secret123", "letmein"]\n\ndef brute_force(wordlist):\n    # Try each password in the wordlist\n    attempts = 0\n    for word in wordlist:\n        attempts += 1\n        print(f"Trying: {word}")\n        if authenticate(word):\n            return word, attempts\n    return None, attempts\n\n# Run the simulation\nresult, attempts = brute_force(wordlist)\nif result:\n    print(f"Password found: {result} after {attempts} attempts")\nelse:\n    print(f"Password not found after {attempts} attempts")',
+    solution: '# Safe brute force simulation\n# In reality, this is illegal without permission!\n\ndef authenticate(password):\n    # Simulate checking against a stored hash\n    # Real password hash would be "secret123"\n    return password == "secret123"\n\n# Simple wordlist\nwordlist = ["password", "123456", "admin", "secret", "secret123", "letmein"]\n\ndef brute_force(wordlist):\n    # Try each password in the wordlist\n    attempts = 0\n    for word in wordlist:\n        attempts += 1\n        print(f"Trying: {word}")\n        if authenticate(word):\n            return word, attempts\n    return None, attempts\n\n# Run the simulation\nresult, attempts = brute_force(wordlist)\nif result:\n    print(f"Password found: {result} after {attempts} attempts")\nelse:\n    print(f"Password not found after {attempts} attempts")',
+    testCases: [
+      { input: '', expected: 'Trying: password\nTrying: 123456\nTrying: admin\nTrying: secret\nTrying: secret123\nPassword found: secret123 after 5 attempts' }
+    ],
+    hints: [
+      'Use a loop to try each word in the wordlist',
+      'Count attempts for security awareness',
+      'Return both the found password and attempt count',
+      'This is for educational purposes only!'
+    ],
+    explanation: 'Understanding brute force attacks helps in creating secure authentication systems. This simulation demonstrates why strong passwords and rate limiting are important security measures.'
+  },
+  {
+    id: 'ip-validator',
+    title: 'IP Address Validator',
+    description: 'Create a function to validate IPv4 addresses',
+    difficulty: 'Beginner',
+    category: 'Networking',
+    task: 'Write a function that checks if a string is a valid IPv4 address format.',
+    starterCode: 'def validate_ip(ip):\n    # Check if the string is a valid IPv4 address\n    # Should have 4 octets, each 0-255\n    pass\n\n# Test the function\nprint(validate_ip("192.168.1.1"))    # Should be True\nprint(validate_ip("256.1.1.1"))      # Should be False\nprint(validate_ip("192.168.1"))      # Should be False',
+    solution: 'def validate_ip(ip):\n    # Split into octets\n    octets = ip.split(".")\n    \n    # Must have exactly 4 octets\n    if len(octets) != 4:\n        return False\n    \n    # Each octet must be a number between 0 and 255\n    for octet in octets:\n        if not octet.isdigit():\n            return False\n        num = int(octet)\n        if num < 0 or num > 255:\n            return False\n    \n    return True\n\nprint(validate_ip("192.168.1.1"))\nprint(validate_ip("256.1.1.1"))\nprint(validate_ip("192.168.1"))',
+    testCases: [
+      { input: '192.168.1.1', expected: 'True' },
+      { input: '256.1.1.1', expected: 'False' },
+      { input: '192.168.1', expected: 'False' },
+      { input: '0.0.0.0', expected: 'True' }
+    ],
+    hints: [
+      'Split the IP address by "." to get octets',
+      'Check that there are exactly 4 octets',
+      'Use isdigit() to check if each octet is numeric',
+      'Convert to int and check range 0-255'
+    ],
+    explanation: 'IP address validation is crucial for network security. This function demonstrates parsing and validating network addresses.'
+  },
+  {
+    id: 'base64-encoder',
+    title: 'Base64 Encoder/Decoder',
+    description: 'Implement basic Base64 encoding and decoding',
+    difficulty: 'Intermediate',
+    category: 'Cryptography',
+    task: 'Create functions to encode and decode text using Base64.',
+    starterCode: 'import base64\n\ndef encode_base64(text):\n    # Encode text to Base64\n    pass\n\ndef decode_base64(encoded):\n    # Decode Base64 to text\n    pass\n\n# Test the functions\nmessage = "Hello Security"\nprint("Original:", message)\nprint("Encoded:", encode_base64(message))\nprint("Decoded:", decode_base64(encode_base64(message)))',
+    solution: 'import base64\n\ndef encode_base64(text):\n    # Encode text to Base64\n    text_bytes = text.encode(\'utf-8\')\n    encoded_bytes = base64.b64encode(text_bytes)\n    return encoded_bytes.decode(\'utf-8\')\n\ndef decode_base64(encoded):\n    # Decode Base64 to text\n    encoded_bytes = encoded.encode(\'utf-8\')\n    decoded_bytes = base64.b64decode(encoded_bytes)\n    return decoded_bytes.decode(\'utf-8\')\n\n# Test the functions\nmessage = "Hello Security"\nprint("Original:", message)\nprint("Encoded:", encode_base64(message))\nprint("Decoded:", decode_base64(encode_base64(message)))',
+    testCases: [
+      { input: 'Hello', expected: 'Encoded: SGVsbG8=\nDecoded: Hello' }
+    ],
+    hints: [
+      'Use base64 module from Python standard library',
+      'Encode: convert string to bytes, then b64encode, then back to string',
+      'Decode: convert string to bytes, then b64decode, then back to string',
+      'Handle UTF-8 encoding properly'
+    ],
+    explanation: 'Base64 encoding is commonly used in web security for encoding binary data in text format, such as in authentication tokens.'
+  },
+  {
+    id: 'log-filter',
+    title: 'Log File Filter',
+    description: 'Filter security log entries by severity or type',
+    difficulty: 'Intermediate',
+    category: 'Automation',
+    task: 'Write a script that filters log entries based on keywords or severity levels.',
+    starterCode: '# Sample log entries\nlogs = [\n    "INFO: User login successful",\n    "WARNING: Failed login attempt",\n    "ERROR: Database connection failed",\n    "INFO: File uploaded",\n    "CRITICAL: Unauthorized access detected"\n]\n\ndef filter_logs(logs, keyword):\n    # Filter logs containing the keyword\n    pass\n\n# Test the function\nprint("All CRITICAL logs:")\nfiltered = filter_logs(logs, "CRITICAL")\nfor log in filtered:\n    print(log)',
+    solution: '# Sample log entries\nlogs = [\n    "INFO: User login successful",\n    "WARNING: Failed login attempt",\n    "ERROR: Database connection failed",\n    "INFO: File uploaded",\n    "CRITICAL: Unauthorized access detected"\n]\n\ndef filter_logs(logs, keyword):\n    # Filter logs containing the keyword\n    filtered = []\n    for log in logs:\n        if keyword.lower() in log.lower():\n            filtered.append(log)\n    return filtered\n\n# Test the function\nprint("All CRITICAL logs:")\nfiltered = filter_logs(logs, "CRITICAL")\nfor log in filtered:\n    print(log)',
+    testCases: [
+      { input: '', expected: 'All CRITICAL logs:\nCRITICAL: Unauthorized access detected' }
+    ],
+    hints: [
+      'Use a loop to check each log entry',
+      'Use string methods like lower() for case-insensitive search',
+      'Return a list of matching logs',
+      'Consider using list comprehensions for efficiency'
+    ],
+    explanation: 'Log filtering is essential for security monitoring. This demonstrates how to process and analyze security logs programmatically.'
+  },
+  {
+    id: 'password-strength',
+    title: 'Advanced Password Strength Checker',
+    description: 'Create an advanced password strength evaluation function',
+    difficulty: 'Intermediate',
+    category: 'Security',
+    task: 'Write a function that evaluates password strength based on multiple criteria and returns a score.',
+    starterCode: 'def check_password_strength(password):\n    # Evaluate password strength\n    # Check length, character types, common patterns\n    score = 0\n    \n    # Length check\n    if len(password) >= 8:\n        score += 1\n    if len(password) >= 12:\n        score += 1\n    \n    # Character variety\n    if any(c.islower() for c in password):\n        score += 1\n    if any(c.isupper() for c in password):\n        score += 1\n    if any(c.isdigit() for c in password):\n        score += 1\n    if any(not c.isalnum() for c in password):\n        score += 1\n    \n    # Common passwords check\n    common_passwords = ["password", "123456", "admin"]\n    if password.lower() not in common_passwords:\n        score += 1\n    \n    return score\n\n# Test the function\nprint("Password strength for \'password123\':", check_password_strength("password123"))\nprint("Password strength for \'Str0ng!P@ss\':", check_password_strength("Str0ng!P@ss"))',
+    solution: 'def check_password_strength(password):\n    # Evaluate password strength\n    # Check length, character types, common patterns\n    score = 0\n    \n    # Length check\n    if len(password) >= 8:\n        score += 1\n    if len(password) >= 12:\n        score += 1\n    \n    # Character variety\n    if any(c.islower() for c in password):\n        score += 1\n    if any(c.isupper() for c in password):\n        score += 1\n    if any(c.isdigit() for c in password):\n        score += 1\n    if any(not c.isalnum() for c in password):\n        score += 1\n    \n    # Common passwords check\n    common_passwords = ["password", "123456", "admin"]\n    if password.lower() not in common_passwords:\n        score += 1\n    \n    return score\n\n# Test the function\nprint("Password strength for \'password123\':", check_password_strength("password123"))\nprint("Password strength for \'Str0ng!P@ss\':", check_password_strength("Str0ng!P@ss"))',
+    testCases: [
+      { input: 'password123', expected: '5' },
+      { input: 'Str0ng!P@ss', expected: '7' }
+    ],
+    hints: [
+      'Use multiple criteria for scoring',
+      'Check length, character types, and common passwords',
+      'Use any() with generator expressions',
+      'Return a numerical score'
+    ],
+    explanation: 'Password strength checking is vital for authentication security. This advanced checker evaluates multiple security criteria.'
+  },
+  {
+    id: 'firewall-parser',
+    title: 'Firewall Rule Parser',
+    description: 'Parse and validate simple firewall rules',
+    difficulty: 'Advanced',
+    category: 'Networking',
+    task: 'Create a function that parses firewall rules in a simple format and checks if traffic should be allowed.',
+    starterCode: '# Simple firewall rule format: "ALLOW|DENY protocol port source_ip"\nrules = [\n    "ALLOW tcp 80 192.168.1.0/24",\n    "DENY tcp 22 0.0.0.0/0",\n    "ALLOW tcp 443 10.0.0.0/8"\n]\n\ndef parse_rule(rule):\n    # Parse a single rule into components\n    pass\n\ndef check_traffic(protocol, port, source_ip, rules):\n    # Check if traffic matches any rule\n    pass\n\n# Test the functions\nprint("TCP 80 from 192.168.1.1:", check_traffic("tcp", 80, "192.168.1.1", rules))\nprint("TCP 22 from 192.168.1.1:", check_traffic("tcp", 22, "192.168.1.1", rules))',
+    solution: '# Simple firewall rule format: "ALLOW|DENY protocol port source_ip"\nrules = [\n    "ALLOW tcp 80 192.168.1.0/24",\n    "DENY tcp 22 0.0.0.0/0",\n    "ALLOW tcp 443 10.0.0.0/8"\n]\n\ndef parse_rule(rule):\n    # Parse a single rule into components\n    parts = rule.split()\n    if len(parts) != 4:\n        return None\n    action, protocol, port, source = parts\n    return {\n        "action": action,\n        "protocol": protocol,\n        "port": int(port),\n        "source": source\n    }\n\ndef check_traffic(protocol, port, source_ip, rules):\n    # Check if traffic matches any rule\n    for rule in rules:\n        parsed = parse_rule(rule)\n        if not parsed:\n            continue\n        \n        # Simple IP matching (just check if source starts with network)\n        network = parsed["source"].split("/")[0]\n        if (parsed["protocol"] == protocol and \n            parsed["port"] == port and \n            source_ip.startswith(network)):\n            return parsed["action"] == "ALLOW"\n    \n    return False  # Default deny\n\n# Test the functions\nprint("TCP 80 from 192.168.1.1:", check_traffic("tcp", 80, "192.168.1.1", rules))\nprint("TCP 22 from 192.168.1.1:", check_traffic("tcp", 22, "192.168.1.1", rules))',
+    testCases: [
+      { input: '', expected: 'TCP 80 from 192.168.1.1: True\nTCP 22 from 192.168.1.1: False' }
+    ],
+    hints: [
+      'Split rules into components',
+      'Use dictionaries to store parsed rules',
+      'Implement simple IP matching logic',
+      'Default to deny if no rule matches'
+    ],
+    explanation: 'Firewall rule parsing is fundamental to network security. This demonstrates how firewalls evaluate traffic against security policies.'
+  },
+  {
+    id: 'sql-builder',
+    title: 'Safe SQL Query Builder',
+    description: 'Build parameterized SQL queries to prevent injection',
+    difficulty: 'Intermediate',
+    category: 'Database Security',
+    task: 'Create a function that builds safe SQL SELECT queries with parameters.',
+    starterCode: 'def build_safe_query(table, columns, conditions):\n    # Build a safe SQL query with parameters\n    # Use placeholders to prevent SQL injection\n    pass\n\n# Test the function\nquery, params = build_safe_query(\n    "users", \n    ["username", "email"], \n    {"status": "active", "role": "admin"}\n)\nprint("Query:", query)\nprint("Parameters:", params)',
+    solution: 'def build_safe_query(table, columns, conditions):\n    # Build a safe SQL query with parameters\n    # Use placeholders to prevent SQL injection\n    \n    # Build SELECT clause\n    select_clause = "SELECT " + ", ".join(columns)\n    \n    # Build FROM clause\n    from_clause = f"FROM {table}"\n    \n    # Build WHERE clause with placeholders\n    if conditions:\n        where_parts = []\n        params = []\n        for key, value in conditions.items():\n            where_parts.append(f"{key} = ?")\n            params.append(value)\n        where_clause = "WHERE " + " AND ".join(where_parts)\n    else:\n        where_clause = ""\n        params = []\n    \n    # Combine clauses\n    query = f"{select_clause} {from_clause} {where_clause}".strip()\n    \n    return query, tuple(params)\n\n# Test the function\nquery, params = build_safe_query(\n    "users", \n    ["username", "email"], \n    {"status": "active", "role": "admin"}\n)\nprint("Query:", query)\nprint("Parameters:", params)',
+    testCases: [
+      { input: '', expected: 'Query: SELECT username, email FROM users WHERE status = ? AND role = ?\nParameters: (\'active\', \'admin\')' }
+    ],
+    hints: [
+      'Use parameterized queries with ? placeholders',
+      'Build query parts separately',
+      'Return both query string and parameter tuple',
+      'Join conditions with AND'
+    ],
+    explanation: 'SQL injection prevention is critical for database security. Parameterized queries ensure user input cannot alter query structure.'
+  },
+  {
+    id: 'file-integrity',
+    title: 'File Integrity Checker',
+    description: 'Check file integrity using hash comparison',
+    difficulty: 'Intermediate',
+    category: 'Security',
+    task: 'Create a function that calculates file hashes and compares them for integrity verification.',
+    starterCode: 'import hashlib\n\ndef calculate_hash(file_content):\n    # Calculate SHA256 hash of file content\n    pass\n\ndef verify_integrity(file_content, expected_hash):\n    # Verify if file matches expected hash\n    pass\n\n# Test the functions\ncontent = "This is a test file content"\nexpected = calculate_hash(content)\nprint("Calculated hash:", expected)\nprint("Verification result:", verify_integrity(content, expected))\nprint("Verification with wrong hash:", verify_integrity(content, "wrong_hash"))',
+    solution: 'import hashlib\n\ndef calculate_hash(file_content):\n    # Calculate SHA256 hash of file content\n    hash_obj = hashlib.sha256(file_content.encode(\'utf-8\'))\n    return hash_obj.hexdigest()\n\ndef verify_integrity(file_content, expected_hash):\n    # Verify if file matches expected hash\n    calculated = calculate_hash(file_content)\n    return calculated == expected_hash\n\n# Test the functions\ncontent = "This is a test file content"\nexpected = calculate_hash(content)\nprint("Calculated hash:", expected)\nprint("Verification result:", verify_integrity(content, expected))\nprint("Verification with wrong hash:", verify_integrity(content, "wrong_hash"))',
+    testCases: [
+      { input: 'This is a test file content', expected: 'Verification result: True\nVerification with wrong hash: False' }
+    ],
+    hints: [
+      'Use hashlib.sha256() for hashing',
+      'Encode string to bytes before hashing',
+      'Use hexdigest() to get string representation',
+      'Compare calculated hash with expected hash'
+    ],
+    explanation: 'File integrity checking prevents tampering and ensures data authenticity. Hash functions detect even small changes in files.'
+  },
+  {
+    id: 'packet-analyzer',
+    title: 'Simple Packet Analyzer',
+    description: 'Parse and analyze simple network packet data',
+    difficulty: 'Advanced',
+    category: 'Networking',
+    task: 'Create a function that parses simple packet data and extracts key information.',
+    starterCode: '# Simple packet format: "timestamp protocol source_ip:port -> dest_ip:port length"\npackets = [\n    "2023-01-01 10:00:00 TCP 192.168.1.1:12345 -> 10.0.0.1:80 1024",\n    "2023-01-01 10:00:01 UDP 192.168.1.2:53 -> 8.8.8.8:53 64",\n    "2023-01-01 10:00:02 TCP 192.168.1.1:12346 -> 10.0.0.1:443 512"\n]\n\ndef parse_packet(packet):\n    # Parse packet into components\n    pass\n\ndef analyze_traffic(packets):\n    # Analyze packets and return summary\n    pass\n\n# Test the functions\nsummary = analyze_traffic(packets)\nprint("Traffic Summary:")\nfor key, value in summary.items():\n    print(f"{key}: {value}")',
+    solution: '# Simple packet format: "timestamp protocol source_ip:port -> dest_ip:port length"\npackets = [\n    "2023-01-01 10:00:00 TCP 192.168.1.1:12345 -> 10.0.0.1:80 1024",\n    "2023-01-01 10:00:01 UDP 192.168.1.2:53 -> 8.8.8.8:53 64",\n    "2023-01-01 10:00:02 TCP 192.168.1.1:12346 -> 10.0.0.1:443 512"\n]\n\ndef parse_packet(packet):\n    # Parse packet into components\n    parts = packet.split()\n    if len(parts) != 6:\n        return None\n    \n    timestamp = parts[0] + " " + parts[1]\n    protocol = parts[2]\n    \n    # Parse source\n    source_part = parts[3].split(":")\n    source_ip = source_part[0]\n    source_port = int(source_part[1])\n    \n    # Parse destination\n    dest_part = parts[5].split(":")\n    dest_ip = dest_part[0]\n    dest_port = int(dest_part[1])\n    \n    length = int(parts[6])\n    \n    return {\n        "timestamp": timestamp,\n        "protocol": protocol,\n        "source_ip": source_ip,\n        "source_port": source_port,\n        "dest_ip": dest_ip,\n        "dest_port": dest_port,\n        "length": length\n    }\n\ndef analyze_traffic(packets):\n    # Analyze packets and return summary\n    summary = {"total_packets": 0, "total_bytes": 0, "protocols": {}}\n    \n    for packet in packets:\n        parsed = parse_packet(packet)\n        if parsed:\n            summary["total_packets"] += 1\n            summary["total_bytes"] += parsed["length"]\n            \n            proto = parsed["protocol"]\n            summary["protocols"][proto] = summary["protocols"].get(proto, 0) + 1\n    \n    return summary\n\n# Test the functions\nsummary = analyze_traffic(packets)\nprint("Traffic Summary:")\nfor key, value in summary.items():\n    print(f"{key}: {value}")',
+    testCases: [
+      { input: '', expected: 'Traffic Summary:\ntotal_packets: 3\ntotal_bytes: 1600\nprotocols: {\'TCP\': 2, \'UDP\': 1}' }
+    ],
+    hints: [
+      'Split packet string into parts',
+      'Parse IP:port combinations',
+      'Use dictionaries to store packet data',
+      'Aggregate statistics across packets'
+    ],
+    explanation: 'Packet analysis is essential for network security monitoring. This demonstrates parsing and analyzing network traffic data.'
+  },
+  {
+    id: 'malware-scanner',
+    title: 'Simple Malware Signature Scanner',
+    description: 'Scan files for known malware signatures',
+    difficulty: 'Advanced',
+    category: 'Security',
+    task: 'Create a simple malware scanner that checks files against known malicious patterns.',
+    starterCode: '# Known malware signatures (simplified)\nsignatures = {\n    "trojan": "malicious_trojan_code",\n    "virus": "virus_signature_pattern",\n    "ransomware": "encrypt_files_ransom"\n}\n\ndef scan_file(file_content, signatures):\n    # Scan file content for malware signatures\n    pass\n\n# Test files\nfiles = {\n    "safe.txt": "This is a normal file",\n    "infected.exe": "Some code malicious_trojan_code more code",\n    "clean.doc": "Document content"\n}\n\n# Scan all files\nfor filename, content in files.items():\n    result = scan_file(content, signatures)\n    status = "CLEAN" if not result else f"INFECTED: {result}"\n    print(f"{filename}: {status}")',
+    solution: '# Known malware signatures (simplified)\nsignatures = {\n    "trojan": "malicious_trojan_code",\n    "virus": "virus_signature_pattern",\n    "ransomware": "encrypt_files_ransom"\n}\n\ndef scan_file(file_content, signatures):\n    # Scan file content for malware signatures\n    for malware_type, signature in signatures.items():\n        if signature in file_content:\n            return malware_type\n    return None\n\n# Test files\nfiles = {\n    "safe.txt": "This is a normal file",\n    "infected.exe": "Some code malicious_trojan_code more code",\n    "clean.doc": "Document content"\n}\n\n# Scan all files\nfor filename, content in files.items():\n    result = scan_file(content, signatures)\n    status = "CLEAN" if not result else f"INFECTED: {result}"\n    print(f"{filename}: {status}")',
+    testCases: [
+      { input: '', expected: 'safe.txt: CLEAN\ninfected.exe: INFECTED: trojan\nclean.doc: CLEAN' }
+    ],
+    hints: [
+      'Use string containment checks for signatures',
+      'Return the type of malware found',
+      'Scan multiple signatures',
+      'Return None for clean files'
+    ],
+    explanation: 'Malware detection is crucial for cybersecurity. Signature-based scanning compares files against known malicious patterns.'
+  },
+  {
+    id: 'password-generator',
+    title: 'Secure Password Generator',
+    description: 'Generate strong, random passwords',
+    difficulty: 'Beginner',
+    category: 'Security',
+    task: 'Create a function that generates secure random passwords with specified criteria.',
+    starterCode: 'import random\nimport string\n\ndef generate_password(length=12):\n    # Generate a secure random password\n    # Include uppercase, lowercase, digits, and symbols\n    pass\n\n# Test the function\nprint("Generated password:", generate_password())\nprint("Length 8 password:", generate_password(8))',
+    solution: 'import random\nimport string\n\ndef generate_password(length=12):\n    # Generate a secure random password\n    # Include uppercase, lowercase, digits, and symbols\n    \n    # Define character sets\n    lowercase = string.ascii_lowercase\n    uppercase = string.ascii_uppercase\n    digits = string.digits\n    symbols = string.punctuation\n    \n    # Ensure at least one of each type\n    password = [\n        random.choice(lowercase),\n        random.choice(uppercase),\n        random.choice(digits),\n        random.choice(symbols)\n    ]\n    \n    # Fill the rest randomly\n    all_chars = lowercase + uppercase + digits + symbols\n    for _ in range(length - 4):\n        password.append(random.choice(all_chars))\n    \n    # Shuffle the password\n    random.shuffle(password)\n    \n    return "".join(password)\n\n# Test the function\nprint("Generated password:", generate_password())\nprint("Length 8 password:", generate_password(8))',
+    testCases: [
+      { input: '', expected: 'Generated password: (random 12-char password)\nLength 8 password: (random 8-char password)' }
+    ],
+    hints: [
+      'Use random.choice() for character selection',
+      'Include all character types for strength',
+      'Shuffle the final password',
+      'Use string module constants'
+    ],
+    explanation: 'Strong password generation is essential for security. Random passwords with multiple character types are harder to crack.'
   }
 ]
 
@@ -164,6 +496,23 @@ export default function ProgrammingBasicsLab() {
     setShowHints(false)
     setShowSolution(false)
   }, [selectedChallenge])
+
+  // Load completed challenges from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem('programmingBasicsCompletedChallenges')
+    if (saved) {
+      try {
+        setCompletedChallenges(new Set(JSON.parse(saved)))
+      } catch (error) {
+        console.error('Error loading completed challenges:', error)
+      }
+    }
+  }, [])
+
+  // Save completed challenges to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('programmingBasicsCompletedChallenges', JSON.stringify([...completedChallenges]))
+  }, [completedChallenges])
 
   const runCode = async () => {
     setIsRunning(true)
@@ -199,6 +548,34 @@ export default function ProgrammingBasicsLab() {
       } else if (selectedChallenge.id === 'network-scanner') {
         if (userCode.includes('for port, service in common_ports.items()')) {
           simulatedOutput = 'Port Scan Results:\nPort 80 (HTTP): OPEN\nPort 443 (HTTPS): OPEN\nPort 22 (SSH): OPEN\nPort 21 (FTP): CLOSED\nPort 25 (SMTP): CLOSED'
+        }
+      } else if (selectedChallenge.id === 'email-validator') {
+        if (userCode.includes('def validate_email') && userCode.includes('split("@")')) {
+          simulatedOutput = 'True\nFalse\nFalse'
+        }
+      } else if (selectedChallenge.id === 'simple-hash') {
+        if (userCode.includes('def simple_hash') && userCode.includes('ord(')) {
+          simulatedOutput = '532\n849\n532'
+        }
+      } else if (selectedChallenge.id === 'config-parser') {
+        if (userCode.includes('def parse_config') && userCode.includes('split("="')) {
+          simulatedOutput = 'Configuration loaded:\nmax_login_attempts: 3\nsession_timeout: 3600\nenable_logging: true\nadmin_email: admin@example.com'
+        }
+      } else if (selectedChallenge.id === 'access-control') {
+        if (userCode.includes('def check_permission') && userCode.includes('users[username]')) {
+          simulatedOutput = 'True\nFalse\nFalse'
+        }
+      } else if (selectedChallenge.id === 'url-parser') {
+        if (userCode.includes('def parse_url') && userCode.includes('split("://")')) {
+          simulatedOutput = 'URL: https://example.com/path/to/resource\nProtocol: https\nDomain: example.com\nPath: /path/to/resource\n---\nURL: http://test.com/page\nProtocol: http\nDomain: test.com\nPath: /page\n---\nURL: ftp://files.example.org/download.zip\nProtocol: ftp\nDomain: files.example.org\nPath: /download.zip\n---'
+        }
+      } else if (selectedChallenge.id === 'brute-force-sim') {
+        if (userCode.includes('def brute_force') && userCode.includes('for word in wordlist')) {
+          simulatedOutput = 'Trying: password\nTrying: 123456\nTrying: admin\nTrying: secret\nTrying: secret123\nPassword found: secret123 after 5 attempts'
+        }
+      } else if (selectedChallenge.id === 'password-generator') {
+        if (userCode.includes('def generate_password') && userCode.includes('random.choice')) {
+          simulatedOutput = 'Generated password: Xy9$Kp2Lm8Qr\nLength 8 password: Ab3!Fg9H'
         }
       }
 
@@ -424,23 +801,31 @@ export default function ProgrammingBasicsLab() {
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span className="text-sm">Python Syntax</span>
+                      <span className="text-sm">Python Fundamentals</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span className="text-sm">Variables & Data Types</span>
+                      <span className="text-sm">Data Structures & Algorithms</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span className="text-sm">Functions</span>
+                      <span className="text-sm">Cryptography Basics</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span className="text-sm">String Manipulation</span>
+                      <span className="text-sm">Network Security</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <CheckCircle className="w-4 h-4 text-green-500" />
-                      <span className="text-sm">Basic Security Concepts</span>
+                      <span className="text-sm">Web Security Concepts</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span className="text-sm">Security Automation</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span className="text-sm">Access Control & Authorization</span>
                     </div>
                   </div>
                 </CardContent>
