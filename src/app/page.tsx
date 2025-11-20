@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { AlertTriangle, Shield, Bug, Lock, Eye, Target, Zap, Globe, FileText, Key, Link, Users, Package, ArrowLeft, Fingerprint, Monitor, BarChart, Database, TerminalSquare, Code2, Search, Menu, BookOpen } from 'lucide-react'
+import { AlertTriangle, Shield, Bug, Lock, Eye, Target, Zap, Globe, FileText, Key, Link, Users, Package, ArrowLeft, Fingerprint, Monitor, BarChart, Database, TerminalSquare, Code2, Search, Menu, BookOpen, Award } from 'lucide-react'
 
 // Import attack modules
 import DOMAttackPlayground from '@/components/DOMAttackPlayground'
@@ -17,18 +17,18 @@ import FileUploadAttackLab from '@/components/FileUploadAttackLab'
 import JWTTokenTamperingLab from '@/components/JWTTokenTamperingLab'
 import AdvancedSocialEngineeringLab from '@/components/AdvancedSocialEngineeringLab'
 import APIRateLimitingBypassLab from '@/components/APIRateLimitingBypassLab'
-// import WebCachePoisoningLab from '@/components/WebCachePoisoningLab'
+import WebCachePoisoningLab from '@/components/WebCachePoisoningLab'
 import BrowserFingerprintingLab from '@/components/BrowserFingerprintingLab'
 import SQLInjectionLab from '@/components/SQLInjectionLab'
 import CommandInjectionLab from '@/components/CommandInjectionLab'
 import XSSLab from '@/components/XSSLab'
 import WebSecurityScannerLab from '@/components/WebSecurityScannerLab'
 import CybersecurityRoadmap from '@/components/CybersecurityRoadmap'
+import CertificateLab from '@/components/CertificateLab'
 import ProgrammingBasicsLab from '@/components/ProgrammingBasicsLab'
 import LinuxBasicsLab from '@/components/LinuxBasicsLab'
 import NetworkingBasicsLab from '@/components/NetworkingBasicsLab'
 import CryptographyLab from '@/components/CryptographyLab'
-
 
 interface AttackModule {
   id: string
@@ -241,6 +241,16 @@ const attackModules: AttackModule[] = [
     icon: <Lock className="w-5 h-5" />,
     status: 'available',
     component: CryptographyLab
+  },
+  {
+    id: 'certificate-lab',
+    title: 'Certificate Lab',
+    description: 'Earn certificates by completing cybersecurity challenges. Track your progress and showcase your skills.',
+    difficulty: 'All Levels',
+    category: 'Certification',
+    icon: <Award className="w-5 h-5" />,
+    status: 'available',
+    component: CertificateLab
   },
 
   {
@@ -486,6 +496,7 @@ export default function Home() {
                 <option value="Programming">Programming</option>
                 <option value="System Administration">System Administration</option>
                 <option value="Cryptography">Cryptography</option>
+                <option value="Certification">Certification</option>
                 <option value="Practice">Practice</option>
               </select>
               <select
@@ -571,5 +582,3 @@ export default function Home() {
     </div>
   )
 }
-
-
