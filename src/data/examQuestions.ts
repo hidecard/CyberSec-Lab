@@ -128,6 +128,286 @@ export const examQuestions: Record<string, ExamQuestion[]> = {
       correctAnswer: 1,
       explanation: 'Python uses 0-based indexing.',
       category: 'Data Structures'
+    },
+    {
+      id: 'prog-16',
+      question: 'Which method removes the last element from a list?',
+      options: ['remove()', 'pop()', 'delete()', 'clear()'],
+      correctAnswer: 1,
+      explanation: 'pop() removes and returns the last element.',
+      category: 'Data Structures'
+    },
+    {
+      id: 'prog-17',
+      question: 'What is a tuple in Python?',
+      options: ['Mutable sequence', 'Immutable sequence', 'Dictionary', 'Set'],
+      correctAnswer: 1,
+      explanation: 'Tuples are immutable sequences.',
+      category: 'Data Structures'
+    },
+    {
+      id: 'prog-18',
+      question: 'Which data structure uses key-value pairs?',
+      options: ['List', 'Tuple', 'Dictionary', 'Set'],
+      correctAnswer: 2,
+      explanation: 'Dictionaries store key-value pairs.',
+      category: 'Data Structures'
+    },
+    {
+      id: 'prog-19',
+      question: 'What does the range() function return?',
+      options: ['A list', 'An iterator', 'A tuple', 'A set'],
+      correctAnswer: 1,
+      explanation: 'range() returns an iterator in Python 3.',
+      category: 'Control Flow'
+    },
+    {
+      id: 'prog-20',
+      question: 'Which keyword is used for exception handling?',
+      options: ['try', 'catch', 'except', 'error'],
+      correctAnswer: 2,
+      explanation: 'except handles exceptions in Python.',
+      category: 'Error Handling'
+    },
+    {
+      id: 'prog-21',
+      question: 'What is the purpose of the else clause in a loop?',
+      options: ['Execute if loop fails', 'Execute after loop completes', 'Execute on error', 'Execute before loop'],
+      correctAnswer: 1,
+      explanation: 'else executes when loop completes normally.',
+      category: 'Control Flow'
+    },
+    {
+      id: 'prog-22',
+      question: 'Which operator is used for floor division?',
+      options: ['/', '//', '%', '**'],
+      correctAnswer: 1,
+      explanation: '// performs floor division.',
+      category: 'Operators'
+    },
+    {
+      id: 'prog-23',
+      question: 'What is a module in Python?',
+      options: ['A function', 'A file containing code', 'A variable', 'A class'],
+      correctAnswer: 1,
+      explanation: 'Modules are files containing Python code.',
+      category: 'Modules'
+    },
+    {
+      id: 'prog-24',
+      question: 'Which keyword imports modules?',
+      options: ['include', 'import', 'require', 'load'],
+      correctAnswer: 1,
+      explanation: 'import loads modules.',
+      category: 'Modules'
+    },
+    {
+      id: 'prog-25',
+      question: 'What is inheritance in OOP?',
+      options: ['Creating objects', 'Reusing code from parent class', 'Defining methods', 'Storing data'],
+      correctAnswer: 1,
+      explanation: 'Inheritance allows code reuse from parent classes.',
+      category: 'OOP'
+    },
+    {
+      id: 'prog-26',
+      question: 'Which method is called when an object is created?',
+      options: ['__init__', '__new__', '__create__', '__start__'],
+      correctAnswer: 0,
+      explanation: '__init__ is the constructor method.',
+      category: 'OOP'
+    },
+    {
+      id: 'prog-27',
+      question: 'What is encapsulation?',
+      options: ['Hiding data', 'Sharing data', 'Copying data', 'Deleting data'],
+      correctAnswer: 0,
+      explanation: 'Encapsulation hides internal data.',
+      category: 'OOP'
+    },
+    {
+      id: 'prog-28',
+      question: 'Which is NOT a Python built-in type?',
+      options: ['int', 'str', 'char', 'bool'],
+      correctAnswer: 2,
+      explanation: 'Python does not have char type.',
+      category: 'Data Types'
+    },
+    {
+      id: 'prog-29',
+      question: 'What does the pass statement do?',
+      options: ['Stops execution', 'Does nothing', 'Continues loop', 'Returns value'],
+      correctAnswer: 1,
+      explanation: 'pass is a null operation.',
+      category: 'Control Flow'
+    },
+    {
+      id: 'prog-30',
+      question: 'Which function converts string to integer?',
+      options: ['str()', 'int()', 'float()', 'bool()'],
+      correctAnswer: 1,
+      explanation: 'int() converts to integer.',
+      category: 'Type Conversion'
+    },
+    {
+      id: 'prog-31',
+      question: 'What is a lambda function?',
+      options: ['Named function', 'Anonymous function', 'Class method', 'Module function'],
+      correctAnswer: 1,
+      explanation: 'Lambda creates anonymous functions.',
+      category: 'Functions'
+    },
+    {
+      id: 'prog-32',
+      question: 'Which method reads from a file?',
+      options: ['write()', 'read()', 'open()', 'close()'],
+      correctAnswer: 1,
+      explanation: 'read() reads file content.',
+      category: 'File I/O'
+    },
+    {
+      id: 'prog-33',
+      question: 'What is the purpose of __name__ == "__main__"?',
+      options: ['Check if module is imported', 'Define main function', 'Set module name', 'Import module'],
+      correctAnswer: 0,
+      explanation: 'Checks if script is run directly.',
+      category: 'Modules'
+    },
+    {
+      id: 'prog-34',
+      question: 'Which data type is unordered and unique?',
+      options: ['List', 'Tuple', 'Set', 'Dictionary'],
+      correctAnswer: 2,
+      explanation: 'Sets are unordered and unique.',
+      category: 'Data Structures'
+    },
+    {
+      id: 'prog-35',
+      question: 'What does the zip() function do?',
+      options: ['Compresses data', 'Combines iterables', 'Splits data', 'Sorts data'],
+      correctAnswer: 1,
+      explanation: 'zip() combines multiple iterables.',
+      category: 'Built-in Functions'
+    },
+    {
+      id: 'prog-36',
+      question: 'Which operator checks identity?',
+      options: ['==', 'is', '!=', 'not'],
+      correctAnswer: 1,
+      explanation: 'is checks object identity.',
+      category: 'Operators'
+    },
+    {
+      id: 'prog-37',
+      question: 'What is a generator?',
+      options: ['Function that returns list', 'Function that yields values', 'Class that stores data', 'Module that imports code'],
+      correctAnswer: 1,
+      explanation: 'Generators yield values lazily.',
+      category: 'Advanced'
+    },
+    {
+      id: 'prog-38',
+      question: 'Which decorator is used for class methods?',
+      options: ['@staticmethod', '@classmethod', '@property', '@method'],
+      correctAnswer: 1,
+      explanation: '@classmethod defines class methods.',
+      category: 'Decorators'
+    },
+    {
+      id: 'prog-39',
+      question: 'What is the purpose of super()?',
+      options: ['Call parent method', 'Create object', 'Delete object', 'Copy object'],
+      correctAnswer: 0,
+      explanation: 'super() calls parent class methods.',
+      category: 'OOP'
+    },
+    {
+      id: 'prog-40',
+      question: 'Which is a mutable data type?',
+      options: ['str', 'tuple', 'list', 'int'],
+      correctAnswer: 2,
+      explanation: 'Lists are mutable.',
+      category: 'Data Types'
+    },
+    {
+      id: 'prog-41',
+      question: 'What does the enumerate() function return?',
+      options: ['Index only', 'Value only', 'Index and value pairs', 'Length only'],
+      correctAnswer: 2,
+      explanation: 'enumerate() returns index-value pairs.',
+      category: 'Built-in Functions'
+    },
+    {
+      id: 'prog-42',
+      question: 'Which statement handles multiple exceptions?',
+      options: ['except Exception:', 'except (TypeError, ValueError):', 'except:', 'except Exception as e:'],
+      correctAnswer: 1,
+      explanation: 'Tuple syntax handles multiple exceptions.',
+      category: 'Error Handling'
+    },
+    {
+      id: 'prog-43',
+      question: 'What is a docstring?',
+      options: ['Comment', 'Documentation string', 'Variable name', 'Function name'],
+      correctAnswer: 1,
+      explanation: 'Docstrings document functions and classes.',
+      category: 'Documentation'
+    },
+    {
+      id: 'prog-44',
+      question: 'Which method converts list to string?',
+      options: ['str()', 'join()', 'split()', 'convert()'],
+      correctAnswer: 1,
+      explanation: 'join() converts list to string.',
+      category: 'Strings'
+    },
+    {
+      id: 'prog-45',
+      question: 'What is the purpose of the with statement?',
+      options: ['Define context', 'Manage resources', 'Create loop', 'Handle errors'],
+      correctAnswer: 1,
+      explanation: 'with manages resource cleanup.',
+      category: 'Context Managers'
+    },
+    {
+      id: 'prog-46',
+      question: 'Which is a sequence type?',
+      options: ['dict', 'set', 'list', 'int'],
+      correctAnswer: 2,
+      explanation: 'Lists are sequence types.',
+      category: 'Data Types'
+    },
+    {
+      id: 'prog-47',
+      question: 'What does the reversed() function do?',
+      options: ['Sorts in reverse', 'Returns reverse iterator', 'Deletes elements', 'Adds elements'],
+      correctAnswer: 1,
+      explanation: 'reversed() returns reverse iterator.',
+      category: 'Built-in Functions'
+    },
+    {
+      id: 'prog-48',
+      question: 'Which is used for list comprehensions?',
+      options: ['()', '[]', '{}', '<>'],
+      correctAnswer: 1,
+      explanation: '[] creates list comprehensions.',
+      category: 'Comprehensions'
+    },
+    {
+      id: 'prog-49',
+      question: 'What is the purpose of __str__?',
+      options: ['Create object', 'String representation', 'Compare objects', 'Delete object'],
+      correctAnswer: 1,
+      explanation: '__str__ defines string representation.',
+      category: 'OOP'
+    },
+    {
+      id: 'prog-50',
+      question: 'Which function checks if object is instance of class?',
+      options: ['type()', 'isinstance()', 'class()', 'instance()'],
+      correctAnswer: 1,
+      explanation: 'isinstance() checks object type.',
+      category: 'Built-in Functions'
     }
   ],
   linux: [
@@ -250,6 +530,286 @@ export const examQuestions: Record<string, ExamQuestion[]> = {
       correctAnswer: 1,
       explanation: 'top shows real-time process information.',
       category: 'Processes'
+    },
+    {
+      id: 'linux-16',
+      question: 'Which command shows disk usage?',
+      options: ['df', 'du', 'free', 'top'],
+      correctAnswer: 0,
+      explanation: 'df shows disk space usage.',
+      category: 'File System'
+    },
+    {
+      id: 'linux-17',
+      question: 'What does the grep command do?',
+      options: ['Find files', 'Search text', 'Copy files', 'Move files'],
+      correctAnswer: 1,
+      explanation: 'grep searches for patterns in files.',
+      category: 'Text Processing'
+    },
+    {
+      id: 'linux-18',
+      question: 'Which command shows file permissions?',
+      options: ['ls -l', 'chmod', 'chown', 'chgrp'],
+      correctAnswer: 0,
+      explanation: 'ls -l displays detailed file information including permissions.',
+      category: 'Permissions'
+    },
+    {
+      id: 'linux-19',
+      question: 'What is the purpose of sudo?',
+      options: ['Switch user', 'Super user do', 'System update', 'Software install'],
+      correctAnswer: 1,
+      explanation: 'sudo executes commands as superuser.',
+      category: 'Privileges'
+    },
+    {
+      id: 'linux-20',
+      question: 'Which command shows network connections?',
+      options: ['netstat', 'ifconfig', 'ping', 'traceroute'],
+      correctAnswer: 0,
+      explanation: 'netstat shows network connections and statistics.',
+      category: 'Networking'
+    },
+    {
+      id: 'linux-21',
+      question: 'What does the tar command do?',
+      options: ['Compress files', 'Archive files', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'tar creates and extracts archives.',
+      category: 'Archiving'
+    },
+    {
+      id: 'linux-22',
+      question: 'Which command shows system logs?',
+      options: ['dmesg', 'journalctl', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both dmesg and journalctl show system logs.',
+      category: 'System'
+    },
+    {
+      id: 'linux-23',
+      question: 'What is the purpose of cron?',
+      options: ['Schedule tasks', 'Monitor processes', 'Manage users', 'Configure network'],
+      correctAnswer: 0,
+      explanation: 'cron schedules automated tasks.',
+      category: 'Scheduling'
+    },
+    {
+      id: 'linux-24',
+      question: 'Which command shows memory usage?',
+      options: ['free', 'top', 'ps', 'df'],
+      correctAnswer: 0,
+      explanation: 'free displays memory usage information.',
+      category: 'System'
+    },
+    {
+      id: 'linux-25',
+      question: 'What does the wget command do?',
+      options: ['Download files', 'Upload files', 'Transfer files', 'Sync files'],
+      correctAnswer: 0,
+      explanation: 'wget downloads files from the internet.',
+      category: 'Networking'
+    },
+    {
+      id: 'linux-26',
+      question: 'Which command shows running processes?',
+      options: ['ps', 'top', 'htop', 'All of the above'],
+      correctAnswer: 3,
+      explanation: 'ps, top, and htop all show process information.',
+      category: 'Processes'
+    },
+    {
+      id: 'linux-27',
+      question: 'What is the purpose of SSH?',
+      options: ['Secure shell access', 'File transfer', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'SSH provides secure remote access and file transfer.',
+      category: 'Security'
+    },
+    {
+      id: 'linux-28',
+      question: 'Which command changes file ownership?',
+      options: ['chmod', 'chown', 'chgrp', 'passwd'],
+      correctAnswer: 1,
+      explanation: 'chown changes file owner and group.',
+      category: 'Permissions'
+    },
+    {
+      id: 'linux-29',
+      question: 'What does the find command do?',
+      options: ['Search files', 'Find text', 'Locate commands', 'Search network'],
+      correctAnswer: 0,
+      explanation: 'find searches for files in directory trees.',
+      category: 'File System'
+    },
+    {
+      id: 'linux-30',
+      question: 'Which command shows system information?',
+      options: ['uname', 'hostname', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'uname and hostname show system information.',
+      category: 'System'
+    },
+    {
+      id: 'linux-31',
+      question: 'What is the purpose of iptables?',
+      options: ['Firewall rules', 'Network routing', 'DNS resolution', 'IP assignment'],
+      correctAnswer: 0,
+      explanation: 'iptables manages firewall rules.',
+      category: 'Security'
+    },
+    {
+      id: 'linux-32',
+      question: 'Which command shows file type?',
+      options: ['file', 'type', 'which', 'whereis'],
+      correctAnswer: 0,
+      explanation: 'file determines file type.',
+      category: 'File System'
+    },
+    {
+      id: 'linux-33',
+      question: 'What does the rsync command do?',
+      options: ['Sync files', 'Copy files', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'rsync synchronizes and copies files efficiently.',
+      category: 'File Operations'
+    },
+    {
+      id: 'linux-34',
+      question: 'Which command shows command history?',
+      options: ['history', 'log', 'journal', 'audit'],
+      correctAnswer: 0,
+      explanation: 'history shows previously executed commands.',
+      category: 'Shell'
+    },
+    {
+      id: 'linux-35',
+      question: 'What is the purpose of systemctl?',
+      options: ['Service management', 'Process management', 'User management', 'File management'],
+      correctAnswer: 0,
+      explanation: 'systemctl manages system services.',
+      category: 'System'
+    },
+    {
+      id: 'linux-36',
+      question: 'Which command shows disk partitions?',
+      options: ['fdisk', 'parted', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'fdisk and parted manage disk partitions.',
+      category: 'Storage'
+    },
+    {
+      id: 'linux-37',
+      question: 'What does the mount command do?',
+      options: ['Mount file systems', 'Unmount file systems', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'mount attaches and detaches file systems.',
+      category: 'File System'
+    },
+    {
+      id: 'linux-38',
+      question: 'Which command shows network interfaces?',
+      options: ['ip addr', 'ifconfig', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'ip addr and ifconfig show network interfaces.',
+      category: 'Networking'
+    },
+    {
+      id: 'linux-39',
+      question: 'What is the purpose of apt?',
+      options: ['Package management', 'Process management', 'User management', 'Service management'],
+      correctAnswer: 0,
+      explanation: 'apt manages software packages.',
+      category: 'Package Management'
+    },
+    {
+      id: 'linux-40',
+      question: 'Which command shows CPU information?',
+      options: ['lscpu', 'cat /proc/cpuinfo', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'lscpu and /proc/cpuinfo show CPU details.',
+      category: 'System'
+    },
+    {
+      id: 'linux-41',
+      question: 'What does the sed command do?',
+      options: ['Edit text streams', 'Search text', 'Replace text', 'All of the above'],
+      correctAnswer: 3,
+      explanation: 'sed performs text transformations.',
+      category: 'Text Processing'
+    },
+    {
+      id: 'linux-42',
+      question: 'Which command shows kernel version?',
+      options: ['uname -r', 'cat /proc/version', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'uname -r and /proc/version show kernel version.',
+      category: 'System'
+    },
+    {
+      id: 'linux-43',
+      question: 'What is the purpose of lsof?',
+      options: ['List open files', 'List processes', 'List users', 'List services'],
+      correctAnswer: 0,
+      explanation: 'lsof lists open files and sockets.',
+      category: 'System'
+    },
+    {
+      id: 'linux-44',
+      question: 'Which command shows system load?',
+      options: ['uptime', 'w', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'uptime and w show system load average.',
+      category: 'System'
+    },
+    {
+      id: 'linux-45',
+      question: 'What does the awk command do?',
+      options: ['Text processing', 'Pattern matching', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'awk processes and analyzes text.',
+      category: 'Text Processing'
+    },
+    {
+      id: 'linux-46',
+      question: 'Which command shows file system usage?',
+      options: ['du', 'df', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'du shows directory usage, df shows file system usage.',
+      category: 'File System'
+    },
+    {
+      id: 'linux-47',
+      question: 'What is the purpose of strace?',
+      options: ['Trace system calls', 'Trace network calls', 'Trace file operations', 'Trace process operations'],
+      correctAnswer: 0,
+      explanation: 'strace traces system calls and signals.',
+      category: 'Debugging'
+    },
+    {
+      id: 'linux-48',
+      question: 'Which command shows environment variables?',
+      options: ['env', 'printenv', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'env and printenv display environment variables.',
+      category: 'Shell'
+    },
+    {
+      id: 'linux-49',
+      question: 'What does the nc command do?',
+      options: ['Network connections', 'File transfer', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'nc (netcat) handles network connections and data transfer.',
+      category: 'Networking'
+    },
+    {
+      id: 'linux-50',
+      question: 'Which command shows system uptime?',
+      options: ['uptime', 'w', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'uptime and w show system uptime.',
+      category: 'System'
     }
   ],
   networking: [
@@ -372,6 +932,286 @@ export const examQuestions: Record<string, ExamQuestion[]> = {
       correctAnswer: 0,
       explanation: 'NAT translates IP addresses between networks.',
       category: 'Networking'
+    },
+    {
+      id: 'net-16',
+      question: 'Which protocol is used for DNS?',
+      options: ['TCP', 'UDP', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'DNS uses both TCP and UDP.',
+      category: 'Protocols'
+    },
+    {
+      id: 'net-17',
+      question: 'What is a VLAN?',
+      options: ['Virtual Local Area Network', 'Very Large Area Network', 'Virtual Link Access Node', 'Variable Length Address Network'],
+      correctAnswer: 0,
+      explanation: 'VLAN segments network logically.',
+      category: 'Networking'
+    },
+    {
+      id: 'net-18',
+      question: 'Which port does FTP use?',
+      options: ['20/21', '22', '23', '25'],
+      correctAnswer: 0,
+      explanation: 'FTP uses ports 20 and 21.',
+      category: 'Ports'
+    },
+    {
+      id: 'net-19',
+      question: 'What is DHCP?',
+      options: ['Dynamic Host Configuration Protocol', 'Domain Host Control Protocol', 'Dynamic Host Control Protocol', 'Domain Host Configuration Protocol'],
+      correctAnswer: 0,
+      explanation: 'DHCP assigns IP addresses dynamically.',
+      category: 'Protocols'
+    },
+    {
+      id: 'net-20',
+      question: 'Which tool traces network path?',
+      options: ['ping', 'traceroute', 'nslookup', 'dig'],
+      correctAnswer: 1,
+      explanation: 'traceroute shows network path.',
+      category: 'Tools'
+    },
+    {
+      id: 'net-21',
+      question: 'What is a MAC address?',
+      options: ['Media Access Control', 'Machine Access Code', 'Media Access Code', 'Machine Access Control'],
+      correctAnswer: 0,
+      explanation: 'MAC address identifies network interface.',
+      category: 'Networking'
+    },
+    {
+      id: 'net-22',
+      question: 'Which protocol provides routing?',
+      options: ['IP', 'TCP', 'UDP', 'Ethernet'],
+      correctAnswer: 0,
+      explanation: 'IP handles routing and addressing.',
+      category: 'Protocols'
+    },
+    {
+      id: 'net-23',
+      question: 'What is a subnet mask?',
+      options: ['Network divider', 'IP address mask', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Subnet mask divides network and host portions.',
+      category: 'IP Addressing'
+    },
+    {
+      id: 'net-24',
+      question: 'Which command shows ARP table?',
+      options: ['arp -a', 'arp', 'show arp', 'netstat -r'],
+      correctAnswer: 0,
+      explanation: 'arp -a displays ARP table.',
+      category: 'Tools'
+    },
+    {
+      id: 'net-25',
+      question: 'What is TCP three-way handshake?',
+      options: ['Connection establishment', 'Data transfer', 'Connection termination', 'Error recovery'],
+      correctAnswer: 0,
+      explanation: 'Three-way handshake establishes TCP connection.',
+      category: 'TCP'
+    },
+    {
+      id: 'net-26',
+      question: 'Which is a Layer 2 protocol?',
+      options: ['IP', 'TCP', 'Ethernet', 'HTTP'],
+      correctAnswer: 2,
+      explanation: 'Ethernet operates at Data Link layer.',
+      category: 'OSI Model'
+    },
+    {
+      id: 'net-27',
+      question: 'What is MTU?',
+      options: ['Maximum Transmission Unit', 'Minimum Transfer Unit', 'Maximum Transfer Unit', 'Minimum Transmission Unit'],
+      correctAnswer: 0,
+      explanation: 'MTU is maximum frame size.',
+      category: 'Networking'
+    },
+    {
+      id: 'net-28',
+      question: 'Which protocol is connection-oriented?',
+      options: ['UDP', 'TCP', 'IP', 'ICMP'],
+      correctAnswer: 1,
+      explanation: 'TCP is connection-oriented.',
+      category: 'Protocols'
+    },
+    {
+      id: 'net-29',
+      question: 'What is a default gateway?',
+      options: ['Local router', 'DNS server', 'DHCP server', 'Web server'],
+      correctAnswer: 0,
+      explanation: 'Default gateway routes traffic to other networks.',
+      category: 'Routing'
+    },
+    {
+      id: 'net-30',
+      question: 'Which tool scans ports?',
+      options: ['nmap', 'ping', 'traceroute', 'dig'],
+      correctAnswer: 0,
+      explanation: 'nmap scans network ports.',
+      category: 'Tools'
+    },
+    {
+      id: 'net-31',
+      question: 'What is IPv6?',
+      options: ['128-bit addressing', '32-bit addressing', '64-bit addressing', '16-bit addressing'],
+      correctAnswer: 0,
+      explanation: 'IPv6 uses 128-bit addresses.',
+      category: 'IP Addressing'
+    },
+    {
+      id: 'net-32',
+      question: 'Which protocol secures web traffic?',
+      options: ['HTTP', 'HTTPS', 'FTP', 'SMTP'],
+      correctAnswer: 1,
+      explanation: 'HTTPS provides encrypted web communication.',
+      category: 'Security'
+    },
+    {
+      id: 'net-33',
+      question: 'What is a proxy server?',
+      options: ['Intermediary server', 'DNS server', 'Mail server', 'File server'],
+      correctAnswer: 0,
+      explanation: 'Proxy acts as intermediary for requests.',
+      category: 'Networking'
+    },
+    {
+      id: 'net-34',
+      question: 'Which is a routing protocol?',
+      options: ['OSPF', 'TCP', 'UDP', 'HTTP'],
+      correctAnswer: 0,
+      explanation: 'OSPF is a link-state routing protocol.',
+      category: 'Routing'
+    },
+    {
+      id: 'net-35',
+      question: 'What is QoS?',
+      options: ['Quality of Service', 'Quantity of Service', 'Quality of System', 'Quantity of System'],
+      correctAnswer: 0,
+      explanation: 'QoS manages network traffic priority.',
+      category: 'Networking'
+    },
+    {
+      id: 'net-36',
+      question: 'Which protocol is used for email retrieval?',
+      options: ['SMTP', 'POP3', 'IMAP', 'Both B and C'],
+      correctAnswer: 3,
+      explanation: 'POP3 and IMAP retrieve emails.',
+      category: 'Protocols'
+    },
+    {
+      id: 'net-37',
+      question: 'What is a broadcast address?',
+      options: ['All hosts address', 'Network address', 'Gateway address', 'Host address'],
+      correctAnswer: 0,
+      explanation: 'Broadcast address reaches all hosts.',
+      category: 'IP Addressing'
+    },
+    {
+      id: 'net-38',
+      question: 'Which tool captures packets?',
+      options: ['Wireshark', 'ping', 'traceroute', 'nslookup'],
+      correctAnswer: 0,
+      explanation: 'Wireshark analyzes network traffic.',
+      category: 'Tools'
+    },
+    {
+      id: 'net-39',
+      question: 'What is ICMP?',
+      options: ['Internet Control Message Protocol', 'Internet Connection Message Protocol', 'Internet Control Management Protocol', 'Internet Connection Management Protocol'],
+      correctAnswer: 0,
+      explanation: 'ICMP handles error messages.',
+      category: 'Protocols'
+    },
+    {
+      id: 'net-40',
+      question: 'Which is a Layer 3 device?',
+      options: ['Switch', 'Router', 'Hub', 'Bridge'],
+      correctAnswer: 1,
+      explanation: 'Router operates at Network layer.',
+      category: 'Networking'
+    },
+    {
+      id: 'net-41',
+      question: 'What is CIDR?',
+      options: ['Classless Inter-Domain Routing', 'Classful Inter-Domain Routing', 'Classless Intra-Domain Routing', 'Classful Intra-Domain Routing'],
+      correctAnswer: 0,
+      explanation: 'CIDR allows variable subnet masks.',
+      category: 'IP Addressing'
+    },
+    {
+      id: 'net-42',
+      question: 'Which protocol provides VPN?',
+      options: ['IPsec', 'TCP', 'UDP', 'HTTP'],
+      correctAnswer: 0,
+      explanation: 'IPsec creates secure tunnels.',
+      category: 'Security'
+    },
+    {
+      id: 'net-43',
+      question: 'What is a loopback address?',
+      options: ['127.0.0.1', '192.168.1.1', '10.0.0.1', '172.16.0.1'],
+      correctAnswer: 0,
+      explanation: '127.0.0.1 is the loopback address.',
+      category: 'IP Addressing'
+    },
+    {
+      id: 'net-44',
+      question: 'Which is a Layer 4 protocol?',
+      options: ['IP', 'TCP', 'Ethernet', 'ARP'],
+      correctAnswer: 1,
+      explanation: 'TCP operates at Transport layer.',
+      category: 'OSI Model'
+    },
+    {
+      id: 'net-45',
+      question: 'What is bandwidth?',
+      options: ['Data transfer rate', 'Storage capacity', 'Memory size', 'CPU speed'],
+      correctAnswer: 0,
+      explanation: 'Bandwidth measures data transmission speed.',
+      category: 'Networking'
+    },
+    {
+      id: 'net-46',
+      question: 'Which protocol is used for VoIP?',
+      options: ['SIP', 'HTTP', 'FTP', 'SMTP'],
+      correctAnswer: 0,
+      explanation: 'SIP is used for Voice over IP.',
+      category: 'Protocols'
+    },
+    {
+      id: 'net-47',
+      question: 'What is latency?',
+      options: ['Delay in transmission', 'Data loss', 'Connection speed', 'Packet size'],
+      correctAnswer: 0,
+      explanation: 'Latency is transmission delay.',
+      category: 'Networking'
+    },
+    {
+      id: 'net-48',
+      question: 'Which is a wireless standard?',
+      options: ['802.11', 'Ethernet', 'Token Ring', 'ARCNET'],
+      correctAnswer: 0,
+      explanation: '802.11 is Wi-Fi standard.',
+      category: 'Wireless'
+    },
+    {
+      id: 'net-49',
+      question: 'What is a DMZ?',
+      options: ['Demilitarized Zone', 'Data Management Zone', 'Domain Management Zone', 'Device Management Zone'],
+      correctAnswer: 0,
+      explanation: 'DMZ is network security zone.',
+      category: 'Security'
+    },
+    {
+      id: 'net-50',
+      question: 'Which protocol provides SSL/TLS?',
+      options: ['HTTPS', 'HTTP', 'FTP', 'SMTP'],
+      correctAnswer: 0,
+      explanation: 'HTTPS uses SSL/TLS encryption.',
+      category: 'Security'
     }
   ],
   cryptography: [
@@ -616,6 +1456,286 @@ export const examQuestions: Record<string, ExamQuestion[]> = {
       correctAnswer: 0,
       explanation: 'Phishing simulation tests security awareness.',
       category: 'Phishing'
+    },
+    {
+      id: 'web-16',
+      question: 'Which prevents directory traversal?',
+      options: ['Input validation', 'Path sanitization', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both input validation and path sanitization prevent directory traversal.',
+      category: 'File System'
+    },
+    {
+      id: 'web-17',
+      question: 'What is a security misconfiguration?',
+      options: ['Wrong settings', 'Code vulnerability', 'Network issue', 'Hardware failure'],
+      correctAnswer: 0,
+      explanation: 'Security misconfiguration involves improper security settings.',
+      category: 'Configuration'
+    },
+    {
+      id: 'web-18',
+      question: 'Which is a broken access control?',
+      options: ['IDOR', 'XSS', 'SQL injection', 'CSRF'],
+      correctAnswer: 0,
+      explanation: 'IDOR is Insecure Direct Object Reference.',
+      category: 'Access Control'
+    },
+    {
+      id: 'web-19',
+      question: 'What is a race condition?',
+      options: ['Timing vulnerability', 'Logic error', 'Input validation', 'Authentication bypass'],
+      correctAnswer: 0,
+      explanation: 'Race conditions occur when timing affects security.',
+      category: 'Concurrency'
+    },
+    {
+      id: 'web-20',
+      question: 'Which prevents command injection?',
+      options: ['Input sanitization', 'Parameterization', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both sanitization and parameterization prevent command injection.',
+      category: 'Injection'
+    },
+    {
+      id: 'web-21',
+      question: 'What is a zero-day vulnerability?',
+      options: ['Unknown vulnerability', 'Old vulnerability', 'Patched vulnerability', 'Test vulnerability'],
+      correctAnswer: 0,
+      explanation: 'Zero-day vulnerabilities are unknown to vendors.',
+      category: 'Vulnerabilities'
+    },
+    {
+      id: 'web-22',
+      question: 'Which is a client-side attack?',
+      options: ['SQL injection', 'XSS', 'Command injection', 'Directory traversal'],
+      correctAnswer: 1,
+      explanation: 'XSS executes in the client browser.',
+      category: 'Client-Side'
+    },
+    {
+      id: 'web-23',
+      question: 'What is a WAF?',
+      options: ['Web Application Firewall', 'Wireless Access Firewall', 'Wide Area Firewall', 'Web Access Firewall'],
+      correctAnswer: 0,
+      explanation: 'WAF protects web applications from attacks.',
+      category: 'Security'
+    },
+    {
+      id: 'web-24',
+      question: 'Which prevents session fixation?',
+      options: ['Session regeneration', 'Session validation', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both regeneration and validation prevent session fixation.',
+      category: 'Session Management'
+    },
+    {
+      id: 'web-25',
+      question: 'What is a deserialization attack?',
+      options: ['Object manipulation', 'Data corruption', 'Memory leak', 'Buffer overflow'],
+      correctAnswer: 0,
+      explanation: 'Deserialization attacks manipulate serialized objects.',
+      category: 'Serialization'
+    },
+    {
+      id: 'web-26',
+      question: 'Which is a server-side attack?',
+      options: ['DOM XSS', 'Stored XSS', 'Reflected XSS', 'All of the above'],
+      correctAnswer: 1,
+      explanation: 'Stored XSS is server-side.',
+      category: 'Server-Side'
+    },
+    {
+      id: 'web-27',
+      question: 'What is a honeypot?',
+      options: ['Decoy system', 'Real system', 'Backup system', 'Test system'],
+      correctAnswer: 0,
+      explanation: 'Honeypots attract and study attackers.',
+      category: 'Security'
+    },
+    {
+      id: 'web-28',
+      question: 'Which prevents XXE?',
+      options: ['XML validation', 'Entity disabling', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both validation and entity disabling prevent XXE.',
+      category: 'XML'
+    },
+    {
+      id: 'web-29',
+      question: 'What is a logic flaw?',
+      options: ['Code error', 'Design weakness', 'Implementation bug', 'All of the above'],
+      correctAnswer: 3,
+      explanation: 'Logic flaws are design or implementation weaknesses.',
+      category: 'Logic'
+    },
+    {
+      id: 'web-30',
+      question: 'Which is a cryptographic failure?',
+      options: ['Weak encryption', 'No encryption', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both weak and missing encryption are failures.',
+      category: 'Cryptography'
+    },
+    {
+      id: 'web-31',
+      question: 'What is a SSRF attack?',
+      options: ['Server-Side Request Forgery', 'Server-Side Response Forgery', 'Client-Side Request Forgery', 'Client-Side Response Forgery'],
+      correctAnswer: 0,
+      explanation: 'SSRF forces server to make unintended requests.',
+      category: 'SSRF'
+    },
+    {
+      id: 'web-32',
+      question: 'Which prevents mass assignment?',
+      options: ['Input whitelisting', 'Field validation', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both whitelisting and validation prevent mass assignment.',
+      category: 'Mass Assignment'
+    },
+    {
+      id: 'web-33',
+      question: 'What is a buffer overflow?',
+      options: ['Memory corruption', 'Data overflow', 'Stack overflow', 'All of the above'],
+      correctAnswer: 3,
+      explanation: 'Buffer overflow corrupts memory boundaries.',
+      category: 'Memory'
+    },
+    {
+      id: 'web-34',
+      question: 'Which is an authentication bypass?',
+      options: ['Weak passwords', 'Session hijacking', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both weak auth and session issues bypass authentication.',
+      category: 'Authentication'
+    },
+    {
+      id: 'web-35',
+      question: 'What is a privilege escalation?',
+      options: ['Gaining higher privileges', 'Losing privileges', 'Maintaining privileges', 'No privileges'],
+      correctAnswer: 0,
+      explanation: 'Privilege escalation gains unauthorized access.',
+      category: 'Authorization'
+    },
+    {
+      id: 'web-36',
+      question: 'Which prevents type juggling?',
+      options: ['Strict typing', 'Type checking', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both strict typing and checking prevent type juggling.',
+      category: 'Type Safety'
+    },
+    {
+      id: 'web-37',
+      question: 'What is a side-channel attack?',
+      options: ['Timing attack', 'Power analysis', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Side-channel attacks use physical characteristics.',
+      category: 'Side-Channel'
+    },
+    {
+      id: 'web-38',
+      question: 'Which is a broken function level authorization?',
+      options: ['IDOR', 'Function access', 'Both', 'Neither'],
+      correctAnswer: 1,
+      explanation: 'Broken function authorization allows unauthorized function access.',
+      category: 'Authorization'
+    },
+    {
+      id: 'web-39',
+      question: 'What is a memory leak?',
+      options: ['Resource not freed', 'Memory corruption', 'Buffer overflow', 'Stack overflow'],
+      correctAnswer: 0,
+      explanation: 'Memory leaks occur when resources are not released.',
+      category: 'Memory'
+    },
+    {
+      id: 'web-40',
+      question: 'Which prevents insecure deserialization?',
+      options: ['Input validation', 'Type checking', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both validation and type checking prevent insecure deserialization.',
+      category: 'Serialization'
+    },
+    {
+      id: 'web-41',
+      question: 'What is a supply chain attack?',
+      options: ['Third-party compromise', 'Direct attack', 'Internal attack', 'Network attack'],
+      correctAnswer: 0,
+      explanation: 'Supply chain attacks compromise dependencies.',
+      category: 'Supply Chain'
+    },
+    {
+      id: 'web-42',
+      question: 'Which is a software composition analysis?',
+      options: ['SCA', 'SAST', 'DAST', 'IAST'],
+      correctAnswer: 0,
+      explanation: 'SCA analyzes third-party components.',
+      category: 'Security Testing'
+    },
+    {
+      id: 'web-43',
+      question: 'What is a dependency confusion?',
+      options: ['Package name conflict', 'Version conflict', 'License conflict', 'Path conflict'],
+      correctAnswer: 0,
+      explanation: 'Dependency confusion exploits package name conflicts.',
+      category: 'Dependencies'
+    },
+    {
+      id: 'web-44',
+      question: 'Which prevents prototype pollution?',
+      options: ['Input sanitization', 'Object freezing', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both sanitization and freezing prevent prototype pollution.',
+      category: 'JavaScript'
+    },
+    {
+      id: 'web-45',
+      question: 'What is a subdomain takeover?',
+      options: ['DNS hijacking', 'Domain hijacking', 'IP hijacking', 'Port hijacking'],
+      correctAnswer: 0,
+      explanation: 'Subdomain takeover hijacks abandoned DNS records.',
+      category: 'DNS'
+    },
+    {
+      id: 'web-46',
+      question: 'Which is a server-side template injection?',
+      options: ['SSTI', 'XSS', 'CSRF', 'SSRF'],
+      correctAnswer: 0,
+      explanation: 'SSTI injects code into server-side templates.',
+      category: 'Injection'
+    },
+    {
+      id: 'web-47',
+      question: 'What is a graphQL injection?',
+      options: ['Query manipulation', 'Schema injection', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'GraphQL injection manipulates queries and schemas.',
+      category: 'GraphQL'
+    },
+    {
+      id: 'web-48',
+      question: 'Which prevents NoSQL injection?',
+      options: ['Input validation', 'Parameterized queries', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Both validation and parameterization prevent NoSQL injection.',
+      category: 'NoSQL'
+    },
+    {
+      id: 'web-49',
+      question: 'What is a microservice security?',
+      options: ['Service isolation', 'API security', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Microservice security involves isolation and API protection.',
+      category: 'Microservices'
+    },
+    {
+      id: 'web-50',
+      question: 'Which is a container security?',
+      options: ['Image scanning', 'Runtime protection', 'Both', 'Neither'],
+      correctAnswer: 2,
+      explanation: 'Container security includes scanning and runtime protection.',
+      category: 'Containers'
     }
   ]
 }

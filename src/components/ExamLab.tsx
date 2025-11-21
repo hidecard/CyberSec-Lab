@@ -8,6 +8,7 @@ import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@/components/ui/pagination'
 import { Clock, Trophy, CheckCircle, XCircle, BookOpen, Target, AlertTriangle, Award } from 'lucide-react'
 
 interface Question {
@@ -38,6 +39,8 @@ export default function ExamLab({ category, title, description, questions, timeL
   const [showResults, setShowResults] = useState(false)
   const [score, setScore] = useState(0)
   const [passed, setPassed] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const questionsPerPage = 5
 
   useEffect(() => {
     let timer: NodeJS.Timeout
@@ -68,17 +71,7 @@ export default function ExamLab({ category, title, description, questions, timeL
     setSelectedAnswers(newAnswers)
   }
 
-  const handleNext = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
-    }
-  }
 
-  const handlePrevious = () => {
-    if (currentQuestion > 0) {
-      setCurrentQuestion(currentQuestion - 1)
-    }
-  }
 
   const handleSubmitExam = () => {
     // Calculate score
@@ -122,6 +115,7 @@ export default function ExamLab({ category, title, description, questions, timeL
     setShowResults(false)
     setScore(0)
     setPassed(false)
+    setCurrentPage(1)
   }
 
   if (!examStarted) {
@@ -231,69 +225,7 @@ export default function ExamLab({ category, title, description, questions, timeL
             </Alert>
           )}
 
-          <div className="space-y-3">
-            <h4 className="font-semibold">Question Review:</h4>
-            {questions.map((question, index) => (
-              <div key={question.id} className="p-3 border rounded-lg">
-                <div className="flex items-start space-x-2">
-                  {selectedAnswers[index] === question.correctAnswer ? (
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                  ) : (
-                    <XCircle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
-                  )}
-                  <div className="flex-1">
-                    <p className="font-medium text-sm mb-2">
-                      {index + 1}. {question.question}
-                    </p>
-                    <div className="flex items-center space-x-2 mb-3">
-                      <Badge className={selectedAnswers[index] === question.correctAnswer ? 'bg-green-500' : 'bg-red-500'}>
-                        {selectedAnswers[index] === question.correctAnswer ? 'Correct' : 'Incorrect'}
-                      </Badge>
-                      <span className="text-sm text-slate-600">Correct Answer: {question.options[question.correctAnswer]}</span>
-                    </div>
-                    <div className="space-y-1 mb-3">
-                      {question.options.map((option, optionIndex) => (
-                        <div
-                          key={optionIndex}
-                          className={`p-2 rounded text-xs ${
-                            optionIndex === question.correctAnswer
-                              ? 'bg-green-100 border border-green-300 text-green-800'
-                              : optionIndex === selectedAnswers[index] && selectedAnswers[index] !== question.correctAnswer
-                              ? 'bg-red-100 border border-red-300 text-red-800'
-                              : 'bg-slate-50 border border-slate-200 text-slate-600'
-                          }`}
-                        >
-                          <div className="flex items-center space-x-2">
-                            {optionIndex === question.correctAnswer && (
-                              <CheckCircle className="w-3 h-3 text-green-600 flex-shrink-0" />
-                            )}
-                            {optionIndex === selectedAnswers[index] && selectedAnswers[index] !== question.correctAnswer && (
-                              <XCircle className="w-3 h-3 text-red-600 flex-shrink-0" />
-                            )}
-                            <span className="flex-1">{option}</span>
-                            {optionIndex === question.correctAnswer && (
-                              <span className="text-green-600 font-medium">✓ Correct Answer</span>
-                            )}
-                            {optionIndex === selectedAnswers[index] && selectedAnswers[index] !== question.correctAnswer && (
-                              <span className="text-red-600 font-medium">✗ Your Answer</span>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    {selectedAnswers[index] !== question.correctAnswer && selectedAnswers[index] >= 0 && (
-                      <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 mt-2">
-                        <h5 className="font-semibold text-sm text-blue-800 mb-2">Why Your Answer is Incorrect</h5>
-                        <div className="text-sm text-blue-700">
-                          <p>{question.explanation}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+
 
           <div className="flex gap-3">
             <Button onClick={handleRetakeExam} variant="outline" className="flex-1">
@@ -317,7 +249,7 @@ export default function ExamLab({ category, title, description, questions, timeL
             <div>
               <h2 className="text-xl font-bold">{title} Exam</h2>
               <p className="text-sm text-slate-600">
-                Question {currentQuestion + 1} of {questions.length}
+                Page {currentPage} of {totalPages} ({questions.length} questions total)
               </p>
             </div>
             <div className="text-right">
@@ -334,64 +266,74 @@ export default function ExamLab({ category, title, description, questions, timeL
         </CardContent>
       </Card>
 
-      {/* Question */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">
-            Question {currentQuestion + 1}
-          </CardTitle>
-          <Badge className="w-fit">{questions[currentQuestion].category}</Badge>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <p className="text-base font-medium">{questions[currentQuestion].question}</p>
+      {/* Questions for Current Page */}
+      <div className="space-y-6">
+        {currentQuestions.map((question, index) => {
+          const globalIndex = startIndex + index
+          return (
+            <Card key={question.id}>
+              <CardHeader>
+                <CardTitle className="text-lg">
+                  Question {globalIndex + 1}
+                </CardTitle>
+                <Badge className="w-fit">{question.category}</Badge>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-base font-medium">{question.question}</p>
 
-          <RadioGroup
-            value={selectedAnswers[currentQuestion].toString()}
-            onValueChange={(value) => handleAnswerSelect(currentQuestion, parseInt(value))}
-          >
-            {questions[currentQuestion].options.map((option, index) => (
-              <div key={index} className="flex items-center space-x-2">
-                <RadioGroupItem value={index.toString()} id={`option-${index}`} />
-                <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
-                  {option}
-                </Label>
-              </div>
-            ))}
-          </RadioGroup>
-        </CardContent>
-      </Card>
+                <RadioGroup
+                  value={selectedAnswers[globalIndex]?.toString() || ""}
+                  onValueChange={(value) => handleAnswerSelect(globalIndex, parseInt(value))}
+                >
+                  {question.options.map((option, optionIndex) => (
+                    <div key={optionIndex} className="flex items-center space-x-2">
+                      <RadioGroupItem value={optionIndex.toString()} id={`option-${globalIndex}-${optionIndex}`} />
+                      <Label htmlFor={`option-${globalIndex}-${optionIndex}`} className="flex-1 cursor-pointer">
+                        {option}
+                      </Label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </CardContent>
+            </Card>
+          )
+        })}
+      </div>
 
-      {/* Navigation */}
+      {/* Pagination Navigation */}
       <Card>
         <CardContent className="py-4">
           <div className="flex items-center justify-between">
             <Button
-              onClick={handlePrevious}
-              disabled={currentQuestion === 0}
+              onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
               variant="outline"
             >
-              Previous
+              Previous Page
             </Button>
 
-            <div className="flex space-x-2">
-              {questions.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentQuestion(index)}
-                  className={`w-8 h-8 rounded-full text-xs font-medium ${
-                    index === currentQuestion
-                      ? 'bg-blue-500 text-white'
-                      : selectedAnswers[index] >= 0
-                      ? 'bg-green-500 text-white'
-                      : 'bg-slate-200 text-slate-600'
-                  }`}
-                >
-                  {index + 1}
-                </button>
-              ))}
+            <div className="flex items-center space-x-4">
+              <span className="text-sm text-slate-600">
+                Page {currentPage} of {totalPages}
+              </span>
+              <div className="flex space-x-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`w-8 h-8 rounded-full text-xs font-medium ${
+                      page === currentPage
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            {currentQuestion === questions.length - 1 ? (
+            {currentPage === totalPages ? (
               <Button
                 onClick={handleSubmitExam}
                 disabled={selectedAnswers.some(answer => answer === -1)}
@@ -400,8 +342,8 @@ export default function ExamLab({ category, title, description, questions, timeL
                 Submit Exam
               </Button>
             ) : (
-              <Button onClick={handleNext}>
-                Next
+              <Button onClick={() => handlePageChange(currentPage + 1)}>
+                Next Page
               </Button>
             )}
           </div>
