@@ -7,8 +7,9 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Award, Trophy, CheckCircle, Clock, User, BookOpen } from 'lucide-react'
+import { Award, Trophy, CheckCircle, Clock, User, BookOpen, Download } from 'lucide-react'
 import ExamSelector from './ExamSelector'
+import { getExamConfig } from '@/data/examQuestions'
 
 interface LabProgress {
   labName: string
@@ -49,6 +50,7 @@ export default function CertificateLab() {
   const [certificateGenerated, setCertificateGenerated] = useState(false)
   const [certificateData, setCertificateData] = useState<any>(null)
   const [showExamCenter, setShowExamCenter] = useState(false)
+  const [individualCertificates, setIndividualCertificates] = useState<Record<string, any>>({})
 
   useEffect(() => {
     loadProgress()
@@ -88,6 +90,41 @@ export default function CertificateLab() {
     const totalChallenges = labsOnly.reduce((sum, lab) => sum + lab.total, 0)
     const progressPercent = totalChallenges > 0 ? (totalCompleted / totalChallenges) * 100 : 0
     setTotalProgress(progressPercent)
+
+    // Load individual certificates
+    const savedCertificates = JSON.parse(localStorage.getItem('individual_certificates') || '{}')
+    setIndividualCertificates(savedCertificates)
+  }
+
+  const generateIndividualCertificate = (examCategory: string) => {
+    // Prompt for name when generating certificate
+    const name = prompt('Enter your full name for the certificate:')
+    if (!name || !name.trim()) {
+      alert('Name is required to generate certificate')
+      return
+    }
+
+    const examData = JSON.parse(localStorage.getItem('cybersecurity_exams') || '{}')
+    if (!examData[examCategory] || !examData[examCategory].passed) {
+      alert('You need to pass this exam first to earn a certificate.')
+      return
+    }
+
+    const config = getExamConfig(examCategory)
+    const certificate = {
+      name: name.trim(),
+      examCategory,
+      title: config.title,
+      score: examData[examCategory].score,
+      dateEarned: examData[examCategory].completedAt ? new Date(examData[examCategory].completedAt).toLocaleDateString() : new Date().toLocaleDateString(),
+      timeSpent: examData[examCategory].timeSpent || 0
+    }
+
+    const updatedCertificates = { ...individualCertificates, [examCategory]: certificate }
+    setIndividualCertificates(updatedCertificates)
+
+    // Save individual certificates to localStorage
+    localStorage.setItem('individual_certificates', JSON.stringify(updatedCertificates))
   }
 
   const generateCertificate = () => {
@@ -132,6 +169,135 @@ export default function CertificateLab() {
   useEffect(() => {
     loadExistingCertificate()
   }, [])
+
+  const downloadCertificateImage = async (certificate: any, isIndividual: boolean) => {
+    // Create a canvas element
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    // Set canvas size
+    canvas.width = 1000
+    canvas.height = 700
+
+    // White background
+    ctx.fillStyle = '#ffffff'
+    ctx.fillRect(0, 0, 1000, 700)
+
+    // Add decorative border
+    ctx.strokeStyle = '#1f2937' // gray-800
+    ctx.lineWidth = 6
+    ctx.strokeRect(30, 30, 940, 640)
+
+    // Inner gold border
+    ctx.strokeStyle = '#d4af37' // gold
+    ctx.lineWidth = 3
+    ctx.strokeRect(40, 40, 920, 620)
+
+    // Corner decorations
+    ctx.fillStyle = '#d4af37'
+    // Top-left corner
+    ctx.beginPath()
+    ctx.arc(50, 50, 15, 0, Math.PI * 2)
+    ctx.fill()
+    // Top-right corner
+    ctx.beginPath()
+    ctx.arc(950, 50, 15, 0, Math.PI * 2)
+    ctx.fill()
+    // Bottom-left corner
+    ctx.beginPath()
+    ctx.arc(50, 650, 15, 0, Math.PI * 2)
+    ctx.fill()
+    // Bottom-right corner
+    ctx.beginPath()
+    ctx.arc(950, 650, 15, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Add watermark
+    ctx.fillStyle = 'rgba(212, 175, 55, 0.08)' // very light gold
+    ctx.font = 'bold 100px serif'
+    ctx.textAlign = 'center'
+    ctx.save()
+    ctx.translate(500, 350)
+    ctx.rotate(-Math.PI / 8)
+    ctx.fillText('CyberSec Lab', 0, 0)
+    ctx.restore()
+
+    // Add title
+    ctx.fillStyle = '#1f2937'
+    ctx.font = 'bold 48px serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('Certificate of Completion', 500, 120)
+
+    ctx.font = '28px serif'
+    ctx.fillText('Cybersecurity Training Program', 500, 160)
+
+    // Add certificate content
+    ctx.font = '24px serif'
+    ctx.fillText('This certifies that', 500, 240)
+
+    ctx.fillStyle = '#d4af37'
+    ctx.font = 'bold 40px serif'
+    ctx.fillText(certificate.name, 500, 290)
+
+    ctx.fillStyle = '#1f2937'
+    ctx.font = '24px serif'
+    ctx.fillText('has successfully completed', 500, 340)
+
+    if (isIndividual) {
+      ctx.font = 'bold 32px serif'
+      ctx.fillText(certificate.title, 500, 400)
+      ctx.font = '22px serif'
+      ctx.fillText(`Score: ${certificate.score}%`, 500, 450)
+    } else {
+      ctx.font = 'bold 32px serif'
+      ctx.fillText('Certified Cybersecurity Professional', 500, 400)
+      ctx.font = '20px serif'
+      ctx.fillText(`${certificate.completedChallenges} out of ${certificate.totalChallenges} challenges completed`, 500, 450)
+      ctx.fillText(`${certificate.labsCompleted} labs completed • ${certificate.examsPassed} exams passed`, 500, 480)
+      ctx.fillText(`${certificate.totalTimeSpent} minutes total time`, 500, 510)
+    }
+
+    // Add signature lines
+    ctx.strokeStyle = '#6b7280' // gray-500
+    ctx.lineWidth = 1
+    ctx.beginPath()
+    ctx.moveTo(200, 580)
+    ctx.lineTo(400, 580)
+    ctx.stroke()
+
+    ctx.beginPath()
+    ctx.moveTo(600, 580)
+    ctx.lineTo(800, 580)
+    ctx.stroke()
+
+    // Signature labels - positioned over the lines
+    ctx.fillStyle = '#1f2937' // dark gray
+    ctx.font = 'italic 20px serif'
+    ctx.textAlign = 'center'
+    ctx.fillText('Arkar Yan', 300, 575)
+    ctx.font = '16px serif'
+    ctx.fillText('Director', 300, 595)
+
+    ctx.fillText(certificate.dateEarned, 700, 575)
+    ctx.fillText('Date', 700, 595)
+
+
+
+    // Convert canvas to blob and download
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = isIndividual ? `${certificate.title.replace(/\s+/g, '_')}_Certificate.png` : 'Cybersecurity_Certificate.png'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+      }
+    }, 'image/png')
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6 lg:p-8">
@@ -196,6 +362,66 @@ export default function CertificateLab() {
               </CardContent>
             </Card>
 
+            {/* Individual Certificates */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <Award className="w-5 h-5" />
+                  <span>Individual Certificates</span>
+                </CardTitle>
+                <CardDescription>
+                  Earn certificates for each exam you pass
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {['programming', 'linux', 'networking', 'cryptography', 'websecurity'].map((category) => {
+                      const config = getExamConfig(category)
+                      const examData = JSON.parse(localStorage.getItem('cybersecurity_exams') || '{}')
+                      const passed = examData[category]?.passed
+                      const hasCertificate = individualCertificates[category]
+
+                      return (
+                        <Card key={category} className="border-2 border-dashed">
+                          <CardContent className="p-4">
+                            <div className="text-center space-y-2">
+                              <h4 className="font-semibold text-sm">{config.title}</h4>
+                              {passed ? (
+                                <div className="space-y-2">
+                                  <Badge className="bg-green-500">Passed - {examData[category].score}%</Badge>
+                                  {hasCertificate ? (
+                                    <div className="flex space-x-2">
+                                      <Button size="sm" variant="outline" onClick={() => {
+                                        const cert = individualCertificates[category]
+                                        alert(`Certificate for ${cert.title}\nName: ${cert.name}\nScore: ${cert.score}%\nDate: ${cert.dateEarned}`)
+                                      }}>
+                                        View Certificate
+                                      </Button>
+                                      <Button size="sm" variant="outline" onClick={() => downloadCertificateImage(individualCertificates[category], true)}>
+                                        <Download className="w-4 h-4 mr-1" />
+                                        Download
+                                      </Button>
+                                    </div>
+                                  ) : (
+                                    <Button size="sm" onClick={() => generateIndividualCertificate(category)}>
+                                      Get Certificate
+                                    </Button>
+                                  )}
+                                </div>
+                              ) : (
+                                <Badge variant="outline">Not Passed</Badge>
+                              )}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      )
+                    })}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Exam Center */}
             <Card>
               <CardHeader>
@@ -222,7 +448,7 @@ export default function CertificateLab() {
                   </Button>
                   {showExamCenter && (
                     <div className="mt-4">
-                      <ExamSelector />
+                      <ExamSelector onExamComplete={loadProgress} />
                     </div>
                   )}
                 </div>

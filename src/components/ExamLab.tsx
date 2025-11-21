@@ -242,19 +242,53 @@ export default function ExamLab({ category, title, description, questions, timeL
                     <XCircle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
                   )}
                   <div className="flex-1">
-                    <p className="font-medium text-sm mb-1">
+                    <p className="font-medium text-sm mb-2">
                       {index + 1}. {question.question}
                     </p>
-                    <p className="text-xs text-slate-600 mb-2">
-                      Your answer: {selectedAnswers[index] >= 0 ? question.options[selectedAnswers[index]] : 'Not answered'}
-                    </p>
-                    <p className="text-xs text-green-600">
-                      Correct: {question.options[question.correctAnswer]}
-                    </p>
-                    <details className="mt-2">
-                      <summary className="text-xs font-medium cursor-pointer">Explanation</summary>
-                      <p className="text-xs text-slate-600 mt-1">{question.explanation}</p>
-                    </details>
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Badge className={selectedAnswers[index] === question.correctAnswer ? 'bg-green-500' : 'bg-red-500'}>
+                        {selectedAnswers[index] === question.correctAnswer ? 'Correct' : 'Incorrect'}
+                      </Badge>
+                      <span className="text-sm text-slate-600">Correct Answer: {question.options[question.correctAnswer]}</span>
+                    </div>
+                    <div className="space-y-1 mb-3">
+                      {question.options.map((option, optionIndex) => (
+                        <div
+                          key={optionIndex}
+                          className={`p-2 rounded text-xs ${
+                            optionIndex === question.correctAnswer
+                              ? 'bg-green-100 border border-green-300 text-green-800'
+                              : optionIndex === selectedAnswers[index] && selectedAnswers[index] !== question.correctAnswer
+                              ? 'bg-red-100 border border-red-300 text-red-800'
+                              : 'bg-slate-50 border border-slate-200 text-slate-600'
+                          }`}
+                        >
+                          <div className="flex items-center space-x-2">
+                            {optionIndex === question.correctAnswer && (
+                              <CheckCircle className="w-3 h-3 text-green-600 flex-shrink-0" />
+                            )}
+                            {optionIndex === selectedAnswers[index] && selectedAnswers[index] !== question.correctAnswer && (
+                              <XCircle className="w-3 h-3 text-red-600 flex-shrink-0" />
+                            )}
+                            <span className="flex-1">{option}</span>
+                            {optionIndex === question.correctAnswer && (
+                              <span className="text-green-600 font-medium">✓ Correct Answer</span>
+                            )}
+                            {optionIndex === selectedAnswers[index] && selectedAnswers[index] !== question.correctAnswer && (
+                              <span className="text-red-600 font-medium">✗ Your Answer</span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {selectedAnswers[index] !== question.correctAnswer && selectedAnswers[index] >= 0 && (
+                      <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 mt-2">
+                        <h5 className="font-semibold text-sm text-blue-800 mb-2">Why Your Answer is Incorrect</h5>
+                        <div className="text-sm text-blue-700">
+                          <p>{question.explanation}</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

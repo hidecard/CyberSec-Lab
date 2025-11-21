@@ -8,7 +8,7 @@ import { BookOpen, Clock, Target, Award } from 'lucide-react'
 import ExamLab from './ExamLab'
 import { examQuestions, getExamConfig } from '@/data/examQuestions'
 
-export default function ExamSelector() {
+export default function ExamSelector({ onExamComplete }: { onExamComplete?: () => void }) {
   const [selectedExam, setSelectedExam] = useState<string | null>(null)
   const [examResults, setExamResults] = useState<Record<string, { score: number; passed: boolean; timeSpent: number }>>({})
 
@@ -30,11 +30,10 @@ export default function ExamSelector() {
     setExamResults(examData)
   }, [])
 
-  const handleExamComplete = (score: number, passed: boolean, timeSpent: number) => {
+  const handleExamComplete = (score: number, passed: boolean) => {
     // Handle exam completion
     const examData = JSON.parse(localStorage.getItem('cybersecurity_exams') || '{}')
-    examData[selectedExam!] = { score, passed, timeSpent }
-    localStorage.setItem('cybersecurity_exams', JSON.stringify(examData))
+    const timeSpent = examData[selectedExam!]?.timeSpent || 0
 
     setExamResults(prev => ({
       ...prev,
@@ -43,6 +42,11 @@ export default function ExamSelector() {
 
     console.log(`Exam completed: ${score}% - ${passed ? 'Passed' : 'Failed'}`)
     setSelectedExam(null)
+
+    // Notify parent component to refresh progress
+    if (onExamComplete) {
+      onExamComplete()
+    }
   }
 
   if (selectedExam) {
