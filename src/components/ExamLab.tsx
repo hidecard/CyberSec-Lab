@@ -42,6 +42,15 @@ export default function ExamLab({ category, title, description, questions, timeL
   const [currentPage, setCurrentPage] = useState(1)
   const questionsPerPage = 5
 
+  // Pagination calculations
+  const totalPages = Math.ceil(questions.length / questionsPerPage)
+  const startIndex = (currentPage - 1) * questionsPerPage
+  const currentQuestions = questions.slice(startIndex, startIndex + questionsPerPage)
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+  }
+
   useEffect(() => {
     let timer: NodeJS.Timeout
     if (examStarted && !examCompleted && timeLeft > 0) {
