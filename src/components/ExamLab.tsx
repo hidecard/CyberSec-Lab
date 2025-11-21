@@ -312,49 +312,54 @@ export default function ExamLab({ category, title, description, questions, timeL
       {/* Pagination Navigation */}
       <Card>
         <CardContent className="py-4">
-          <div className="flex items-center justify-between">
-            <Button
-              onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-              variant="outline"
-            >
-              Previous Page
-            </Button>
-
-            <div className="flex items-center space-x-4">
+          <div className="flex flex-col gap-4">
+            <div className="text-center">
               <span className="text-sm text-slate-600">
                 Page {currentPage} of {totalPages}
               </span>
-              <div className="flex space-x-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`w-8 h-8 rounded-full text-xs font-medium ${
-                      page === currentPage
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
             </div>
-
-            {currentPage === totalPages ? (
-              <Button
-                onClick={handleSubmitExam}
-                disabled={selectedAnswers.some(answer => answer === -1)}
-                className="bg-green-600 hover:bg-green-700"
-              >
-                Submit Exam
-              </Button>
-            ) : (
-              <Button onClick={() => handlePageChange(currentPage + 1)}>
-                Next Page
-              </Button>
-            )}
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <Pagination>
+                <PaginationContent className="flex-wrap justify-center sm:justify-start">
+                  <PaginationItem>
+                    <PaginationPrevious
+                      onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                      className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                    />
+                  </PaginationItem>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <PaginationItem key={page}>
+                      <PaginationLink
+                        onClick={() => handlePageChange(page)}
+                        isActive={page === currentPage}
+                        className="cursor-pointer"
+                      >
+                        {page}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationNext
+                      onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                      className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+              {currentPage === totalPages ? (
+                <Button
+                  onClick={handleSubmitExam}
+                  disabled={selectedAnswers.some(answer => answer === -1)}
+                  className="bg-green-600 hover:bg-green-700 w-full sm:w-auto"
+                >
+                  Submit Exam
+                </Button>
+              ) : (
+                <Button onClick={() => handlePageChange(currentPage + 1)} className="w-full sm:w-auto">
+                  Next Page
+                </Button>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>

@@ -19,20 +19,9 @@ export const metadata: Metadata = {
   keywords: ["Cybersecurity", "Security Labs", "XSS", "SQL Injection", "CSRF", "Penetration Testing", "Web Security"],
   authors: [{ name: "CyberSec Lab Team" }],
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.svg",
   },
-  openGraph: {
-    title: "CyberSec Lab",
-    description: "Interactive cybersecurity labs covering XSS, SQL injection, CSRF, and more",
-    url: "/",
-    siteName: "CyberSec Lab",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "CyberSec Lab",
-    description: "Interactive cybersecurity labs covering XSS, SQL injection, CSRF, and more",
-  },
+  viewport: 'width=device-width, initial-scale=1',
 };
 
 export default function RootLayout({
