@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Script } from "next/script";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -17,12 +18,22 @@ export const metadata: Metadata = {
   title: "CyberSec Lab",
   description: "Interactive cybersecurity labs covering XSS, SQL injection, CSRF, and more. Learn by doing in a safe, controlled environment.",
   keywords: ["Cybersecurity", "Security Labs", "XSS", "SQL Injection", "CSRF", "Penetration Testing", "Web Security"],
-  authors: [{ name: "CyberSec Lab Team" }],
-  icons: {
-    icon: "/logo.svg",
-  },
-  viewport: 'width=device-width, initial-scale=1',
+  authors: [{ name: "Arkar Yan" }],
+
 };
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
+
+const gtagConfig = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P08T3TK5EM');
+`;
 
 export default function RootLayout({
   children,
@@ -31,6 +42,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-P08T3TK5EM"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: gtagConfig,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
